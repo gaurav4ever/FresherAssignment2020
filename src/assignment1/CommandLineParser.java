@@ -1,6 +1,8 @@
 package assignment1;
 
 import assignment1.exceptions.InvalidCommandLineArgument;
+import assignment1.models.*;
+
 import java.util.*;
 
 // Used to parse the commandline arguments

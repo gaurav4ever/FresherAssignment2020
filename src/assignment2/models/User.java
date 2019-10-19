@@ -1,11 +1,12 @@
 package assignment2.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class User implements Comparable<User> {
+public class User implements Comparable<User> , Serializable {
     private String name ;
     private int age ;
     private String address ;
@@ -20,14 +21,8 @@ public class User implements Comparable<User> {
         this.enrolledCourses = enrolledCourses;
     }
 
-    void display(){
-        System.out.println("======================================");
-        System.out.println("Name        : " + name);
-        System.out.println("Roll Number : " + name);
-        System.out.println("Age         : " + name);
-        System.out.println("Address     : " + name);
-        System.out.println("Courses Enrolled : " + enrolledCourses );
-        System.out.println("======================================");
+    public void display(){
+        System.out.printf("%s\t\t\t\t\t%d\t\t\t\t\t\t\t%d\t\t\t\t\t%s\t\t\t\t\t%s\n\n" , name , rollNumber , age, address , enrolledCourses);
     }
 
     public String getName() {

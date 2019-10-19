@@ -1,6 +1,7 @@
 package assignment1;
 
 import assignment1.exceptions.InvalidCommandLineArgument;
+import assignment1.models.ItemDetail;
 
 import java.util.Scanner;
 
@@ -8,12 +9,12 @@ class ItemManager {
 
     private void displayItem(ItemDetail itemDetail){
         System.out.println("========    Item Details    ========");
-        System.out.println("Name = " + itemDetail.item.getName());
-        System.out.println("Type = " + itemDetail.item.getClass().getSimpleName());
-        if(itemDetail.item.getPrice()!=null) System.out.println("Price = " + itemDetail.item.getPrice());
-        System.out.println("Quantity = " + itemDetail.quantity);
-        System.out.println("Sales tax = " + itemDetail.item.getTax());
-        System.out.println("Final Price = " + (itemDetail.item.getPrice()+itemDetail.item.getTax())) ;
+        System.out.println("Name = " + itemDetail.getItem().getName());
+        System.out.println("Type = " + itemDetail.getItem().getClass().getSimpleName());
+        if(itemDetail.getItem().getPrice()!=null) System.out.println("Price = " + itemDetail.getItem().getPrice());
+        System.out.println("Quantity = " + itemDetail.getQuantity());
+        System.out.println("Sales tax = " + itemDetail.getItem().getTax());
+        System.out.println("Final Price = " + (itemDetail.getItem().getPrice()+itemDetail.getItem().getTax())) ;
         System.out.println("====================================");
         System.out.println("\n");
     }

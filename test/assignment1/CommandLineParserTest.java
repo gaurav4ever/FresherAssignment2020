@@ -1,11 +1,12 @@
 package assignment1;
 
 import assignment1.exceptions.InvalidCommandLineArgument;
+import assignment1.models.Item;
+import assignment1.models.ItemDetail;
+import assignment1.models.RawItem;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Map;
 
 class CommandLineParserTest {
 
@@ -15,7 +16,7 @@ class CommandLineParserTest {
         ItemDetail itemDetail ;
 
         itemDetail = CommandLineParser.parse(args) ;
-        Item item = itemDetail.item ;
+        Item item = itemDetail.getItem() ;
 
         assertNotNull(item) ;
         assertNotNull(item.getName()) ;
@@ -23,7 +24,7 @@ class CommandLineParserTest {
         assertNotNull(item.getPrice()) ;
         assertEquals(item.getPrice(), 10.100) ;
         assertEquals(item.getName() , "natesh") ;
-        assertEquals(itemDetail.quantity , 10) ;
+        assertEquals(itemDetail.getQuantity(), 10) ;
 
         assertThrows(InvalidCommandLineArgument.class , ()->{
             String[] temp = new String[]{"-type" , "raw" , "-name" , "natesh"} ;
