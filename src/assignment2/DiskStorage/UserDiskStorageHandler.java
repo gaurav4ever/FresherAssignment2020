@@ -11,7 +11,7 @@ public class UserDiskStorageHandler {
         FileOutputStream fstream = null;
         try {
             fstream = new FileOutputStream("userdetails.ser");
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fstream) ;
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fstream);
             objectOutputStream.writeObject(users);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -19,13 +19,14 @@ public class UserDiskStorageHandler {
             e.printStackTrace();
         }
     }
+
     public Set<User> getUsersFromDisk() {
         FileInputStream fstream = null;
-        Set<User> users = new TreeSet<>() ;
+        Set<User> users = new TreeSet<>();
         try {
             fstream = new FileInputStream("userdetails.ser");
-            ObjectInputStream objectInputStream = new ObjectInputStream(fstream) ;
-            users = (Set<User>)objectInputStream.readObject() ;
+            ObjectInputStream objectInputStream = new ObjectInputStream(fstream);
+            users = (Set<User>) objectInputStream.readObject();
         } catch (FileNotFoundException e) {
             System.out.println("No User details stored in disk yet.");
         } catch (IOException e) {

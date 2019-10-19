@@ -1,16 +1,13 @@
 package assignment2.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
-public class User implements Comparable<User> , Serializable {
-    private String name ;
-    private int age ;
-    private String address ;
-    private int rollNumber ;
+public class User implements Comparable<User>, Serializable {
+    private String name;
+    private int age;
+    private String address;
+    private int rollNumber;
     private List<Course> enrolledCourses;
 
     public User(String name, int age, String address, int rollNumber, List<Course> enrolledCourses) {
@@ -21,8 +18,8 @@ public class User implements Comparable<User> , Serializable {
         this.enrolledCourses = enrolledCourses;
     }
 
-    public void display(){
-        System.out.printf("%s\t\t\t\t\t%d\t\t\t\t\t\t\t%d\t\t\t\t\t%s\t\t\t\t\t%s\n\n" , name , rollNumber , age, address , enrolledCourses);
+    public void display() {
+        System.out.printf("%s\t\t\t\t\t%d\t\t\t\t\t\t\t%d\t\t\t\t\t%s\t\t\t\t\t%s\n\n", name, rollNumber, age, address, enrolledCourses);
     }
 
     public String getName() {
@@ -47,8 +44,8 @@ public class User implements Comparable<User> , Serializable {
 
     @Override
     public int compareTo(User o) {
-        if(name.equals(o.name))
-            return rollNumber - o.rollNumber ;
-        return name.compareTo(o.name) ;
+        if (name.equals(o.name))
+            return rollNumber - o.rollNumber;
+        return name.compareTo(o.name);
     }
 }

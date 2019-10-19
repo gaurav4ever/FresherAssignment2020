@@ -1,7 +1,7 @@
 package assignment3.models;
 
 import assignment3.exceptions.CyclicDependencyException;
-import assignment3.exceptions.InvalidNodeIdException;
+import assignment3.exceptions.NoSuchNodeException;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,17 +10,11 @@ import java.util.Set;
 
 public class Node {
     private Integer id;
-
-    public String getName() {
-        return name;
-    }
-
     private String name;
     /// Mapping from parentId to corresponding Node reference
     private Map<Integer, Node> parents;
     /// Mapping from childId to corresponding Node reference
     private Map<Integer, Node> children;
-
     private Map<String, Object> extraInfo;
 
     public Node(Integer id, String name) {
@@ -31,25 +25,29 @@ public class Node {
         extraInfo = new HashMap<>();
     }
 
-    public Integer getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public void addParent(Node parent) throws CyclicDependencyException {
         parents.put(parent.id, parent);
     }
 
-    public void removeParent(Integer parentId) throws InvalidNodeIdException {
-        if(!parents.containsKey(parentId)) throw new InvalidNodeIdException();
+    public void removeParent(Integer parentId) throws NoSuchNodeException {
+        if (!parents.containsKey(parentId)) throw new NoSuchNodeException();
         parents.remove(parentId);
     }
 
-    public void removeChild(Integer childId) throws InvalidNodeIdException {
-        if(!children.containsKey(childId)) throw new InvalidNodeIdException();
+    public void removeChild(Integer childId) throws NoSuchNodeException {
+        if (!children.containsKey(childId)) throw new NoSuchNodeException();
         children.remove(childId);
     }
 
@@ -85,6 +83,7 @@ public class Node {
         return new HashSet<Node>(getChildren().values());
     }
 
+    /// A recursive utility function which populates the parameter ancestors by traversing each node in the children
     private void getAncestorUtil(Set<Node> parents, Set<Node> ancestors) {
         ancestors.addAll(parents);
         for (Node n : parents) {
@@ -99,6 +98,7 @@ public class Node {
         return ancenstors;
     }
 
+    /// A recursive utility function which populates the parameter descendents by traversing each node in the children
     private void getDescendentUtil(Set<Node> children, Set<Node> descendents) {
         descendents.addAll(children);
         for (Node n : children) {

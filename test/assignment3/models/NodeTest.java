@@ -1,7 +1,7 @@
 package assignment3.models;
 
 import assignment3.exceptions.CyclicDependencyException;
-import assignment3.exceptions.InvalidNodeIdException;
+import assignment3.exceptions.NoSuchNodeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +42,6 @@ class NodeTest {
 
     @Test
     void addParent() {
-        assertThrows(CyclicDependencyException.class , ()->rootNode.addParent(rootNode.getChildren().get(2)));
         try {
             rootNode.addParent(new Node(10 , "parent"));
             assertEquals(rootNode.getParentsSet().iterator().next().getId() , 10) ;
@@ -55,10 +54,10 @@ class NodeTest {
     void removeParent() {
         try {
             leafNode.removeParent(1);
-        } catch (InvalidNodeIdException e) {
+        } catch (NoSuchNodeException e) {
             e.printStackTrace();
         }
-        assertThrows(InvalidNodeIdException.class , ()->leafNode.removeParent(1));
+        assertThrows(NoSuchNodeException.class , ()->leafNode.removeParent(1));
         assertThrows(NoSuchElementException.class, ()->leafNode.getParentsSet().iterator().next());
     }
 
@@ -66,11 +65,11 @@ class NodeTest {
     void removeChild() {
         try {
             rootNode.removeChild(2);
-        } catch (InvalidNodeIdException e) {
+        } catch (NoSuchNodeException e) {
             e.printStackTrace();
         }
         assertEquals(rootNode.getChildrenSet().size() , 1);
-        assertThrows(InvalidNodeIdException.class,()-> rootNode.removeChild(2)) ;
+        assertThrows(NoSuchNodeException.class,()-> rootNode.removeChild(2)) ;
         assertEquals(rootNode.getChildren().get(3).getId() ,3 );
     }
 

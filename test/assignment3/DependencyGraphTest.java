@@ -1,12 +1,11 @@
 package assignment3;
 
 import assignment3.exceptions.CyclicDependencyException;
-import assignment3.exceptions.InvalidNodeIdException;
+import assignment3.exceptions.NoSuchNodeException;
+import assignment3.exceptions.NodeAlreadyExistsException;
 import assignment3.models.Node;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,15 +25,17 @@ class DependencyGraphTest {
             dependencyGraph.addDependency(4,5);
             dependencyGraph.addDependency(1,5);
             dependencyGraph.addDependency(2,5);
-        } catch (InvalidNodeIdException | CyclicDependencyException e) {
+        } catch (NoSuchNodeException | CyclicDependencyException | NodeAlreadyExistsException e) {
             e.printStackTrace();
         }
     }
 
     @Test
     void testInvalidNodeExceptions(){
-        assertThrows(InvalidNodeIdException.class , ()->dependencyGraph.addNode(3, "3"));
-        assertThrows(InvalidNodeIdException.class , ()->dependencyGraph.addDependency(3, 999));
+        assertThrows(NodeAlreadyExistsException.class , ()->dependencyGraph.addNode(3, "3"));
+        assertThrows(NodeAlreadyExistsException.class , ()->dependencyGraph.addNode(3, "3"));
+        assertThrows(NoSuchNodeException.class , ()->dependencyGraph.addDependency(3, 999));
+        assertThrows(NoSuchNodeException.class , ()->dependencyGraph.deleteNode(183) , "Should throw this since Node 183 is not present");
         assertThrows(NullPointerException.class , ()->dependencyGraph.getRoot().getChildren().get(3).getId());
         assertThrows(CyclicDependencyException.class , ()->dependencyGraph.addDependency(3, 1));
     }
@@ -47,12 +48,11 @@ class DependencyGraphTest {
         assertEquals("multi child" , root.getChildren().get(2).getName()) ;
         try {
             dependencyGraph.addDependency(5,3) ;
-        } catch (InvalidNodeIdException e) {
+        } catch (NoSuchNodeException e) {
             e.printStackTrace();
         } catch (CyclicDependencyException e) {
             e.printStackTrace();
         }
         assertTrue(dependencyGraph.getIdToNodeMap().get(3).getParents().containsKey(5));
     }
-
 }
