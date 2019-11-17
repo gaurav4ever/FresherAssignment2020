@@ -2,25 +2,25 @@
 
 ##Command-line argument parsing
 
-![](src/Assignment1/output.png)
+![](Q-1,2,3,4/src/Assignment1/output.png)
 
 
 # Assignment 2
 
 ##Java Serialization, Sorting
 
-![](src/Assignment2/output.png)
+![](Q-1,2,3,4/src/Assignment2/output.png)
 
 
 # Assignment 3
 
 ##Java Collections.
 
-![](src/Assignment3/output.png)
+![](Q-1,2,3,4/src/Assignment3/output.png)
 
 
 # Assignment 4
 
 ##Java Multithreading JDBC.
 
-![](src/Assignment4/output.png)
+![](Q-1,2,3,4/src/Assignment4/output.png)
