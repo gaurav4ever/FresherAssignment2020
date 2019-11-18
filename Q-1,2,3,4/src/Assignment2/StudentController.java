@@ -70,21 +70,56 @@ public class StudentController {
 
 	}
 
-	// function to display the user
+// function to display the user
 	public void disaplayAlllistOfStudents(int c) {
 		if (listOfStudents.size() != 0) {
-			Student[] students = new Student[listOfStudents.size()];
-			students = listOfStudents.toArray(students);
-			if (c == 1) {
-				Arrays.sort(students);
-			} else {
-				Arrays.sort(students, Collections.reverseOrder());
+			switch (c) {
+			case 1:
+				// sorting based on Names
+				// students are already sorted based on Names
+				break;
+			case 2:
+				// sorting based on roll Number
+				Collections.sort(listOfStudents, new Comparator<Student>() {
+					@Override
+					public int compare(Student arg0, Student arg1) {
+						
+						return arg0.getRollNumber() - arg1.getRollNumber();
+					}
+				});
+				break;
+			case 3:
+				// sorting based on age
+				Collections.sort(listOfStudents, new Comparator<Student>() {
+
+					@Override
+					public int compare(Student arg0, Student arg1) {
+						
+						return arg0.getAge() - arg1.getAge();
+					}
+				});
+				break;
+			case 4:
+				// sorting based on address
+				Collections.sort(listOfStudents, new Comparator<Student>() {
+					@Override
+					public int compare(Student arg0, Student arg1) {
+				
+						return arg0.getAddress().compareTo(arg1.getAddress());
+					}
+				});
+				break;
+			default:
+				System.out.println("Enter a valid choice");
+				return;
+
 			}
+
 			System.out.println("--------------------------------------------------------------");
 			System.out.printf("%-15s %-11s %-5s %-20s %-10s", "Roll Number", "Name", "Age", "Address", "Courses\n");
 			System.out.println("--------------------------------------------------------------");
 
-			for (Student eachStudent : students) {
+			for (Student eachStudent : listOfStudents) {
 				System.out.printf("%-15s %-11s %-5s %-20s %-10s\n", eachStudent.getRollNumber(),
 						eachStudent.getFullName(), eachStudent.getAge(), eachStudent.getAddress(),
 						String.join(" ", eachStudent.getCoursenrolled()));
@@ -93,6 +128,7 @@ public class StudentController {
 		} else
 			System.out.println("listOfStudents list is empty");
 	}
+
 
 	// function to save data into disk
 	public void saveStudentsDetails() {

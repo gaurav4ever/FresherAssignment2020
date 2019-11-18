@@ -19,7 +19,8 @@ public class Assignment2 {
 				studentController.addStudent();
 				break;
 			case 2:
-				System.out.println("select 1 :for Ascending Sorting \n select 2 for Descending Sorting");
+				System.out.println(
+						"select 1 : Sort by Name\n select 2 : Sort by roll number \n select 3 : Sort by age \n select 4 : Sort by address");
 				int c = sc.nextInt();
 				sc.nextLine();
 				studentController.disaplayAlllistOfStudents(c);
