@@ -11,9 +11,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
 
 public class StudentController {
 	private FileOutputStream fileOutputStream = null;
@@ -70,7 +71,7 @@ public class StudentController {
 
 	}
 
-// function to display the user
+	// function to display the user
 	public void disaplayAlllistOfStudents(int c) {
 		if (listOfStudents.size() != 0) {
 			switch (c) {
@@ -83,7 +84,7 @@ public class StudentController {
 				Collections.sort(listOfStudents, new Comparator<Student>() {
 					@Override
 					public int compare(Student arg0, Student arg1) {
-						
+						// TODO Auto-generated method stub
 						return arg0.getRollNumber() - arg1.getRollNumber();
 					}
 				});
@@ -94,17 +95,16 @@ public class StudentController {
 
 					@Override
 					public int compare(Student arg0, Student arg1) {
-						
+						// TODO Auto-generated method stub
 						return arg0.getAge() - arg1.getAge();
 					}
 				});
 				break;
 			case 4:
-				// sorting based on address
 				Collections.sort(listOfStudents, new Comparator<Student>() {
 					@Override
 					public int compare(Student arg0, Student arg1) {
-				
+						// TODO Auto-generated method stub
 						return arg0.getAddress().compareTo(arg1.getAddress());
 					}
 				});
@@ -129,7 +129,6 @@ public class StudentController {
 			System.out.println("listOfStudents list is empty");
 	}
 
-
 	// function to save data into disk
 	public void saveStudentsDetails() {
 		try {
@@ -145,14 +144,15 @@ public class StudentController {
 	}
 
 	public void deleteStudent(int rollNumber) {
-		for (Student student : listOfStudents) {
-			if (student.getRollNumber() == rollNumber) {
-				listOfStudents.remove(student);
-				studentsRollNumber.remove(student.getRollNumber());
-				return;
-			}
+		
+		boolean removed = listOfStudents.removeIf(student ->student.getRollNumber()==rollNumber);
+		if(removed == true)
+		{
+			System.out.println("student with rollnumber ="+rollNumber+" is removed from the list");
+		}else {
+			System.out.println("Roll number does not exist");
 		}
-		System.out.println("Roll number does not exist");
+		
 	}
 
 	@SuppressWarnings("unchecked")
