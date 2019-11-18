@@ -9,7 +9,7 @@ public class Assignment4 {
 	public static void main(String[] args) {
 
 		// first get the database connectivity
-		DataBase dataBase = new DataBase();
+		DataBase dataBase = DataBase.getInstance();
 		dataBase.connectToDatabase();
 		int totalRow = dataBase.getTotalRow();
 		ResultSet resultSet = dataBase.getResultSet();
@@ -42,3 +42,4 @@ public class Assignment4 {
 		}
 	}
 }
+

@@ -10,6 +10,20 @@ public class DataBase {
 	private ResultSet resultSet = null;
 	private int totalRow = -1;
 	private Connection connection = null;
+	
+	//Singleton object
+	private static DataBase instance = null;
+
+	private DataBase() {
+
+	}
+	
+	static DataBase getInstance()
+	{
+		if(instance == null)
+			instance = new DataBase();
+		return instance;
+	}
 
 	public Connection getConnection() {
 		return connection;
@@ -48,3 +62,4 @@ public class DataBase {
 	}
 
 }
+

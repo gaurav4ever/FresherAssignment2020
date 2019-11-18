@@ -10,19 +10,20 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-class TestAssignment4 {
+import com.mysql.fabric.xmlrpc.base.Data;
 
+class TestAssignment4 {
+	DataBase  database = DataBase.getInstance();
 	@Test
 	void test_for_connectivity() {
-		DataBase DataBase = new DataBase();
-		assertEquals(true, DataBase.connectToDatabase());
+		assertEquals(true, database.connectToDatabase());
 	}
 
 	@Test
 	void test_for_Row() {
-		DataBase DataBase = new DataBase();
-		assertEquals(true, DataBase.connectToDatabase());
-		assertEquals(2, DataBase.getTotalRow());
+		assertEquals(true, database.connectToDatabase());
+		assertEquals(3, database.getTotalRow());
 	}
 
 }
+
