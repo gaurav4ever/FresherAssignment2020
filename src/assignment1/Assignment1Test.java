@@ -53,4 +53,14 @@ class Assignment1Test {
 			fail(e.getMessage());
 		}
 	}
+	@Test
+	void test_commandline_arguments() {
+		String args[] = {"-name","item4","-type","random","-price","1000","-quantity","5"};
+		String args1[] = {"-name","item4","-price","1000","-quantity","5"};
+		assertAll(
+				() -> assertThrows(Exception.class,() -> Assignment1.main(args)),
+				() -> assertThrows(Exception.class,() -> Assignment1.main(args1))
+				);
+		
+	}
 }
