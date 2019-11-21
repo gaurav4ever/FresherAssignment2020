@@ -11,12 +11,12 @@ import assignment2.Exceptions.NullFieldException;
 import assignment2.Exceptions.RollNumberAlreadyExistsException;
 
 import java.util.regex.Pattern;
-class User implements Serializable,Comparable<User> {
+public class Student implements Serializable,Comparable<Student> {
 	private static final long serialVersionUID = 1L;
 	private String fullName,address;
 	private HashSet<String> courses;
 	private int rollNumber,age;
-	private static ArrayList<Integer> usedRollNumberList = new ArrayList<Integer>();
+	public static ArrayList<Integer> usedRollNumberList = new ArrayList<Integer>();
 	private static final String[] AVAILABLE_COURSES = {"A","B","C","D","E","F"};
 	/**
 	 * @return the fullName
@@ -33,8 +33,8 @@ class User implements Serializable,Comparable<User> {
 	/**
 	 * @return the courses
 	 */
-	public HashSet<String> getCourses() {
-		return courses;
+	public String getCourses() {
+		return courses.toString();
 	}
 	/**
 	 * @return the rollNumber
@@ -97,7 +97,7 @@ class User implements Serializable,Comparable<User> {
 	 * @throws RollNumberAlreadyExistsException 
 	 */
 	public void setRollNumber(int rollNumber) throws RollNumberAlreadyExistsException {
-		if(User.usedRollNumberList.contains(rollNumber)) {
+		if(Student.usedRollNumberList.contains(rollNumber)) {
 			throw new RollNumberAlreadyExistsException();
 		}
 		this.rollNumber = rollNumber;
@@ -112,7 +112,7 @@ class User implements Serializable,Comparable<User> {
 		this.age = age;
 	}
 	@Override
-	public int compareTo(User u2) {
+	public int compareTo(Student u2) {
 		if(this.getFullName()!=u2.getFullName()) {
 			String u1FullName = this.getFullName();
 			String u2FullName = u2.getFullName();
@@ -122,10 +122,7 @@ class User implements Serializable,Comparable<User> {
 				return -1;
 		}
 		else {
-			if(this.getRollNumber()>u2.getRollNumber())
-				return 1;
-			else
-				return -1;
+			return this.getRollNumber()-u2.getRollNumber();
 		}
 	}
 	
