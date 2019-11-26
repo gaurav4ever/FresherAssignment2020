@@ -11,7 +11,7 @@ import assignment2.Exceptions.NullFieldException;
 import assignment2.Exceptions.RollNumberAlreadyExistsException;
 
 import java.util.regex.Pattern;
-class User implements Serializable,Comparable<User> {
+class Student implements Serializable,Comparable<Student> {
 	private static final long serialVersionUID = 1L;
 	private String fullName,address;
 	private HashSet<String> courses;
@@ -97,7 +97,7 @@ class User implements Serializable,Comparable<User> {
 	 * @throws RollNumberAlreadyExistsException 
 	 */
 	public void setRollNumber(int rollNumber) throws RollNumberAlreadyExistsException {
-		if(User.usedRollNumberList.contains(rollNumber)) {
+		if(Student.usedRollNumberList.contains(rollNumber)) {
 			throw new RollNumberAlreadyExistsException();
 		}
 		this.rollNumber = rollNumber;
@@ -112,7 +112,7 @@ class User implements Serializable,Comparable<User> {
 		this.age = age;
 	}
 	@Override
-	public int compareTo(User u2) {
+	public int compareTo(Student u2) {
 		if(this.getFullName()!=u2.getFullName()) {
 			String u1FullName = this.getFullName();
 			String u2FullName = u2.getFullName();
