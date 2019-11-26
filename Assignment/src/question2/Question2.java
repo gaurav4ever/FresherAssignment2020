@@ -79,8 +79,8 @@ class UserServices implements Serializable {
     //rollnumber , user
     Scanner sc = new Scanner(System.in);
     Set<String> availableCourses = new HashSet(Arrays.asList("A", "B", "C", "D", "E", "F"));
-    String error = "Invalid Input !! Try Again";
-    
+    String inputError = "Invalid Input !! Try Again";
+
     private ArrayList<User> users; //To Store different users
     private Set<Integer> uniqueRollNumbers; //To mark rollNumber of Users uniquely
 
@@ -107,15 +107,15 @@ class UserServices implements Serializable {
         while (true) {
             try {
                 age = Integer.parseInt(sc.next());
-                
+
                 if (age >= 1) {
-                    
+
                     break;
                 } else {
                     System.out.println("Inappropriate Age!!"); //Age cannot be zero or negative
                 }
             } catch (NumberFormatException ex) {
-                System.out.println(error);
+                System.out.println(inputError);
 
             }
 
@@ -140,7 +140,7 @@ class UserServices implements Serializable {
                         System.out.println("Inappropriate RollNo");
                     }
                 } catch (NumberFormatException ex) {
-                    System.out.println(error);
+                    System.out.println(inputError);
 
                 }
 
@@ -218,7 +218,7 @@ class UserServices implements Serializable {
                 });
                 break;
             case 3:
-              //Compare wrt to ages of users
+                //Compare wrt to ages of users
                 Collections.sort(users, new Comparator<User>() {
                     @Override
                     public int compare(User u1, User u2) {
@@ -227,7 +227,7 @@ class UserServices implements Serializable {
                 });
                 break;
             case 4:
-                 //Compare wrt to ages of users
+                //Compare wrt to ages of users
                 Collections.sort(users, new Comparator<User>() {
                     @Override
                     public int compare(User u1, User u2) {
@@ -284,7 +284,7 @@ class UserServices implements Serializable {
                     }
                 }
             } catch (NumberFormatException ex) {
-                System.out.println(error);
+                System.out.println(inputError);
 
             }
 
@@ -300,7 +300,7 @@ class UserServices implements Serializable {
             //saving users list
             ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(filename));
             outStream.writeObject(users);
-            
+
 //            saving roll number set
             outStream = new ObjectOutputStream(new FileOutputStream(rollfile));
             outStream.writeObject(uniqueRollNumbers);
@@ -316,7 +316,7 @@ class UserServices implements Serializable {
     public void exitRequest() {
         System.out.println("Do you want to save changes. Enter [y] to proceed . Else enter anything ");
         String option = sc.next();
-        if (option.equals("y")) {
+        if ("y".equalsIgnoreCase(option)) {
             saveToDisk();
         }
     }
@@ -350,7 +350,7 @@ public class Question2 {
         } catch (Exception ex) {
 
             users = new ArrayList<>();
-           
+
         }
 
         return users;

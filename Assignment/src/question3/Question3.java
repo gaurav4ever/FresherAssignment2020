@@ -13,6 +13,7 @@ import java.util.Set;
  * @author Aditya
  */
 class Node {
+
     private int id;
     private String name;
     private ArrayList<Node> parents;
@@ -124,8 +125,8 @@ class Family {
 
     public void getParents(int id) {
 
-        Node cur = familyTree.get(id);
-        ArrayList<Node> parents = cur.getParents();
+        Node node = familyTree.get(id);
+        ArrayList<Node> parents = node.getParents();
         if (parents.isEmpty()) {
             System.out.println("No Parent");
             return;
@@ -135,9 +136,9 @@ class Family {
         }
     }
 
-    public Set<Node> getAncestorsUtil(Node current, Set<Node> ancestors) {
+    public Set<Node> getAncestorsUtil(Node currentNode, Set<Node> ancestors) {
 
-        ArrayList<Node> parents = current.getParents();
+        ArrayList<Node> parents = currentNode.getParents();
         for (Node parent : parents) {
             if (!ancestors.contains(parent)) {
                 ancestors.add(parent);
@@ -150,29 +151,28 @@ class Family {
     public Set<Node> getAncestors(int id) {
         //ancestors to Store Ancestors & also to use Visited Marking
         Set<Node> ancestors = new HashSet<>();
-        Node current = familyTree.get(id);
-        ancestors.add(current); // To prevent visiting current node again
-        ancestors = getAncestorsUtil(current, ancestors);
-        ancestors.remove(current);
+        Node node = familyTree.get(id);
+        ancestors.add(node); // To prevent visiting currentNode node again
+        ancestors = getAncestorsUtil(node, ancestors);
+        ancestors.remove(node);
         return ancestors;
     }
 
     public void getChildren(int id) {
-        Node cur = familyTree.get(id);
-        ArrayList<Node> children = cur.getChildren();
+        Node node = familyTree.get(id);
+        ArrayList<Node> children = node.getChildren();
         if (children.isEmpty()) {
             System.out.println("No Children!!");
             return;
         }
-        for (Node child : children) {
+        children.forEach((child) -> {
             System.out.println(child.getName());
-
-        }
+        });
     }
 
-    public Set<Node> getDescendentsUtil(Node current, Set<Node> descendents) {
+    public Set<Node> getDescendentsUtil(Node currentNode, Set<Node> descendents) {
 
-        ArrayList<Node> children = current.getChildren();
+        ArrayList<Node> children = currentNode.getChildren();
         for (Node child : children) {
             if (!descendents.contains(child)) {
                 descendents.add(child);
@@ -186,18 +186,18 @@ class Family {
     public Set<Node> getDescendents(int id) {
         // to Store descendents &  use same for Visited Node Marking
         Set<Node> descendents = new HashSet<>();
-        Node cur = familyTree.get(id);
-        descendents.add(cur); // To prevent visiting current node again
-        descendents = getDescendentsUtil(cur, descendents);
-        descendents.remove(cur);
+        Node node = familyTree.get(id);
+        descendents.add(node); // To prevent visiting currentNode node again
+        descendents = getDescendentsUtil(node, descendents);
+        descendents.remove(node);
         return descendents;
     }
 
     public int addNode(String name) {
-        Node new_node = new Node(id);
+        Node newNode = new Node(id);
 
-        new_node.setName(name);
-        familyTree.put(id, new_node);
+        newNode.setName(name);
+        familyTree.put(id, newNode);
         id++;
         return id - 1;
     }
@@ -216,7 +216,9 @@ class Family {
 public class Question3 {
 
     static Family family;
-    final static Scanner sc= new Scanner(System.in);;
+    final static Scanner sc = new Scanner(System.in);
+
+    ;
     public static void addNewNode() {
 
         System.out.println("Enter Node name");
@@ -241,7 +243,7 @@ public class Question3 {
 
                 System.out.println("Error!! Either Ids do not exits OR operation lead to Cyclic Dependency!!");
                 System.out.println("Enter [t] to Try Again");
-                if (!sc.next().equals("t")) {
+                if (!"t".equals(sc.next())) {
                     break;
                 }
             } catch (NumberFormatException ex) {
@@ -255,7 +257,7 @@ public class Question3 {
         String choice = "";
 
         //5 for exit
-        while (!choice.equals("5")) {
+        while ("5".equals(choice)) {
             System.out.println("----------------------------" + node.getName() + "----------------------------");
             System.out.println("1. View Parents");
             System.out.println("2. View Children");
@@ -274,25 +276,24 @@ public class Question3 {
                     family.getChildren(id);
                     break;
                 case "3":
-                    Set<Node> anc = family.getAncestors(id);
-                    if (anc.isEmpty()) {
+                    Set<Node> ancestors = family.getAncestors(id);
+                    if (ancestors.isEmpty()) {
                         System.out.println("No Ancestors exit");
                         break;
                     }
-                    for (Node i : anc) {
-                        System.out.println(i.getName());
-                    }
-                    ;
+                    ancestors.forEach((ancestor) -> {
+                        System.out.println(ancestor.getName());
+                    });
                     break;
                 case "4":
-                    Set<Node> des = family.getDescendents(id);
-                    if (des.isEmpty()) {
+                    Set<Node> descendents = family.getDescendents(id);
+                    if (descendents.isEmpty()) {
                         System.out.println("No Descendents exit");
                         break;
                     }
-                    for (Node i : des) {
-                        System.out.println(i.getName());
-                    }
+                    descendents.forEach((descendent) -> {
+                        System.out.println(descendent.getName());
+                    });
                     break;
                 case "5":
                     System.out.println("Exit..");
@@ -318,8 +319,8 @@ public class Question3 {
                 }
                 System.out.println("Id doesn't exit!! Enter [t] to try again ");
 
-                String t = sc.next();
-                if (!t.equals("t")) {
+               
+                if ("t".equals(sc.next())) {
                     break;
                 }
 
@@ -332,13 +333,13 @@ public class Question3 {
     }
 
     public static void main(String[] args) {
-        
+
         family = new Family();
 
         String choice = "";
 
         //5 for exit
-        while (!choice.equals("5")) {
+        while (!"5".equals(choice)) {
             // Main Menu
             System.out.println("----------------------------Main Menu----------------------------");
             System.out.println("1. Add New Node");

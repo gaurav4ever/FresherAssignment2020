@@ -1,9 +1,10 @@
 package question4;
 
-import question1.Item;
+import question1.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,12 +15,12 @@ import java.util.Queue;
  * @author Aditya
  */
 class Operations {
-
+    
     Queue<Item> itemListDB = new LinkedList<>();
      /* Flag to identify database operation complete or not. 
     If complete then true (allow exit) else false. */
     boolean exit;      
-    int sleepTime = 100;
+    int sleepTime = 200;
     ArrayList<Item> itemListTaxes = new ArrayList<>();
 
     public void displayItem(Item item) {
@@ -37,24 +38,29 @@ class Operations {
             Statement st = connect.createStatement();
             ResultSet rs = st.executeQuery("select * from items");
             exit = false;
+            GetItemFactory itemFactory=new GetItemFactory();
+            Item item;
             while (rs.next()) {
-
-                Item item = new Item();
+                String type=rs.getString(5);
+                item = itemFactory.getItem(type);
                 item.setName(rs.getString(2));
                 item.setPrice(rs.getDouble(3));
                 item.setQuantity(rs.getInt(4));
-                item.setType(rs.getString(5));
+                
                 itemListDB.add(item);
 
                 Thread.sleep(sleepTime);
 
             }
             exit = true;
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (ClassNotFoundException e){
+            System.out.println("Driver Class Not Fount!!");
 
         }
-
+        catch(SQLException s)
+        {
+            System.out.println("Cant connect to Database");
+        }
     }
 
     public void taxOperation() throws InterruptedException {
@@ -64,8 +70,7 @@ class Operations {
         while (!exit) {
             if (!itemListDB.isEmpty()) {
                 Item item = itemListDB.poll();
-                taxes = item.calculateTaxes();
-                item.setTaxes(Math.round(taxes));
+                item.calculateTaxes();
                 itemListTaxes.add(item);
 
                 displayItem(item);

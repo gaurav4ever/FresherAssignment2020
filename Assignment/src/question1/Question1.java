@@ -1,103 +1,98 @@
-
 package question1;
 
 import static java.lang.System.out;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
 
-    
+class ItemServices {
 
-    class ItemServices{
+    ArrayList<Item> itemList = new ArrayList<>();
+    final Scanner sc = new Scanner(System.in);
+    final String inputError = "Incorrect Input!!! Try Again";
 
-  
-    
-    ArrayList<Item> itemList=new ArrayList<>();
+    public Item readItem() {
+        GetItemFactory itemFactory = new GetItemFactory();
+        String name;
+        double price;
+        int quantity;
 
-   
-
-  
-    Scanner sc=new Scanner(System.in);
-    String error="Incorrect Input!!! Try Again";
-    public Item readItem(){
-        Item item=new Item();
         out.println("Enter name");
-        String name=sc.next();
+        name = sc.next();
+
+        while (true) {
+            try {
+                out.println("Enter Price");
+                price = Double.parseDouble(sc.next());
+
+                break;
+            } catch (Exception e) {
+                System.out.println(inputError);
+            }
+        }
+
+        while (true) {
+            try {
+                out.println("Enter Quantity");
+                quantity = Integer.parseInt(sc.next());
+
+                break;
+            } catch (Exception e) {
+                System.out.println(inputError);
+            }
+        }
+
+        out.println("Enter Type (Raw, Manufactured,Imported)");
+        String type = sc.next();
+        Item item = itemFactory.getItem(type);
+        while (item == null) {
+            out.println(inputError);
+            type = sc.next();
+            item = itemFactory.getItem(type);
+        }
+
         item.setName(name);
+        item.setPrice(price);
+        item.calculateTaxes();
+        item.setQuantity(quantity);
 
-    
-    while(true){
-        try{
-            double price=item.readPrice();
-            item.setPrice(price);
-            break;
-        }
-        catch(NumberFormatException e){
-            System.out.println(error);
-        }
-    }
-        
-    while(true){
-        try{
-            int quantity=item.readQuantity();
-            item.setQuantity(quantity);
-            break;
-        }
-        catch(NumberFormatException e){
-            System.out.println(error);
-        }
-    }
-    
-    
-    
-    out.println("Enter Type (Raw, Manufactured,Imported)");
-    String type=sc.next();
-    item.setType(type);
-    while(!item.validateType()){
-        out.println(error);
-        item.setType(sc.next().toLowerCase());
-    }
-  
-    double taxes=item.calculateTaxes();
-    item.setTaxes(taxes);
-    return item;
-       
+        return item;
+
     }
 
-    public ArrayList<Item> readItems()
-    {
+    public ArrayList<Item> readItems() {
         Item newItem;
-        String ans="y";
-        while("y".equals(ans) || "Y".equals(ans))
-        {
+        String answer = "y";
+        while ("y".equalsIgnoreCase(answer)) {
             newItem = readItem();
             itemList.add(newItem);
             out.println("Do you want to enter details of any other item (y/n):");
-            ans=sc.next();
-            
+            answer = sc.next();
+
         }
         return itemList;
     }
 }
+
 public class Question1 {
-    Scanner sc=new Scanner(System.in);
-    
+
+    Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
-        
+
         ItemServices service = new ItemServices();
         service.readItems();
-        ArrayList<Item> items=service.itemList;
+        ArrayList<Item> items = service.itemList;
         System.out.println("Item\tPrice\tTaxes\tFinal Price");
-        for(Item item:items)
-        {
-            double price=Math.round(item.getPrice());
-            double taxes=Math.round(item.getTaxes());
-            double finalPrice=price+taxes;
-            String outputItem=item.getName()+"\t"+price+"\t"+taxes+"\t"+finalPrice;
+        for (Item item : items) {
+            double price = item.getPrice();
+            double taxes = item.getTaxes();
+            double finalPrice = price + taxes;
+            String outputItem = item.getName() + "\t" + price + "\t" + taxes + "\t" + finalPrice;
             System.out.println(outputItem);
         }
-        
-        
+
     }
-    
+
 }
