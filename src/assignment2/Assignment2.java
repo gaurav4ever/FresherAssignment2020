@@ -24,7 +24,15 @@ class Assignment2 {
 			case 2: studentDetails.displayUserDetails(); break;
 			case 3: studentDetails.deleteUserDetails(); break;
 			case 4: studentDetails.saveUserDetails(); break;
-			case 5: sc.close(); System.exit(0);
+
+			case 5: System.out.println("Do you want to save the changes? (y/n)");
+					String scChoice = sc.nextLine();
+					if(scChoice.equals("y")) {
+						studentDetails.saveUserDetails();
+						System.out.println("Changes Saved!");
+					}
+					sc.close();
+					System.exit(0);
 			default: System.out.println("Invalid choice!");
 			}
 		}

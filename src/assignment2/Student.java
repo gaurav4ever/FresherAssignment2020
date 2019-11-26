@@ -11,12 +11,13 @@ import assignment2.Exceptions.NullFieldException;
 import assignment2.Exceptions.RollNumberAlreadyExistsException;
 
 import java.util.regex.Pattern;
-class Student implements Serializable,Comparable<Student> {
+
+public class Student implements Serializable,Comparable<Student> {
 	private static final long serialVersionUID = 1L;
 	private String fullName,address;
 	private HashSet<String> courses;
 	private int rollNumber,age;
-	private static ArrayList<Integer> usedRollNumberList = new ArrayList<Integer>();
+	public static ArrayList<Integer> usedRollNumberList = new ArrayList<Integer>();
 	private static final String[] AVAILABLE_COURSES = {"A","B","C","D","E","F"};
 	/**
 	 * @return the fullName
@@ -33,8 +34,8 @@ class Student implements Serializable,Comparable<Student> {
 	/**
 	 * @return the courses
 	 */
-	public HashSet<String> getCourses() {
-		return courses;
+	public String getCourses() {
+		return courses.toString();
 	}
 	/**
 	 * @return the rollNumber
@@ -122,10 +123,7 @@ class Student implements Serializable,Comparable<Student> {
 				return -1;
 		}
 		else {
-			if(this.getRollNumber()>u2.getRollNumber())
-				return 1;
-			else
-				return -1;
+			return this.getRollNumber()-u2.getRollNumber();
 		}
 	}
 	
