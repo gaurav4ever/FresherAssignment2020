@@ -2,7 +2,7 @@ package Assignment1;
 
 public class Item {
     String name;
-    double price;
+    double price, tax;
     int quantity;
     enum ITEM_TYPE {RAW, MANUFACTURED, IMPORTED };
     ITEM_TYPE type;
@@ -21,6 +21,14 @@ public class Item {
 
     public void setType(ITEM_TYPE type) {
         this.type = type;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public void setTax(double tax) {
+        this.tax = tax;
     }
 
     public double getPrice() {
