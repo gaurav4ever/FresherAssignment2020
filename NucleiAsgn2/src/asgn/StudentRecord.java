@@ -54,7 +54,9 @@ public class StudentRecord {
 
 	// save user data into memory
 	private static void saveUserDetails() {
-		if (!studentRecordList.equals(null)) {
+		if (studentRecordList.equals(null)) {
+			System.out.println("Nothing to add!");
+		} else {
 			// Records are sorted on full name. If name is same for two students then
 			// sorting based on the roll number.
 			Comparator<Student> comparator = Comparator.comparing(Student::getName)
@@ -62,14 +64,13 @@ public class StudentRecord {
 			Collections.sort(studentRecordList, comparator);
 
 			StudentFileReadWrite.writeFile(studentRecordList, studentRecFileName);
-			System.out.print("Data successfully saved!");
-		} else {
-			System.out.print("Nothing to add!");
+			System.out.println("Data successfully saved!");
+
 		}
 	}
 
 	private static void deleteUserDetails() {
-		int deleteRno = inputRnoToBeDeleted();
+		int deleteRno = InputUtil.inputRnoToBeDeleted();
 		boolean deleted = false;
 		for (int i = 0; i < studentRecordList.size(); i++) {
 			if (studentRecordList.get(i).getRollNumber() == deleteRno) { // check for matching roll number in the
@@ -84,14 +85,6 @@ public class StudentRecord {
 		if (!deleted) {
 			System.out.println("There is no entry in student record with given roll number!");
 		}
-	}
-
-	// get roll number of entry to be deleted
-	private static int inputRnoToBeDeleted() {
-		System.out.print("enter roll number of the student you want to delete from record : ");
-		Scanner sc = new Scanner(System.in);
-		int rno = sc.nextInt();
-		return rno;
 	}
 
 	public static List<Student> getStudentRecordList() {

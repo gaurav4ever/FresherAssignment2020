@@ -21,19 +21,6 @@ public class Item {
       this.type = type;
   }
   
-  public void setName(String name) {
-      this.name = name;
-  }
-  public void setPrice(double price) {
-      this.price = price;
-  }
-  public void setQuantity(int quantity) {
-      this.quantity = quantity;
-  }
-  public void setType(int type) {
-      this.type = type;
-  }
-  
   public String getname() {
       return name;
   }

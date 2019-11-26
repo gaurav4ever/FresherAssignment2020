@@ -1,6 +1,5 @@
 package asgn;
 
-import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -25,11 +24,7 @@ public class StudentFileReadWrite {
 				Student p = (Student) inputStream.readObject();
 				list.add(p);
 			}
-		} catch (EOFException eofException) {
-			return list;
-		} catch (ClassNotFoundException classNotFoundException) {
-			System.err.println(classNotFoundException + "Object creation failed.");
-		} catch (IOException ioException) {
+		} catch (Exception e) {
 			System.err.println("Error opening file.");
 		} finally {
 			try {
@@ -50,11 +45,8 @@ public class StudentFileReadWrite {
 			for (Student p : list) {
 				outStream.writeObject(p);
 			}
-			System.out.print("....");
-		} catch (IOException ioException) {
-			System.err.println("Error opening file.");
-		} catch (NoSuchElementException noSuchElementException) {
-			System.err.println("Invalid input.");
+		} catch (Exception e) {
+			System.err.println("Error in wirtting items!");
 		} finally {
 			try {
 				if (outStream != null)

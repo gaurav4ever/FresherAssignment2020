@@ -6,7 +6,8 @@ import java.util.Scanner;
 import asgn.model.Item;
 
 public class InputUtil {
-	private static ArrayList<Item> arrayListItems;
+
+	private static ArrayList<Item> arrayListItems = new ArrayList<>();
 
 	// get input from console in desired format
 	public static ArrayList<Item> getInputItem() {
@@ -21,7 +22,6 @@ public class InputUtil {
 		int quantity = sc.nextInt();
 		System.out.print("Choose product type:\n press 1 for raw\n 2 for manufactured\n 3 for imported\n");
 		int type = sc.nextInt();
-
 		arrayListItems.add(new Item(name, price, quantity, type));
 
 		// ask for multiple items
@@ -35,7 +35,12 @@ public class InputUtil {
 		if ("Y".equals(choice) || "y".equals(choice)) {
 			getInputItem();
 		} else {
-			// add condition
+			System.out.println("-------------EXIT-------------");
+			System.exit(0);
 		}
+	}
+	
+	public static void parseCommandLineInput(String[] args) {
+		
 	}
 }

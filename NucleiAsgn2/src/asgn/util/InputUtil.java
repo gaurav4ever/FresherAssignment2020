@@ -100,4 +100,11 @@ public class InputUtil {
 		} else
 			return inputRno();
 	}
+
+	// get roll number of entry to be deleted
+	public static int inputRnoToBeDeleted() {
+		System.out.print("enter roll number of the student you want to delete from record : ");
+		Scanner sc = new Scanner(System.in);
+		return sc.nextInt();
+	}
 }
