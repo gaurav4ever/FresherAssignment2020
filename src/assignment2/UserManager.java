@@ -110,7 +110,7 @@ public class UserManager {
     private void promptForSavingChanges() {
         System.out.println("Do you wish to save changes before exit ? (y/n)");
         String choice = (new Scanner(System.in)).nextLine();
-        if (choice.equals("y")) {
+        if ("y".equals(choice)) {
             saveToDisk();
         }
         System.exit(0);

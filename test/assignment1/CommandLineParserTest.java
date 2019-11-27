@@ -14,8 +14,9 @@ class CommandLineParserTest {
     void parse() {
         String [] args = new String[]{"-name" , "natesh" , "-type" , "raw" , "-price" , "10.100" , "-quantity" , "10"} ;
         ItemDetail itemDetail ;
+        CommandLineParser parser = new CommandLineParser();
 
-        itemDetail = CommandLineParser.parse(args) ;
+        itemDetail = parser.getItemDetail(args) ;
         Item item = itemDetail.getItem() ;
 
         assertNotNull(item) ;
@@ -28,22 +29,22 @@ class CommandLineParserTest {
 
         assertThrows(InvalidCommandLineArgument.class , ()->{
             String[] temp = new String[]{"-type" , "raw" , "-name" , "natesh"} ;
-            CommandLineParser.parse(temp) ;
+            new CommandLineParser().getItemDetail(temp) ;
         });
 
         assertThrows(InvalidCommandLineArgument.class , ()->{
             String[] temp = new String[]{"-name" , "natesh" , "-type" , "-price"} ;
-            CommandLineParser.parse(temp) ;
+            new CommandLineParser().getItemDetail(temp) ;
         });
 
         assertThrows(InvalidCommandLineArgument.class , ()->{
             String[] temp = new String[]{"-name" , "natesh" , "-type" , "junk"} ;
-            CommandLineParser.parse(temp) ;
+            new CommandLineParser().getItemDetail(temp) ;
         });
 
         assertThrows(InvalidCommandLineArgument.class , ()->{
             String[] temp = new String[]{"-name" , "natesh"  , "-quantity" , "10.43" , "-type" , "raw"} ;
-            CommandLineParser.parse(temp) ;
+            new CommandLineParser().getItemDetail(temp) ;
         });
     }
 }

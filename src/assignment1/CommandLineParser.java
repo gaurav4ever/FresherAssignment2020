@@ -9,22 +9,29 @@ import java.util.Iterator;
 
 // Used to parse the commandline arguments
 class CommandLineParser {
-    private static void validate(ArrayList<String> args) throws InvalidCommandLineArgument {
+
+    private  void validateNumberOfArguments(ArrayList<String> args) {
         if (args.size() < 4)
             throw new InvalidCommandLineArgument("At least 4 commandline arguments needed and -name and -type options are must.");
+    }
 
+    private  void validateCompulsoryArguments(ArrayList<String> args) {
 //         -name should be the first arg and -type option must be present
         if (args.indexOf("-" + Strings.name) != 0)
             throw new InvalidCommandLineArgument("-name option must be the first option !");
         if (args.indexOf("-" + Strings.type) < 0) throw new InvalidCommandLineArgument("-type option is compulsory !");
+    }
 
+    private  void validateEachOptionHasAValue(ArrayList<String> args) {
 //        An option should have a corresponding value as its next argument
         for (Iterator<String> s = args.iterator(); s.hasNext(); ) {
             if (s.next().startsWith("-") && (s.hasNext() && s.next().startsWith("-"))) {
                 throw new InvalidCommandLineArgument("The value for options must not start with a dash '-' ");
             }
         }
+    }
 
+    private  void validateTypeOption(ArrayList<String> args) {
 //        allow only some values for type
         String type = args.get(args.indexOf("-" + Strings.type) + 1);
         switch (type) {
@@ -35,7 +42,9 @@ class CommandLineParser {
             default:
                 throw new InvalidCommandLineArgument("Invalid 'Item Type' specified !");
         }
+    }
 
+    private  void validateOptionHasCorrectDataType(ArrayList<String> args) {
         try {
             if (args.indexOf("-" + Strings.quantity) >= 0)
                 Integer.parseInt(args.get(args.indexOf("-" + Strings.quantity) + 1));
@@ -45,9 +54,17 @@ class CommandLineParser {
             throw new InvalidCommandLineArgument("Invalid input ! Make sure that item quantity is integer and price is a number.");
         }
     }
+    private  void validate(ArrayList<String> args) throws InvalidCommandLineArgument {
+        validateNumberOfArguments(args);
+        validateCompulsoryArguments(args);
+        validateEachOptionHasAValue(args);
+        validateTypeOption(args);
+        validateOptionHasCorrectDataType(args);
+    }
+
 
     // Returns an ItemDetail based on the arguments given here after validating their values
-    static ItemDetail parse(String[] args) throws InvalidCommandLineArgument {
+     ItemDetail getItemDetail(String[] args) throws InvalidCommandLineArgument {
         ArrayList<String> argsList = new ArrayList<>(Arrays.asList(args));
 
         validate(argsList);
