@@ -12,7 +12,7 @@ import assignment3.Exceptions.DependencyNotFoundException;
 import assignment3.Exceptions.NodeAlreadyExistsException;
 import assignment3.Exceptions.NodeNotFoundException;
 
-class Assignment3 {
+class Assignment3Test {
 
 	@Test
 	void test_get_immediate_parents_and_children() {
