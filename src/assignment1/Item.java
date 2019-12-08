@@ -2,7 +2,7 @@ package assignment1;
 
 import java.util.HashMap;
 
-class Item {
+public class Item {
 	private String itemName,itemType;
 	private float itemPrice;
 	private int itemQuantity;
