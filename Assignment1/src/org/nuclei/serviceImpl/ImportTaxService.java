@@ -3,7 +3,7 @@ package org.nuclei.serviceImpl;
 import org.nuclei.model.Item;
 import org.nuclei.service.TaxService;
 
-public class importTaxService implements TaxService {
+public class ImportTaxService implements TaxService {
 
     @Override
     public Item calculateTax(Item item) {

@@ -10,15 +10,15 @@ public class TaxServiceImpl {
         TaxService service;
         switch(type) {
             case "raw":
-                service = new rawTaxService();
+                service = new RawTaxService();
                 service.calculateTax(item);
                 break;
             case "manufactured":
-                service = new manufacturedTaxService();
+                service = new ManufacturedTaxService();
                 service.calculateTax(item);
                 break;
             case "import":
-                service = new importTaxService();
+                service = new ImportTaxService();
                 service.calculateTax(item);
                 break;
             default:
