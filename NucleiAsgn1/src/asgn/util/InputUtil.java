@@ -39,8 +39,4 @@ public class InputUtil {
 			System.exit(0);
 		}
 	}
-	
-	public static void parseCommandLineInput(String[] args) {
-		
-	}
 }

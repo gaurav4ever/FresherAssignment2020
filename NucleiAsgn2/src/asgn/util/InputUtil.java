@@ -7,6 +7,7 @@ import java.util.Scanner;
 import asgn.StudentRecord;
 import asgn.model.Course;
 import asgn.model.Student;
+import asgn.service.ServiceOperations;
 import asgn.verification.InputVerification;
 
 //Class to generate menu for user entry
@@ -36,7 +37,8 @@ public class InputUtil {
 		if ("Y".equals(yn) || "y".equals(yn)) {
 			choice = getInputItemChoice();
 		} else {
-			StudentRecord.exitProgram();
+			ServiceOperations serviceOperations = new ServiceOperations();
+			serviceOperations.exitProgram();
 			// add condition
 		}
 		return choice;
@@ -104,6 +106,12 @@ public class InputUtil {
 	// get roll number of entry to be deleted
 	public static int inputRnoToBeDeleted() {
 		System.out.print("enter roll number of the student you want to delete from record : ");
+		Scanner sc = new Scanner(System.in);
+		return sc.nextInt();
+	}
+
+	public static int inputSortByChoise() {
+		System.out.print("\nChoose from the given menu :\n press : 1 for sorting according to rollnumber\n 2 for name\n 3 for age\n 4 for address\n");
 		Scanner sc = new Scanner(System.in);
 		return sc.nextInt();
 	}
