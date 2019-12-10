@@ -1,10 +1,9 @@
 package userdetailmanagement.UserUtil;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 import userdetailmanagement.model.User;
 import userdetailmanagement.service.UserService;
@@ -12,27 +11,86 @@ import userdetailmanagement.service.UserService;
 public class UserUtil {
 	static Scanner sc=new Scanner(System.in);
 	static UserService service = new UserService();
-//	static TreeMap<String,User> tm = new TreeMap<String,User>();
-//	static TreeMap<String, ArrayList<User>> tm = new TreeMap<String, ArrayList<User>>();
-//	static ArrayList<Integer> roll=new ArrayList<>();
+	
+	public static String inputName() {
+		String fullname =  sc.nextLine();
+		while(fullname.equals("")) {
+			System.out.println("Please try again");
+			fullname = sc.nextLine();
+		}
+		return fullname;
+	}
+	
+	private static int inputAge() {
+		System.out.print("-age [Integer] ");
+		int age;
+		try {
+			age = sc.nextInt();
+		}
+		catch(InputMismatchException e) {
+			System.out.println("Age can only be integer. Please re-enter age");
+			sc.nextLine();
+			age = inputAge();
+		}
+		return age;
+	}
+	
+	public static String inputAddress() {
+		System.out.print("-address ");
+		sc.nextLine();
+		String address = sc.nextLine();
+		while(address.equals("")) {			
+			System.out.println("Please try again");
+			address = sc.nextLine();
+		}
+		return address;
+	}
+	
+	
+	
+	public static int inputRollNo() {
+		System.out.print("-Roll Number [Integer] ");
+		int rollno;
+		try {
+			rollno = sc.nextInt();
+			if(service.verifiedRollNo(rollno)) {
+				return rollno;
+			}
+			else {
+				rollno=inputRollNo();
+			}
+		} catch (InputMismatchException e) {
+			System.out.println("Roll no should be integer. Please re-enter");
+			rollno = inputRollNo();
+			sc.nextLine();
+		}
+		return rollno;
+	}
+	
 	public static User getUserInput() {
 		User user = new User();
+		
+		System.out.println("Enter the Details of the User");
 		sc.nextLine();
-		System.out.println("Enter name");
-		user.setName(sc.nextLine());
-		System.out.println("Enter age");
-		user.setAge(sc.nextInt());
-		sc.nextLine();
-		System.out.println("Enter address");
-		user.setAddress(sc.nextLine());
-		System.out.println("Enter roll no");
-		user.setRollNo(sc.nextInt());
+		
+		System.out.print("-Fullname ");
+		String fullName = inputName();
+		user.setName(fullName);
+		
+		int age = inputAge();
+		user.setAge(age);
+		
+		String address = inputAddress();
+		user.setAddress(address);
+		
+		int rollno = inputRollNo();
+		user.setRollNo(rollno);
+		
 		System.out.println("Select atleast 4 courses");
 		int count=6;
 		ArrayList<String> courses = new ArrayList<>();
 		String ch="y";
 		while(count>0) {
-			System.out.println("count "+count);
 			if(count<=2) {
 				System.out.println("Do you want to select more or exit.(y/n)");
 				ch=sc.next();
@@ -122,9 +180,26 @@ public class UserUtil {
 			
 		}
 		user.setCourses(courses);
-		return user;
+		return user;	
+}
+	
+	public static int getSortingMenu() {
+		int choice =0;
+		System.out.println("Select an attribute based on which you wanna sort");
+		System.out.println("1. Name");
+		System.out.println("2. Roll Number");
+		System.out.println("3. Age");
+		System.out.println("4. Address");
+		try {
+			choice = sc.nextInt();
+		}catch(Exception e) {
+			System.out.println("Invalid Choice");
+		}
+		if(choice==0)return getSortingMenu();
+		else return choice;
 	}
 	public static void start() {
+		service.bringDataInMemory();
 		while(true) {
 			System.out.println("Select an option - \n1.Add user\n2.Display user\n3.Delete user\n4.Save user\n5.Exit");
 			int t=sc.nextInt();
@@ -132,19 +207,39 @@ public class UserUtil {
 			case 1:
 				User user = getUserInput();
 				service.addUser(user);
-				//service.addUser(tm,roll);
 				break;
 			case 2:
-				service.displayUser();
+				List<User> users = service.findAllUser();
+				service.displayUser(users);
+				sc.nextLine();
+				System.out.println("Press -> 's' for sorting menu");
+				char check = sc.nextLine().toLowerCase().charAt(0);
+				while(check =='s') {
+					int choice = getSortingMenu();
+					sc.nextLine();
+					System.out.println("Press 'a' for ascending and 'd' for descending");
+					char order = sc.nextLine().toLowerCase().charAt(0);
+					users = service.getSortedUserDetails(choice, order);
+					service.displayUser(users);
+					System.out.println("Press -> 's' for sorting menu");
+					check = sc.nextLine().toLowerCase().charAt(0);
+				}
 				break;
 			case 3:
-				service.deleteUser();
+				System.out.println("Enter roll no of the user");
+				int rollNo = sc.nextInt();
+				sc.nextLine();
+				service.deleteUser(rollNo);
 				break;
 			case 4:
-				service.saveUser();
+				service.saveUserInDisk();
 				break;
 			case 5:
-				System.exit(0);
+				sc.nextLine();
+				System.out.println("Do you want to save the latest changes [y/n]");
+				char ch = sc.nextLine().toLowerCase().charAt(0);
+				if(ch=='y') service.saveUserInDisk();
+				break;
 			default:
 				System.out.println("Wrong option. Please select correct option.");
 				break;	

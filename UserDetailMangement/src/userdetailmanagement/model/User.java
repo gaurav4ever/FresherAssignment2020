@@ -44,10 +44,12 @@ public class User implements Comparable<User>{
 		return 0;
 	}
 	
-	@Override
-	public String toString()
-	{
-		return name+" "+age+" "+rollNo+" "+address+" "+courses;
+	public String printCourseList() {
+		return "[ " + courses.get(0) + " " + courses.get(1) + " " + courses.get(2) + " " + courses.get(3)+ " ]";
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("%1$-15s %2$-15d %3$-15d %4$-20s %5$-10s", name, rollNo, age , address, printCourseList() );
+	}
 }
