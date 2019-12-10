@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import com.gonulcei.assignment.q2.exception.UserAlreadyExistsException;
 import com.gonulcei.assignment.q2.model.User;
-import com.gonulcei.assignment.q2.service.UserService;
+import com.gonulcei.assignment.q2.serviceImpl.UserServiceImpl;
 
 /*
  * This is class here acts as an interface between the user and the services
@@ -19,7 +19,7 @@ public class UserUtil {
 	/*
 	 * Object of userService, basically to call the services of users
 	 */
-	static UserService userService = new UserService();
+	static UserServiceImpl userService = new UserServiceImpl();
 	
 	/*
 	 * This method shows the main menu
