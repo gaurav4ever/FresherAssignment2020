@@ -3,7 +3,7 @@ package org.nuclei.model;
 import java.io.Serializable;
 import java.util.List;
 
-public class User implements Serializable {
+public class Student implements Serializable {
 
     private String FullName;
     private int Age;

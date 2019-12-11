@@ -1,14 +1,14 @@
 package org.nuclei.utils.comparator;
 
-import org.nuclei.model.User;
+import org.nuclei.model.Student;
 
 import java.util.Comparator;
 
-public class AgeComparatorAscending implements Comparator<User> {
+public class AgeComparatorAscending implements Comparator<Student> {
 
     @Override
-    public int compare(User user1, User user2) {
-        return user1.getAge() - user2.getAge();
+    public int compare(Student student1, Student student2) {
+        return student1.getAge() - student2.getAge();
     }
 
 }

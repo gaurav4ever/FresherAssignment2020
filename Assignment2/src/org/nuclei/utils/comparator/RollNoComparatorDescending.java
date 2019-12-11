@@ -1,14 +1,14 @@
 package org.nuclei.utils.comparator;
 
-import org.nuclei.model.User;
+import org.nuclei.model.Student;
 
 import java.util.Comparator;
 
-public class RollNoComparatorDescending implements Comparator<User> {
+public class RollNoComparatorDescending implements Comparator<Student> {
 
     @Override
-    public int compare(User user1, User user2) {
-        return user2.getRollNo() - user1.getRollNo();
+    public int compare(Student student1, Student student2) {
+        return student2.getRollNo() - student1.getRollNo();
     }
 
 }

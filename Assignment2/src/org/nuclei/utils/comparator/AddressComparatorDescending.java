@@ -1,14 +1,14 @@
 package org.nuclei.utils.comparator;
 
-import org.nuclei.model.User;
+import org.nuclei.model.Student;
 
 import java.util.Comparator;
 
-public class AddressComparatorDescending implements Comparator<User> {
+public class AddressComparatorDescending implements Comparator<Student> {
 
     @Override
-    public int compare(User user1, User user2) {
-        return user2.getAddress().compareToIgnoreCase(user1.getAddress());
+    public int compare(Student student1, Student student2) {
+        return student2.getAddress().compareToIgnoreCase(student1.getAddress());
     }
 
 }

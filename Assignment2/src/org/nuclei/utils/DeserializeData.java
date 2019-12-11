@@ -9,14 +9,15 @@ public class DeserializeData<T> {
 
     public List<T> deserializeData( String filename ) throws IOException, ClassNotFoundException {
 
-            FileInputStream file = new FileInputStream(filename);
-            ObjectInputStream in = new ObjectInputStream(file);
+        FileInputStream file = new FileInputStream(filename);
+        ObjectInputStream in = new ObjectInputStream(file);
 
-            List<T> obj = (List<T>)in.readObject();
+        List<T> obj = (List<T>)in.readObject();
 
-            in.close();
-            file.close();
-            return obj;
+        in.close();
+        file.close();
+        //System.out;
+        return obj;
 
     }
 

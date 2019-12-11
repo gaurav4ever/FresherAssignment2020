@@ -1,17 +1,17 @@
 package org.nuclei.utils.comparator;
 
-import org.nuclei.model.User;
+import org.nuclei.model.Student;
 
 import java.util.Comparator;
 
-public class DefaultComparator implements Comparator<User> {
+public class DefaultComparator implements Comparator<Student> {
 
      @Override
-    public int compare(User user1, User user2) {
-        if(user1.getFullName().equalsIgnoreCase(user2.getFullName())) {
-            return user1.getRollNo() - user2.getRollNo();
+    public int compare(Student student1, Student student2) {
+        if(student1.getFullName().equalsIgnoreCase(student2.getFullName())) {
+            return student1.getRollNo() - student2.getRollNo();
         }
-        else return user1.getFullName().compareToIgnoreCase(user2.getFullName());
+        else return student1.getFullName().compareToIgnoreCase(student2.getFullName());
     }
 
 }

@@ -1,14 +1,14 @@
 package org.nuclei.utils.comparator;
 
-import org.nuclei.model.User;
+import org.nuclei.model.Student;
 
 import java.util.Comparator;
 
-public class NameComparatorDescending implements Comparator<User> {
+public class NameComparatorDescending implements Comparator<Student> {
 
     @Override
-    public int compare(User user1, User user2) {
-        return user2.getFullName().compareToIgnoreCase(user1.getFullName());
+    public int compare(Student student1, Student student2) {
+        return student2.getFullName().compareToIgnoreCase(student1.getFullName());
     }
 
 }
