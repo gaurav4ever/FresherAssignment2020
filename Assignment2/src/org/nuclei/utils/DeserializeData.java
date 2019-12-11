@@ -16,7 +16,6 @@ public class DeserializeData<T> {
 
             in.close();
             file.close();
-            //System.out.println("Object has been deserialized\n" + "Data after Deserialization.");
             return obj;
 
     }
