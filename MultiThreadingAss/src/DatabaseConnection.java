@@ -2,7 +2,6 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,16 +11,15 @@ import java.util.List;
 public class DatabaseConnection {
 	 private Connection connect = null;
 	  private Statement statement = null;
-	  private PreparedStatement preparedStatement = null;
 	  private ResultSet resultSet = null;
 
 	  public List<Item> items = new ArrayList<Item>();
 	  public void readDataBase() throws Exception {
-	    try {
+		  try {
 	    	Class.forName("com.mysql.cj.jdbc.Driver");  
-	    	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Item","root","root@3306");  
+	    	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Items","root","nuclei@123");  
 	    	Statement stmt=con.createStatement();  
-	    	resultSet = stmt.executeQuery("select * from ItemDetail");
+	    	resultSet = stmt.executeQuery("select * from Item");
 	    	writeResultSet(resultSet);
 	      
 	    } catch (Exception e) {

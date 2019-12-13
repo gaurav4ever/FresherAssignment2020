@@ -58,4 +58,6 @@ public class NewsletterController {
 			return new ResponseEntity<String>("Type does not exist. Please re-check it.",HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	
 }

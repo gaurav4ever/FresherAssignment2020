@@ -10,6 +10,13 @@ public class Subscription {
 	//currently i am sending id from frontend
 	@Id
 	private long subscriptionid; 
+	@Override
+	public String toString() {
+		return "Subscription [subscriptionid=" + subscriptionid + ", email=" + email + ", endDateOfSubscription="
+				+ endDateOfSubscription + ", newsLetterType=" + newsLetterType + ", dateOfSubscription="
+				+ dateOfSubscription + ", dailyweekly=" + dailyweekly + ", isSubscribed=" + isSubscribed
+				+ ", isCanceled=" + isCanceled + ", isRenewed=" + isRenewed + ", id=" + id + "]";
+	}
 	private String email;
 	@Column(name="enddateofsubscription")
 	private Date endDateOfSubscription;
@@ -25,6 +32,7 @@ public class Subscription {
 	private byte isCanceled;
 	@Column(name="isrenewed")
 	private byte isRenewed;
+	//this is the key to newletterdetail table for content
 	private int id;
 	public String getEmail() {
 		return email;

@@ -1,11 +1,17 @@
 package userdetailmanagement.model;
+import java.io.Serializable;
 import java.util.ArrayList;
-public class User implements Comparable<User>{
+public class User implements Comparable<User>, Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 10L;
 	private String name;
 	private int age;
 	private int rollNo;
 	private String address;
-	private ArrayList courses;
+	private ArrayList<String> courses;
 	public String getName() {
 		return name;
 	}
@@ -30,10 +36,10 @@ public class User implements Comparable<User>{
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public ArrayList getCourses() {
+	public ArrayList<String> getCourses() {
 		return courses;
 	}
-	public void setCourses(ArrayList courses) {
+	public void setCourses(ArrayList<String> courses) {
 		this.courses = courses;
 	}
 	@Override

@@ -12,8 +12,12 @@ public class UserUtil {
 	static Scanner sc=new Scanner(System.in);
 	static UserService service = new UserService();
 	
+	private static String userRecFileName;
+	private static List<User> userRecordList;
+
 	public static String inputName() {
 		String fullname =  sc.nextLine();
+		//validations
 		while(fullname.equals("")) {
 			System.out.println("Please try again");
 			fullname = sc.nextLine();
@@ -46,14 +50,12 @@ public class UserUtil {
 		return address;
 	}
 	
-	
-	
 	public static int inputRollNo() {
 		System.out.print("-Roll Number [Integer] ");
 		int rollno;
 		try {
 			rollno = sc.nextInt();
-			if(service.verifiedRollNo(rollno)) {
+			if(service.verifiedRollNo(rollno,userRecordList)) {
 				return rollno;
 			}
 			else {
@@ -198,19 +200,25 @@ public class UserUtil {
 		if(choice==0)return getSortingMenu();
 		else return choice;
 	}
-	public static void start() {
-		service.bringDataInMemory();
+	
+	
+	public void start() {
+		//service.bringDataInMemory();
+		userRecFileName = UserService.getFile();
+		userRecordList = UserService.readFile("/Users/vishalsinghal/Desktop/nuclei_assignment/FresherAssignment2020/usersData.txt");
+		
+		
 		while(true) {
 			System.out.println("Select an option - \n1.Add user\n2.Display user\n3.Delete user\n4.Save user\n5.Exit");
 			int t=sc.nextInt();
 			switch(t) {
 			case 1:
 				User user = getUserInput();
-				service.addUser(user);
+				userRecordList.add(user);
 				break;
 			case 2:
-				List<User> users = service.findAllUser();
-				service.displayUser(users);
+				service.sortNameAndRoll(userRecordList);
+				service.displayUser(userRecordList);
 				sc.nextLine();
 				System.out.println("Press -> 's' for sorting menu");
 				char check = sc.nextLine().toLowerCase().charAt(0);
@@ -219,9 +227,9 @@ public class UserUtil {
 					sc.nextLine();
 					System.out.println("Press 'a' for ascending and 'd' for descending");
 					char order = sc.nextLine().toLowerCase().charAt(0);
-					users = service.getSortedUserDetails(choice, order);
+					List<User> users = service.getSortedUserDetails(choice, order, userRecordList);
 					service.displayUser(users);
-					System.out.println("Press -> 's' for sorting menu");
+					System.out.println("Press -> 's' for sorting menu. Press any other key to go back to main menu.");
 					check = sc.nextLine().toLowerCase().charAt(0);
 				}
 				break;
@@ -229,16 +237,16 @@ public class UserUtil {
 				System.out.println("Enter roll no of the user");
 				int rollNo = sc.nextInt();
 				sc.nextLine();
-				service.deleteUser(rollNo);
+				service.deleteUser(userRecordList,rollNo);
 				break;
 			case 4:
-				service.saveUserInDisk();
+				UserService.writeFile(userRecordList, userRecFileName);
 				break;
 			case 5:
 				sc.nextLine();
 				System.out.println("Do you want to save the latest changes [y/n]");
 				char ch = sc.nextLine().toLowerCase().charAt(0);
-				if(ch=='y') service.saveUserInDisk();
+				if(ch=='y') UserService.writeFile(userRecordList, userRecFileName);
 				break;
 			default:
 				System.out.println("Wrong option. Please select correct option.");

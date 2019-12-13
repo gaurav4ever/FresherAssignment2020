@@ -73,4 +73,10 @@ public class NewsletterService {
 		}
 		
 	}
+	
+	public String getContent(int id) {
+		Optional<Newletterdetails> newsletter = newsletterrepo.findById(id); 
+		Newletterdetails newl=newsletter.get();
+		return newl.getContent();
+	}
 }

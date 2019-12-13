@@ -5,6 +5,7 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +24,9 @@ public class EmailController {
             return "Error in sending email: "+ex;
         }
     }
+	
+	//cron for scheduling all the scheduled tasks
+	//@Scheduled(cron = "0 44 17 * * ?")
 	private void sendEmail() throws Exception{
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);

@@ -49,7 +49,7 @@ public class CalculateTax extends DatabaseConnection implements Runnable {
 				
 				System.out.println("Thread for Calculate Tax is running");
 				
-//				
+//add item if the list of item is empty and index meaning the number of the items is less than total number of items				
 				while(!(Main.items.isEmpty())&&index<Main.items.size()) {
 					try {
 						Item item = Main.items.get(index);
@@ -62,7 +62,7 @@ public class CalculateTax extends DatabaseConnection implements Runnable {
 						
 					}
 				}
-				System.out.println(itemTax);
+				System.out.println(itemTax.toString());
 				if(threadEnd)
 					break;
 				if(!Main.thread1.isAlive())

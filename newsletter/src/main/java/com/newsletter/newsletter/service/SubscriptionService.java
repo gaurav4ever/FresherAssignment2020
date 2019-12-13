@@ -1,31 +1,49 @@
 package com.newsletter.newsletter.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
 import com.newsletter.newsletter.DTO.SubscriptionRepository;
 import com.newsletter.newsletter.model.Subscription;
+import com.newsletter.newsletter.model.SubscriptionDto;
 
 @Component
 public class SubscriptionService {
 	@Autowired SubscriptionRepository repo;
-	
+	@Autowired private JavaMailSender sender;
+	@Autowired NewsletterService newsletterService;
 	public List<Subscription> getAllSubscriptions(){
 		return repo.findAll();
 	}
 
-	public int buyASubscription(Subscription s) {
+	public int buyASubscription(SubscriptionDto s) {
+		Subscription subscription = new Subscription();
+		System.out.println(s.toString());
+		subscription.setSubscriptionid(s.getSubscriptionid());
+		subscription.setDailyweekly(s.getDailyweekly());
+		subscription.setDateOfSubscription(s.getDateOfSubscription());
+		subscription.setEmail(s.getEmail());
+		subscription.setEndDateOfSubscription(s.getDateOfSubscription());
+		subscription.setId(s.getId());
+		subscription.setIsCanceled(s.getIsCanceled());
+		subscription.setIsRenewed(s.getIsRenewed());
+		subscription.setIsSubscribed(s.getIsSubscribed());
+		subscription.setNewsLetterType(s.getNewsLetterType());
+		System.out.println(subscription);
 		try {
-			repo.save(s);
+			repo.save(subscription);
 			return 1;
 		}
 		catch(Exception e) {
@@ -144,5 +162,36 @@ public class SubscriptionService {
 		return l;
 	}
 	
+	public void sendContentThroughEmail() throws Exception {
+		List<Subscription> subscriptions = repo.findAll();
+		List<String> emails = new ArrayList<String>();
+		
+		//get current day
+		Calendar calendar = Calendar.getInstance();
+		int d = calendar.get(Calendar.DAY_OF_WEEK);
+		String days[] = {"mon","tues","wed","thus","fri","sat","sun"}; 
+		String day = days[d-2];
+		System.out.println(d+" "+day);
+		for(Subscription s : subscriptions) {
+			if(s.getDailyweekly().equalsIgnoreCase("DAILY") || s.getDailyweekly().equalsIgnoreCase(day)) {
+				
+				System.out.println(s.getEmail());
+				String content = newsletterService.getContent(s.getId());
+				sendEmail(s.getEmail(),content,s.getNewsLetterType());
+			}
+		}
+		
+		
+	}
 	
+	private void sendEmail(String email,String content,String subject) throws Exception{
+        MimeMessage message = sender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+         
+        helper.setTo(email);
+        helper.setText(content);
+        helper.setSubject(subject);
+         
+        sender.send(message);
+    }
 }

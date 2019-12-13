@@ -1,6 +1,6 @@
 package inventory.model;
 
-public class Item {
+abstract public class Item {
 	private String name;
 	private double price;
 	private int quantity;
@@ -43,5 +43,5 @@ public class Item {
 	public void setTax(double tax) {
 		this.tax = tax;
 	}
-	
+	abstract public void calculateTaxes();
 }

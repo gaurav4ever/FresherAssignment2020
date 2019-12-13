@@ -2,8 +2,9 @@ package userdetailmanagement;
 
 import userdetailmanagement.UserUtil.UserUtil;
 
-public class Main extends UserUtil {
+public class Main{
 	public static void main(String args[]) {
-		start();
+		UserUtil userUtil = new UserUtil();
+		userUtil.start();
 	}
 }
