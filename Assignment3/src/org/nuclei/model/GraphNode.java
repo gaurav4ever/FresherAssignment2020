@@ -18,9 +18,10 @@ public class GraphNode {
 
     //TODO: Functionality to update the parent nodes
 
-    GraphNode() {
+    public GraphNode() {
         this.additionalInformation = new HashMap<>();
         this.childNodes = new ArrayList<>();
+        this.parentNodes = new ArrayList<>();
     }
 
     public int getNodeId() {

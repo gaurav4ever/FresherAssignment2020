@@ -3,6 +3,7 @@ package org.nuclei.model;
 import org.nuclei.exception.NodeNotFoundException;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Graph {
