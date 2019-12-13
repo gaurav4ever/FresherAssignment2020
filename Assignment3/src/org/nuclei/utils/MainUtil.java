@@ -1,12 +1,14 @@
 package org.nuclei.utils;
 
 import org.nuclei.exception.CyclicGraphException;
+import org.nuclei.exception.InvalidChoiceException;
 import org.nuclei.exception.NodeAlreadyExistsException;
 import org.nuclei.exception.NodeNotFoundException;
 import org.nuclei.model.Graph;
 import org.nuclei.model.GraphNode;
 import org.nuclei.service.impl.DependencyGraphServiceImpl;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,8 +39,11 @@ public class MainUtil {
         System.out.println("]");
     }
 
-    private static void performAction(int option) {
+    private static void performAction(int option) throws InvalidChoiceException {
         int id;
+        if(option>10 || option<1){
+            throw new InvalidChoiceException("Enter a valid choice");
+        }
         switch(option) {
             case 1:
                 System.out.println("Enter the id:");
@@ -165,12 +170,14 @@ public class MainUtil {
         while(true) {
             showMenu();
             int option = -1;
-            //try {
+            try {
                 option = sc.nextInt();
                 performAction(option);
-            /*} catch (Exception e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Not an Integer");
-            }*/
+            }catch (InvalidChoiceException e) {
+                System.out.println(e.getMessage());
+            }
             if(option==10) break;
         }
     }
