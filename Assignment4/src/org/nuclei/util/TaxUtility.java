@@ -1,28 +1,18 @@
 package org.nuclei.util;
 
-import org.nuclei.exception.InvalidItemException;
 import org.nuclei.model.Item;
-import org.nuclei.service.TaxService;
-import org.nuclei.service.impl.TaxServiceImpl;
 
-import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 public class TaxUtility implements Runnable{
 
-    List<Item> items;
+    BlockingQueue<Item> items;
     Thread fetchThread;
 
-    public TaxUtility(List<Item> items, Thread fetchThread){
+    public TaxUtility(BlockingQueue<Item> items, Thread fetchThread){
         this.items = items;
         this.fetchThread = fetchThread;
     }
-
-    void calculateTaxForItems() throws InvalidItemException {
-        for(Item item : items){
-            item = TaxServiceImpl.calculateTax(item);
-            ItemUtility.itemOutput(item);
-        }
-    };
 
     @Override
     public void run() {
@@ -31,23 +21,20 @@ public class TaxUtility implements Runnable{
         boolean threadAlive = true;
         int index = 0;
         while(threadAlive) {
-            while(!items.isEmpty()&&index<items.size()) {
-                System.out.println("in here");
-                try {
-                    Item item = items.get(index);
-                    item = TaxServiceImpl.calculateTax(item);
-                    ItemUtility.itemOutput(item);
-                    index++;
-                    if(threadAlive==false){
-                        break;
-                    }
-                    threadAlive = fetchThread.isAlive();
-                    //calculateTaxForItems();
-                } catch (InvalidItemException e) {
-                    System.out.println(e.getMessage());
-                    e.printStackTrace();
-                }
+
+            Item item = null;
+            try {
+                item = items.take();
+                item.getType().calculateTax(item);
+                ItemUtility.itemOutput(item);
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
+
+            //To close the thread if no more items are fetched.
+            threadAlive = fetchThread.isAlive()||!items.isEmpty();
         }
     }
 }

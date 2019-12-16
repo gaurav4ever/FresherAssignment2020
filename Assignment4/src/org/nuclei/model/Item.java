@@ -1,10 +1,8 @@
 package org.nuclei.model;
 
-public class Item {
+import org.nuclei.enums.TaxType;
 
-    public enum TaxType{
-        raw, manufactured, imported
-    }
+public class Item {
 
     private String name;
     private double price;
