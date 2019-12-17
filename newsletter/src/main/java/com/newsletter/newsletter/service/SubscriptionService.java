@@ -6,18 +6,24 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 import javax.mail.internet.MimeMessage;
 
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
+import com.newsletter.newsletter.NewsletterApplication;
 import com.newsletter.newsletter.DTO.SubscriptionRepository;
 import com.newsletter.newsletter.model.Subscription;
 import com.newsletter.newsletter.model.SubscriptionDto;
+
 
 @Component
 public class SubscriptionService {
@@ -194,4 +200,33 @@ public class SubscriptionService {
          
         sender.send(message);
     }
+	
+	@Value("${kafka.bootstrap.servers}")
+	private String kafkaBootstrapServers;
+	
+	public Properties getProperties() {
+		 Properties props = new Properties();
+		 props.put("bootstrap.servers", "localhost:9092");
+		 props.put("acks", "all");
+		 props.put("retries", 0);
+		 props.put("batch.size", 16384);
+		 props.put("linger.ms", 1);
+		 props.put("buffer.memory", 33554432);
+		 props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+		 props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+		 return props;
+	}
+	
+
+	KafkaProducer<String,String> producer = new KafkaProducer<>(getProperties());
+	//private static final Logger logger = Logger.getLogger(NewsletterApplication.class);
+	private static void sendKafkaMessage(String payload,KafkaProducer<String,String> producer,String topic) {
+		producer.send(new ProducerRecord<>(topic,payload));
+	}
+	private void checkProducerService() {
+		for (int index = 0; index < 10; index++) {
+		    sendKafkaMessage("The index is now: " + index, producer, "email");
+
+		}
+	}
 }

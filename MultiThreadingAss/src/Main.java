@@ -6,7 +6,7 @@ public class Main {
 	public static Thread thread1;
 	public static void main(String args[]) {
 	
-		GetDataFromDatabase obj1 = new GetDataFromDatabase();
+		ItemsData obj1 = new ItemsData();
 		CalculateTax obj2 = new CalculateTax();
 	    thread1 = new Thread(obj1);
 		Thread thread2 = new Thread(obj2);
