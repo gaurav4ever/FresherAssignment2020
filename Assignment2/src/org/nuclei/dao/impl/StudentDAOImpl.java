@@ -1,6 +1,6 @@
-package org.nuclei.DAO.implementation;
+package org.nuclei.dao.impl;
 
-import org.nuclei.DAO.StudentDAO;
+import org.nuclei.dao.StudentDAO;
 import org.nuclei.model.Student;
 import org.nuclei.utils.DeserializeData;
 import org.nuclei.utils.SerializeData;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
 
-    private List<Student> students = new ArrayList<Student>();
+    private List<Student> students = new ArrayList<>();
 
     private String fileName = null;
 
@@ -47,16 +47,14 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public void serializeUser() throws IOException {
-        //TODO: Serialize object
-        SerializeData<Student> handler = new SerializeData<Student>();
+        SerializeData<Student> handler = new SerializeData<>();
         handler.serializeData(students, fileName);
     }
 
     @Override
     public void deserializeUser() throws IOException, ClassNotFoundException{
-        //TODO: Deserialize object
-        DeserializeData<Student> handler = new DeserializeData<Student>();
-        List<Student> tempList = new ArrayList<Student>();
+        DeserializeData<Student> handler = new DeserializeData<>();
+        List<Student> tempList;
         tempList = handler.deserializeData(fileName);
         students = tempList;
     }

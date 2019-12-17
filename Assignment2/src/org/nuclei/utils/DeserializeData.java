@@ -12,11 +12,9 @@ public class DeserializeData<T> {
         FileInputStream file = new FileInputStream(filename);
         ObjectInputStream in = new ObjectInputStream(file);
 
-        List<T> obj = (List<T>)in.readObject();
-
+        List<T> obj = (List<T>) in.readObject();
         in.close();
         file.close();
-        //System.out;
         return obj;
 
     }

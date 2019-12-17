@@ -1,4 +1,4 @@
-package org.nuclei.DAO;
+package org.nuclei.dao;
 
 import org.nuclei.model.Student;
 

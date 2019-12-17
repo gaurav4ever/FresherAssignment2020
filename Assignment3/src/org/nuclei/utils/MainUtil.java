@@ -75,32 +75,25 @@ public class MainUtil {
                 System.out.println("Enter the id:");
                 List<GraphNode> ancestors = null;
                 id = sc.nextInt();
-                //try {
-                    //TODO: implement this
-                    //ancestors =
                 try {
                     ancestors = graph.getAncestors(id);
                 } catch (NodeNotFoundException e) {
                     e.printStackTrace();
                 }
-                //}
-                /** catch (NodeDoesNotExistException e) {
-                    System.out.println("Node doesn't Exist");
-                }*/
                 if(ancestors!=null)
                     printList(ancestors);
                 break;
             case 4:
                 System.out.println("Enter the id:");
-                List<GraphNode> decendants = null;
+                List<GraphNode> descendants = null;
                 id = sc.nextInt();
                 try {
-                    decendants = graph.getDescendants(id);
+                    descendants = graph.getDescendants(id);
                 } catch (NodeNotFoundException e) {
                     System.out.println("Node doesn't Exist");
                 }
-                if(decendants!=null)
-                    printList(decendants);
+                if(descendants!=null)
+                    printList(descendants);
                 break;
             case 5:
                 System.out.println("Enter two ids");
@@ -128,12 +121,8 @@ public class MainUtil {
                 id2 = sc.nextInt();
                 try {
                     graph.addDependency(id1, id2);
-                    //graph.addParent();
-                } catch (NodeNotFoundException e) {
-                    e.printStackTrace();
-                } catch (NodeAlreadyExistsException e) {
-                    e.printStackTrace();
-                } catch (CyclicGraphException e) {
+                } catch (NodeNotFoundException | NodeAlreadyExistsException | CyclicGraphException e) {
+                    System.out.println(e.getMessage());
                     e.printStackTrace();
                 }
                 break;

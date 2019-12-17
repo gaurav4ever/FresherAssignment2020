@@ -1,18 +1,16 @@
-package org.nuclei.service.implementation;
+package org.nuclei.service.impl;
 
-import org.nuclei.DAO.implementation.StudentDAOImpl;
+import org.nuclei.dao.impl.StudentDAOImpl;
 import org.nuclei.exception.UserAlreadyExistsException;
 import org.nuclei.model.Student;
 import org.nuclei.service.StudentService;
 import org.nuclei.utils.comparator.*;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 public class StudentServiceImpl implements StudentService {
-    //~/DataStore/file.ser
-    final String fileLocation = "/Users/manasjain/DataStore/file.ser";
+    final String fileLocation = "src/org/nuclei/resource/students";
     StudentDAOImpl userDAO = new StudentDAOImpl(this.fileLocation);
 
     @Override
@@ -26,7 +24,7 @@ public class StudentServiceImpl implements StudentService {
         } else {
             userDAO.addUser(student);
         }
-        Collections.sort(userDAO.getAllUsers(), new DefaultComparator());
+        userDAO.getAllUsers().sort(new DefaultComparator());
     }
 
     @Override
@@ -54,27 +52,27 @@ public class StudentServiceImpl implements StudentService {
         switch (choice) {
             case 1:
                 if (order == 'a') {
-                    Collections.sort(tempStudentList, new NameComparatorAscending());
+                    tempStudentList.sort(new NameComparatorAscending());
                 } else
-                    Collections.sort(tempStudentList, new NameComparatorDescending());
+                    tempStudentList.sort(new NameComparatorDescending());
                 break;
             case 2:
                 if (order == 'a') {
-                    Collections.sort(tempStudentList, new RollNoComparatorAscending());
+                    tempStudentList.sort(new RollNoComparatorAscending());
                 } else
-                    Collections.sort(tempStudentList, new RollNoComparatorDescending());
+                    tempStudentList.sort(new RollNoComparatorDescending());
                 break;
             case 3:
                 if (order == 'a') {
-                    Collections.sort(tempStudentList, new AgeComparatorAscending());
+                    tempStudentList.sort(new AgeComparatorAscending());
                 } else
-                    Collections.sort(tempStudentList, new AgeComparatorDescending());
+                    tempStudentList.sort(new AgeComparatorDescending());
                 break;
             case 4:
                 if (order == 'a') {
-                    Collections.sort(tempStudentList, new AddressComparatorAscending());
+                    tempStudentList.sort(new AddressComparatorAscending());
                 } else
-                    Collections.sort(tempStudentList, new AddressComparatorDescending());
+                    tempStudentList.sort(new AddressComparatorDescending());
                 break;
             default:
                 System.out.println("Invalid choice");

@@ -2,7 +2,7 @@ package org.nuclei.utils;
 
 import org.nuclei.exception.UserAlreadyExistsException;
 import org.nuclei.model.Student;
-import org.nuclei.service.implementation.StudentServiceImpl;
+import org.nuclei.service.impl.StudentServiceImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -180,7 +180,6 @@ public class StudentUtility {
                     studentService.deleteUser(rollNumber);
                 }catch(Exception e) {
                     System.out.println("Not an Integer");
-                    return;
                 }
                 break;
             case 4:

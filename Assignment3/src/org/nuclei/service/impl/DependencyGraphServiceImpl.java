@@ -3,6 +3,7 @@ package org.nuclei.service.impl;
 import org.nuclei.exception.CyclicGraphException;
 import org.nuclei.exception.NodeAlreadyExistsException;
 import org.nuclei.exception.NodeNotFoundException;
+import org.nuclei.model.Graph;
 import org.nuclei.model.GraphNode;
 import org.nuclei.service.GraphService;
 import org.nuclei.utils.DFSUtil;
@@ -12,9 +13,7 @@ import java.util.List;
 
 public class DependencyGraphServiceImpl implements GraphService {
 
-    public DependencyGraphServiceImpl(){
-
-    }
+    Graph dependencyGraph = new Graph();
 
     @Override
     public List<GraphNode> getParents(int nodeId) throws NodeNotFoundException {
@@ -90,8 +89,7 @@ public class DependencyGraphServiceImpl implements GraphService {
     @Override
     public List<GraphNode> getAllNodes() {
         //TODO: Add empty graph exception
-        List<GraphNode> allNodes = new ArrayList<GraphNode>(dependencyGraph.getGraph().values());;
-        return allNodes;
+        return new ArrayList<>(dependencyGraph.getDependencyGraph().values());
     }
 
 }

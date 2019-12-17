@@ -19,10 +19,9 @@ public class TaxUtility implements Runnable{
 
         System.out.println("Started Tax Thread");
         boolean threadAlive = true;
-        int index = 0;
         while(threadAlive) {
 
-            Item item = null;
+            Item item;
             try {
                 item = items.take();
                 item.getType().calculateTax(item);
