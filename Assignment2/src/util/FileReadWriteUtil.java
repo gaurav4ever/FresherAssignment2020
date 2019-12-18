@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class fileReadWriteUtil {
+public class FileReadWriteUtil {
     public static List<Student> readFile(String file) {
         List<Student> list = new ArrayList<>();
         ObjectInputStream inputStream = null;

@@ -1,56 +1,57 @@
-package serviceUtil;
+package service;
 
 import model.Course;
 import model.Student;
-
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import util.fileReadWriteUtil;
-public class inputOutputUtil {
+import util.FileReadWriteUtil;
+
+public class InputOutputUtil {
+    public static final Scanner scan = new Scanner(System.in);
 
     public static Student getInputUserDetails() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Enter the following details:");
         System.out.print("Name: ");
-        String name = sc.next();
+        String name = scan.next();
         System.out.print("Age: ");
-        int age = inputAge();
+        final int age = inputAge();
         System.out.print("Address: ");
-        String address = sc.next();
+        final String address = scan.next();
         // Roll Number
-        int rno = inputRno();
-
+        final int rno = inputRno();
         // Courses
-        int nCourses = inputCourses();
+        final int nCourses = inputCourses();
         ArrayList<String> courses = new ArrayList<>();
         System.out.print("Courses Undertaken(A,B,C,D,E,F): ");
         for (int i = 0; i < nCourses; i++) {
-            courses.add(sc.next());
+            courses.add(scan.next());
         }
         // set and return details of Student and Course objects
         return new Student(rno, name, age, address, new Course(courses));
     }
+//to be changed to non static methods (check for all methods implemented)
     private static int inputCourses() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Enter number of courses :");
-        int n = sc.nextInt();
-        if (n>=4) {
-            return n;
-        } else
+        int number_of_course = scan.nextInt();
+        if (number_of_course >= 4) {
+            return number_of_course;
+        } else {
             System.out.println("number of courses should be more than or equal to 4");
             return inputCourses();
+        }
     }
+
     // input and verify age
+
     private static int inputAge() {
-        Scanner sc = new Scanner(System.in);
         int age;
         try {
-            age = sc.nextInt();
+            age = scan.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("\nYou can only enter integer value for age");
+            System.err.println("\nYou can only enter integer value for age");
             age = inputAge();
         }
         return age;
@@ -58,38 +59,34 @@ public class inputOutputUtil {
 
     // input roll no
     private static int inputRno() {
-        Scanner sc = new Scanner(System.in);
         System.out.print("Enter Roll Number : ");
-        int rno = sc.nextInt();
-        if (checkRno(rno)) {
+        int rno = scan.nextInt();
+        if (verifyRNo(rno)) {
             return rno;
         } else
-            return inputRno();
+        {System.out.print("Roll number already exists ");
+            return inputRno();}
     }
 
-    private static boolean checkRno(int rno) {
-        if (verifyRNo(rno)) {
-            return true;
-        } else {
-            System.out.print("Roll number already exists ");
-            return false;
-        }
-    }
     public static boolean verifyRNo(int rno) {
-        List<Student> studentRecordList = new ArrayList<>();
-        studentRecordList = fileReadWriteUtil.readFile("studentData.txt");
-        for (Student student : studentRecordList) {
-            if (student.getRollNumber() == rno) {
-                return false;
-            }
-        }
+        List<Student> studentRecordList;
+       try {
+           studentRecordList = FileReadWriteUtil.readFile("src/resource/studentData.txt");
+           for (Student student : studentRecordList) {
+               if (student.getRollNumber() == rno) {
+                   return false;
+               }
+           }
+       }catch(Exception e)
+       {
+           System.err.print("no student record file found");
+       }
         return true;
     }
 
     public static int inputRnoToBeDeleted() {
         System.out.print("enter roll number of the student to be deleted: ");
-        Scanner sc = new Scanner(System.in);
-        return sc.nextInt();
+        return scan.nextInt();
     }
 
 

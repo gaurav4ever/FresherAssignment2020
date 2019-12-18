@@ -1,4 +1,4 @@
-import Service.GraphService;
+import service.GraphService;
 public class Main {
 public static void main(String[] args)
 {

@@ -3,12 +3,12 @@ package model;
 import java.io.Serializable;
 
 public class Student implements Serializable {
-   // private static final long serialVersionUID =10L;
-    int rollNumber;
-    String name;
-    int age;
-    String address;
-    Course course;
+    private static final long serialVersionUID =10L;
+    private int rollNumber;
+    private String name;
+    private int age;
+    private String address;
+    private Course course;
 
     public int getRollNumber() {
         return rollNumber;

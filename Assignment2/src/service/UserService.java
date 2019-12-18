@@ -1,18 +1,13 @@
-package serviceUtil;
+package service;
 
 import model.Student;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
-import util.*;
-import static serviceUtil.inputOutputUtil.inputRnoToBeDeleted;
-import util.fileReadWriteUtil;
 
-public class userService {
-    private static Student student;
-    private static String studentRecFileName;
-    private static List<Student> studentRecordList;
+import java.util.List;
+import java.util.Objects;
+
+import util.*;
+
+public class UserService {
 
     /*
        public static void addUser() {
@@ -23,43 +18,51 @@ public class userService {
        }
      */
     public static void deleteUser() {
-        studentRecFileName = "/Users/amulverma/Downloads/Assignment2/studentData.txt";
-        studentRecordList = fileReadWriteUtil.readFile(studentRecFileName);
-        int deleteRno = inputOutputUtil.inputRnoToBeDeleted();
-        boolean deleted = false;
-        for (int i = 0; i < studentRecordList.size(); i++) {
-            if (studentRecordList.get(i).getRollNumber() == deleteRno) { // check for matching roll number in the
-                // records
-                studentRecordList.remove(i);
-                saveUserDetails(studentRecordList, studentRecFileName);
-                deleted = true;
-                System.out.print("Data successfully deleted!");
-                break;
+        final String Student_FILE = "src/resource/studentData.txt";
+        final int deleteRno = InputOutputUtil.inputRnoToBeDeleted();
+        try {
+            List<Student> studentRecordList = FileReadWriteUtil.readFile(Student_FILE);
+            boolean deleted = false;
+            for (int i = 0; i < studentRecordList.size(); i++) {
+                if (studentRecordList.get(i).getRollNumber() == deleteRno) { // check for matching roll number in the
+                    // records
+                    studentRecordList.remove(i);
+                    saveUserDetails(studentRecordList, Student_FILE);
+                    deleted = true;
+                    System.out.print("Data successfully deleted!");
+                    break;
+                }
             }
-        }
-        if (!deleted) {
-            System.out.println("There is no entry in student record with given roll number!");
+            if (!deleted) {
+                System.out.println("There is no entry in student record with given roll number!");
+            }
+        }catch (Exception e)
+        {
+            System.err.print(e);
         }
 
     }
 
-    public static List<Student> sortByChoice(List<Student> studentRecordList, int choice) {
+    public static void sortByChoice(final List<Student> studentRecordList,final int choice) {
         // Records are sorted on basis of choice
         switch (choice) {
             case 1:
-                studentRecordList= sortByRnoUtil.sortByRno(studentRecordList);
+                SortByRnoUtil.sortByRno(studentRecordList);
                 break;
             case 2:
-                studentRecordList = sortByNameUtil.sortByName(studentRecordList);
+                SortByNameUtil.sortByName(studentRecordList);
                 break;
             case 3:
-                studentRecordList= sortByAgeUtil.sortByAge(studentRecordList);
+                SortByAgeUtil.sortByAge(studentRecordList);
                 break;
             case 4:
-                studentRecordList=sortByAddressUtil.sortByAddress(studentRecordList);
+                SortByAddressUtil.sortByAddress(studentRecordList);
                 break;
+            default:
+            {   SortByNameUtil.sortByName(studentRecordList);
+                SortByRnoUtil.sortByRno(studentRecordList);
+            }
         }
-        return studentRecordList;
     }
 
 
@@ -69,16 +72,15 @@ public class userService {
     }
 
     // save user data into memory
-    public static void saveUserDetails(List<Student> studentRecordList, String studentRecFileName) {
+    public static void saveUserDetails(List<Student> studentRecordList,String studentRecFileName) {
 
-        if (studentRecordList.equals(null)) {
+        if (Objects.isNull(studentRecordList)) {
             System.out.println("Nothing to add!");
         } else {
             // Records are sorted on full name. If name is same for two students then
             // sorting based on the roll number.
-            sortByNameUtil.sortByName(studentRecordList);
-
-            fileReadWriteUtil.writeFile(studentRecordList, studentRecFileName);
+            SortByNameUtil.sortByName(studentRecordList);
+            FileReadWriteUtil.writeFile(studentRecordList, studentRecFileName);
             System.out.println("Data successfully saved!");
 
         }
@@ -87,11 +89,11 @@ public class userService {
     public static void displayUserDetails(List<Student> studentList, int choice) {
         if (studentList.isEmpty()) {
             System.out.println("No user details present\n");
+            return;
         }
-        studentList=sortByChoice(studentList, choice);
+        sortByChoice(studentList, choice);
         System.out.println("User Details : \n");
         System.out.printf("%s %s %s %s %s %n \n", "Name", "Age", "Address", "Roll Number", "Courses");
-
         for (Student value : studentList) {
             StringBuilder coursesString = new StringBuilder();
             int size = value.getCourse().getCourses().size();

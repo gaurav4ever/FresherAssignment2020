@@ -1,16 +1,15 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Course implements Serializable{
-   // private static final long serialVersionUID =1L;
-    ArrayList<String> courses;
-    public Course(ArrayList<String> courses) {
+   private static final long serialVersionUID =1L;
+    private List<String> courses;
+    public Course(List<String> courses) {
         this.courses = courses;
     }
-
-    public ArrayList<String> getCourses() {
+    public List<String> getCourses() {
         return courses;
     }
 }

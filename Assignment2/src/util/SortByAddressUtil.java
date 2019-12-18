@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class sortByAddressUtil {
+public class SortByAddressUtil {
     public static List<Student> sortByAddress(List<Student> studentRecordList) {
 
         Comparator<Student> comparator = Comparator.comparing(Student::getAddress);
