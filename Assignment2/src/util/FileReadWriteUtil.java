@@ -18,7 +18,6 @@ public class FileReadWriteUtil {
             }
         } catch (Exception e) {
             System.err.println("Error opening file."+e);
-            //serviceUtil.userService.exitProgram();
         } finally {
             try {
                 if (inputStream != null)

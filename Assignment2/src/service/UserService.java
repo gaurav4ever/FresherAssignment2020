@@ -1,5 +1,6 @@
 package service;
 
+import sortenum.sortChoice;
 import model.Student;
 
 import java.util.List;
@@ -8,7 +9,6 @@ import java.util.Objects;
 import util.*;
 
 public class UserService {
-
     /*
        public static void addUser() {
            studentRecFileName = fileReadWriteUtil.getFile(); // extract and read student file from memory
@@ -17,7 +17,7 @@ public class UserService {
            studentRecordList.add(student); // add all the new entries to a list
        }
      */
-    public static void deleteUser() {
+    public void deleteUser() {
         final String Student_FILE = "src/resource/studentData.txt";
         final int deleteRno = InputOutputUtil.inputRnoToBeDeleted();
         try {
@@ -42,37 +42,8 @@ public class UserService {
         }
 
     }
-
-    public static void sortByChoice(final List<Student> studentRecordList,final int choice) {
-        // Records are sorted on basis of choice
-        switch (choice) {
-            case 1:
-                SortByRnoUtil.sortByRno(studentRecordList);
-                break;
-            case 2:
-                SortByNameUtil.sortByName(studentRecordList);
-                break;
-            case 3:
-                SortByAgeUtil.sortByAge(studentRecordList);
-                break;
-            case 4:
-                SortByAddressUtil.sortByAddress(studentRecordList);
-                break;
-            default:
-            {   SortByNameUtil.sortByName(studentRecordList);
-                SortByRnoUtil.sortByRno(studentRecordList);
-            }
-        }
-    }
-
-
-    public static void exitProgram() {
-        System.out.print("exit");
-        System.exit(0);
-    }
-
     // save user data into memory
-    public static void saveUserDetails(List<Student> studentRecordList,String studentRecFileName) {
+    public void saveUserDetails(List<Student> studentRecordList,String studentRecFileName) {
 
         if (Objects.isNull(studentRecordList)) {
             System.out.println("Nothing to add!");
@@ -85,13 +56,13 @@ public class UserService {
 
         }
     }
+    public void displayUserDetails(List<Student> studentList, int choice) {
 
-    public static void displayUserDetails(List<Student> studentList, int choice) {
         if (studentList.isEmpty()) {
             System.out.println("No user details present\n");
             return;
         }
-        sortByChoice(studentList, choice);
+        studentList=util.Utility.sortedList(studentList,sortChoice.values()[choice-1].getComparator() );
         System.out.println("User Details : \n");
         System.out.printf("%s %s %s %s %s %n \n", "Name", "Age", "Address", "Roll Number", "Courses");
         for (Student value : studentList) {
