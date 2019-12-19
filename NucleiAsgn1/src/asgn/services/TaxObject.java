@@ -1,7 +1,12 @@
 package asgn.services;
 
+import asgn.services.impl.ImportedItemTax;
+import asgn.services.impl.ManufacturedItemTax;
+import asgn.services.impl.RawItemTax;
+
 public class TaxObject {
-	public CalculateTaxes getTax(int type) {
+
+	public CalculateTaxService getTax(int type) {
 		switch (type) {
 		case 1:
 			return new RawItemTax();

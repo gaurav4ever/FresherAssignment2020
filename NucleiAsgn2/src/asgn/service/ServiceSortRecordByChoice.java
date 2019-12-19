@@ -6,5 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 
 public interface ServiceSortRecordByChoice {
-    Comparator sortStudentRecord(List<Student> studentList);
+
+  Comparator sortStudentRecord(List<Student> studentList);
 }

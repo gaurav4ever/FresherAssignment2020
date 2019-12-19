@@ -20,17 +20,4 @@ public class Item {
       this.quantity =quantity;
       this.type = type;
   }
-  
-  public String getname() {
-      return name;
-  }
-  public double getPrice() {
-      return price;
-  }
-  public int getQuantity() {
-      return quantity;
-  }
-  public int getType() {
-      return type;
-  }
 }

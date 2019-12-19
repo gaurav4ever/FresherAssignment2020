@@ -3,38 +3,32 @@ package asgn;
 import java.util.ArrayList;
 
 import asgn.model.Item;
-import asgn.services.CalculateTaxes;
+import asgn.services.CalculateTaxService;
 import asgn.services.TaxObject;
 import asgn.util.InputUtil;
 import asgn.util.OutputUtil;
 
 public class Inventory {
 
-	private static ArrayList<Item> arrayListItems;
+	private static ArrayList<Item> arrayListItems = new ArrayList<>();
 
 	public static void main(String args[]) {
-		InputUtil.parseCommandLineInput(args);
-		arrayListItems = new ArrayList<>();
-		arrayListItems = InputUtil.getInputItem(); // gets input from command prompt
-		calculateOutput(); // calls sell tax method for one or more inputs
+		arrayListItems = InputUtil.getInputItem(); // gets input from terminal
+		calculateTax(); // calls sell tax method for one or more inputs
 	}
 
 	// Calculates tax of all the items entered
-	private static void calculateOutput() {
-		for (int i = 0; i < arrayListItems.size(); i++) {
-			double salesTax = getCalculatedTax(arrayListItems.get(i).type, arrayListItems.get(i).price);
-
-			double totalPrice = (arrayListItems.get(i).price + salesTax) * arrayListItems.get(i).quantity;
-
-			System.out.println("\nOutput Details : ");
-			OutputUtil.printOutput(arrayListItems.get(i), salesTax, totalPrice);
+	private static void calculateTax() {
+		for (Item arrayListItem : arrayListItems) {
+			double salesTax = getCalculatedTax(arrayListItem.type, arrayListItem.price);
+			double totalPrice = (arrayListItem.price + salesTax) * arrayListItem.quantity;
+			OutputUtil.printOutput(arrayListItem, salesTax, totalPrice);
 		}
 	}
 
 	// to select the tax rule
 	private static double getCalculatedTax(int type, double price) {
-		TaxObject taxFactory = new TaxObject();
-		CalculateTaxes calculateTaxesObject = taxFactory.getTax(type);
-		return calculateTaxesObject.calculateTax(price);
+		CalculateTaxService calculateTaxServiceObject = new TaxObject().getTax(type);
+		return calculateTaxServiceObject.calculateTax(price);
 	}
 }

@@ -28,6 +28,27 @@ public class GraphOperation {
 		}
 	}
 
+	// delete child parent dependency
+	public static boolean deleteDependency(int deleteChildId, int deleteParentId) {
+		Node nc = nodeHashMap.get(deleteChildId);
+		Node np = nodeHashMap.get(deleteParentId);
+		if (!ifNodeExists(nc) || !ifNodeExists(np) || nc.getParentNodes() == null || np.getChildNodes() == null) {
+			return false;
+		}
+		nc.getParentNodes().remove(np);
+		np.getChildNodes().remove(nc);
+		return true;
+	}
+
+	// check if a node is null of not
+	private static boolean ifNodeExists(Node node) {
+		if (node == null) {
+			System.out.println("No such node exists!");
+			return false;
+		}
+		return true;
+	}
+
 	// add parent and child dependency if nodes exists
 	public static boolean addDependency(int childId, int parentId) {
 		if (nodeHashMap != null) {
@@ -87,7 +108,6 @@ public class GraphOperation {
 		// parent should not exist in child Descendants
 		Set<Integer> childDesendants = getDescendants(childId);
 		for (Integer c : childDesendants) {
-			System.out.print(c + " " + parentId);
 			if (c == parentId) {
 				return true; // cycle exists
 			}
@@ -188,27 +208,6 @@ public class GraphOperation {
 		return true;
 	}
 
-	// delete child parent dependency
-	public static boolean deleteDependency(int deleteChildId, int deleteParentId) {
-		Node nc = nodeHashMap.get(deleteChildId);
-		Node np = nodeHashMap.get(deleteParentId);
-		if (!ifNodeExists(nc) || !ifNodeExists(np) || nc.getParentNodes() == null || np.getChildNodes() == null) {
-			return false;
-		}
-		nc.getParentNodes().remove(np);
-		np.getChildNodes().remove(nc);
-		return true;
-	}
-
-	// check if a node is null of not
-	private static boolean ifNodeExists(Node node) {
-		if (node == null) {
-			System.out.println("No such node exists!");
-			return false;
-		}
-		return true;
-	}
-
 	public static void printAllNodes() {
 		System.out.println("Display details of each node: ");
 		for (Node n : nodeHashMap.values()) {
@@ -228,4 +227,5 @@ public class GraphOperation {
 			}
 		}
 	}
+
 }
