@@ -11,10 +11,10 @@ import java.util.concurrent.BlockingQueue;
 
 public class ItemDAOImpl implements ItemDAO {
 
-    private String databaseName = null;
-    private String tableName = null;
-    private String userName = null;
-    private String userPassword = null;
+    private String databaseName;
+    private String tableName;
+    private String userName;
+    private String userPassword;
 
     public ItemDAOImpl(String databaseName, String tableName, String userName, String userPassword) {
         this.databaseName = databaseName;

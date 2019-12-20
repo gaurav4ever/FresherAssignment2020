@@ -3,17 +3,21 @@ package org.nuclei.utils;
 import org.nuclei.exception.UserAlreadyExistsException;
 import org.nuclei.model.Student;
 import org.nuclei.service.impl.StudentServiceImpl;
-
+import org.nuclei.enums.SortComparatorEnum;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class StudentUtility {
 
     static Scanner sc = new Scanner(System.in);
-
+    public static final Map<Integer,String> sortEnumMapper = Map.of(
+            1,SortComparatorEnum.SORT_BY_NAME.name(),
+            2,SortComparatorEnum.SORT_BY_ROLL_NUMBER.name(),
+            3,SortComparatorEnum.SORT_BY_AGE.name(),
+            4,SortComparatorEnum.SORT_BY_ADDRESS.name());
+    public static final Map<Character,String> sortOrderMapper = Map.of(
+            'a',"Ascending",
+            'b',"Descending");
     /*
      * Object of userService, basically to call the services of users
      */
@@ -165,7 +169,7 @@ public class StudentUtility {
                     sc.nextLine();
                     System.out.println("Press --> 'a' for Ascending | 'd' for Descending");
                     char sortOrder = sc.nextLine().toLowerCase().charAt(0);
-                    userList = studentService.getSortedUsers(choice, sortOrder);
+                    userList = studentService.getSortedUsers(StudentUtility.sortEnumMapper.get(choice), StudentUtility.sortOrderMapper.get(sortOrder));
                     printUserDetails(userList);
                     System.out.println("Press 's' for sorting options else press any other key to continue");
                     check = sc.nextLine().toLowerCase().charAt(0);
@@ -176,7 +180,6 @@ public class StudentUtility {
                 System.out.println("Enter Roll Number of the User to be deleted");
                 try {
                     rollNumber = sc.nextInt();
-                    //System.out.println(userService.deleteUser(rollNumber));
                     studentService.deleteUser(rollNumber);
                 }catch(Exception e) {
                     System.out.println("Not an Integer");
@@ -212,9 +215,7 @@ public class StudentUtility {
     public static void run() {
         try {
             studentService.fetchFromDisk();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         while(true) {

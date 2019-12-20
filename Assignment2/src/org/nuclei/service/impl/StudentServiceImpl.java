@@ -1,95 +1,92 @@
 package org.nuclei.service.impl;
 
-import org.nuclei.dao.impl.StudentDAOImpl;
+import org.nuclei.bo.StudentBO;
+import org.nuclei.enums.SortComparatorEnum;
 import org.nuclei.exception.UserAlreadyExistsException;
+import org.nuclei.exception.UserNotFoundException;
 import org.nuclei.model.Student;
 import org.nuclei.service.StudentService;
-import org.nuclei.utils.comparator.*;
+import org.nuclei.utils.DeserializeData;
+import org.nuclei.utils.SerializeData;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class StudentServiceImpl implements StudentService {
-    final String fileLocation = "src/org/nuclei/resource/students";
-    StudentDAOImpl userDAO = new StudentDAOImpl(this.fileLocation);
 
-    @Override
-    public void addUser(Student student) throws UserAlreadyExistsException {
+    private final String fileLocation;
+    private final StudentBO userBO;
 
-        Student tempStudent = null;
-        tempStudent = userDAO.getUserByRollNo(student.getRollNo());
+    public StudentServiceImpl() {
 
-        if (tempStudent != null) {
-            throw new UserAlreadyExistsException("User already exists with given Roll number");
-        } else {
-            userDAO.addUser(student);
-        }
-        userDAO.getAllUsers().sort(new DefaultComparator());
+        this.fileLocation = "src/org/nuclei/resource/students";
+        this.userBO = new StudentBO(this.fileLocation);
+    }
+
+    public StudentServiceImpl(final String fileLocation) {
+
+        this.fileLocation = fileLocation;
+        this.userBO = new StudentBO(this.fileLocation);
+    }
+
+    private Student getUserByRollNo(final int rollNo) throws UserNotFoundException {
+
+        return userBO.getStudents().stream()
+                .filter(student -> student.getRollNo()==rollNo)
+                .findFirst()
+                .orElseThrow( UserNotFoundException::new );
+    }
+
+    private boolean checkUserByRollNo(final Student student) {
+
+        return userBO.getStudents().stream()
+                .anyMatch(x -> Objects.equals(x, student));
     }
 
     @Override
-    public void deleteUser(int rollNo) {
-        Student student = null;
-        student = userDAO.getUserByRollNo(rollNo);
-        if(student != null){
-            userDAO.deleteUser(student);
-        }else{
-            //TODO: Change if/else to exception based system
-            System.out.println("User not found");
+    public void addUser(final Student student) throws UserAlreadyExistsException {
+
+        if (checkUserByRollNo(student)) {
+            throw new UserAlreadyExistsException("User already exists");
         }
+        userBO.getStudents().add(student);
+        userBO.getStudents().sort(SortComparatorEnum.SORT_BY_ADDRESS_AND_ROLL_NUMBER.getComparator(SortComparatorEnum.SORT_BY_ADDRESS_AND_ROLL_NUMBER.ascendingLiteral));
+    }
+
+    @Override
+    public void deleteUser(final int rollNo) throws UserNotFoundException {
+
+        userBO.getStudents().remove(this.getUserByRollNo(rollNo));
     }
 
     @Override
     public List<Student> getUsers() {
-        return userDAO.getAllUsers();
 
+        return userBO.getStudents();
     }
 
     @Override
-    public List<Student> getSortedUsers(int choice, char order) {
+    public List<Student> getSortedUsers(final String choice, final String order) {
 
-        List<Student> tempStudentList = getUsers();
-        switch (choice) {
-            case 1:
-                if (order == 'a') {
-                    tempStudentList.sort(new NameComparatorAscending());
-                } else
-                    tempStudentList.sort(new NameComparatorDescending());
-                break;
-            case 2:
-                if (order == 'a') {
-                    tempStudentList.sort(new RollNoComparatorAscending());
-                } else
-                    tempStudentList.sort(new RollNoComparatorDescending());
-                break;
-            case 3:
-                if (order == 'a') {
-                    tempStudentList.sort(new AgeComparatorAscending());
-                } else
-                    tempStudentList.sort(new AgeComparatorDescending());
-                break;
-            case 4:
-                if (order == 'a') {
-                    tempStudentList.sort(new AddressComparatorAscending());
-                } else
-                    tempStudentList.sort(new AddressComparatorDescending());
-                break;
-            default:
-                System.out.println("Invalid choice");
-        }
-        return tempStudentList;
+        return getUsers().stream()
+                .sorted(SortComparatorEnum.valueOf(choice).getComparator(order))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void flushIntoDisk() throws IOException {
 
-        userDAO.serializeUser();
+        final SerializeData<Student> handler = new SerializeData<>();
+        handler.serializeData(userBO.getStudents(), userBO.getFileName());
     }
 
     @Override
     public void fetchFromDisk() throws IOException, ClassNotFoundException {
-        //TODO: Fix this method
-        userDAO.deserializeUser();
+
+        final DeserializeData<Student> handler = new DeserializeData<>();
+        userBO.setStudents(handler.deserializeData(userBO.getFileName()));
     }
 
 }

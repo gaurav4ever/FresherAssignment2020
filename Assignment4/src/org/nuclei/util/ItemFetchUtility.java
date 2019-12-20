@@ -25,7 +25,6 @@ public class ItemFetchUtility implements Runnable {
         System.out.println("Started fetch thread");
         try {
             getItemsFromDB();
-            //for(Item item : items){ ItemUtility.itemOutput(item); }
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
