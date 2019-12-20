@@ -34,9 +34,6 @@ public class InputUtil {
 	public static void getAnotherInput(String choice) {
 		if ("Y".equals(choice) || "y".equals(choice)) {
 			getInputItem();
-		} else {
-			System.out.println("-------------EXIT-------------");
-			System.exit(0);
 		}
 	}
 }
