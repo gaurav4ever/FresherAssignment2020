@@ -14,6 +14,6 @@ public class CustomErrorController implements ErrorController {
 
     @Override
     public String getErrorPath() {
-        return "Ye kaha aa gaye aap?";
+        return "Error 404 Not Found!";
     }
 }
