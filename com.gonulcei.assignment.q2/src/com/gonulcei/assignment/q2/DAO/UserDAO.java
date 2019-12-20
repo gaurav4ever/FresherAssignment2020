@@ -22,7 +22,7 @@ public class UserDAO {
 	/*
 	 * Path where the list of users will be stored in the disk
 	 */
-	String filename = "/home/chicken/Desktop/file.ser";
+	String filename = "./file.ser";
 	
 	/*
 	 * 

@@ -6,10 +6,18 @@ import java.util.List;
 public class GraphNode {
 	 	public String name;
 	 	public int id;
-	    private List<GraphNode> comingInNodes = new ArrayList<>();
-	    private List<GraphNode> goingOutNodes = new ArrayList<>();
+	    private List<GraphNode> comingInNodes ;
+	    private List<GraphNode> goingOutNodes ;
 
-	    /**
+	    
+	    public GraphNode() {
+			super();
+			this.comingInNodes = new ArrayList();
+			this.goingOutNodes = new ArrayList<>();
+			// TODO Auto-generated constructor stub
+		}
+
+		/**
 	     * Adds an incoming node to the current node
 	     *
 	     * @param node

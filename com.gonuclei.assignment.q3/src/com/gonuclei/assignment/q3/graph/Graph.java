@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Queue;
 import java.util.StringJoiner;
 
@@ -32,7 +33,7 @@ final public class Graph {
         }
         List<GraphNode> descendants = getDescendants(nodeId1);
         for(GraphNode d: descendants) {
-        	if(d.getId()==nodeId2) throw new DependeciesAlreadyExistException("Dependencies already exist. The Graph will become Cyclic!");
+        	if(d.getId()==(nodeId2) throw new DependeciesAlreadyExistException("Dependencies already exist. The Graph will become Cyclic!");
         }
         firstNode.addGoingOutNode(afterNode);
         afterNode.addComingInNode(firstNode);
@@ -41,7 +42,7 @@ final public class Graph {
     public List<GraphNode> getImmediateParents(int nodeId) throws NodeDoesNotExistException{
     	GraphNode node = null;
     	node = nodes.get(nodeId);
-    	if(node!=null) return node.getComingInNodes();
+    	if(Objects.isNull(node)) return node.getComingInNodes();
     	else throw new NodeDoesNotExistException();
     }
     

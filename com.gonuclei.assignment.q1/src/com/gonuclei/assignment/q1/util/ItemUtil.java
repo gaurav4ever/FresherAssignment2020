@@ -11,9 +11,9 @@ import com.gonuclei.assignment.q1.serviceImpl.RawItemService;
 
 public class ItemUtil {
 
-	static Scanner sc = new Scanner(System.in);;
+	private static Scanner sc = new Scanner(System.in);;
 
-	static ItemService itemService;
+	private static ItemService itemService;
 
 	public static Item getItemInput() {
 		Item item = new Item();
@@ -71,6 +71,7 @@ public class ItemUtil {
 		}
 	}
 
+	// try using abstract factory design pattern & factory design pattern
 	private static Item calculateTax(Item item) throws InvalidItemTypeException {
 		String itemType = item.getType();
 		

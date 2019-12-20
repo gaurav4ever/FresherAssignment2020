@@ -1,8 +1,8 @@
 package com.gonuclei.assignment.q1.test;
 
-import static org.junit.Assert.*;
+import static junit.framework.Assert.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ManufacturedItemTaxServiceTest {
 
