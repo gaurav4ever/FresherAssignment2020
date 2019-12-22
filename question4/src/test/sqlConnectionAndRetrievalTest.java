@@ -18,17 +18,17 @@ import question4.sqlOperationClass;
 class sqlConnectionAndRetrievalTest {
 	/* Testing if Data from Database is correctly read */
 	
-ArrayList<items> ItemsinDB = new ArrayList<>();
-	@Test
-	void test() {
+	  ArrayList<items> ItemsinDB = new ArrayList<>();
+	  @Test
+	  void test() {
 		
-			try {
-				sqlOperationClass.create();
-			}catch (ClassNotFoundException e1) {
-				System.out.println("Class Not Found");
-			}
+		try {
+		   sqlOperationClass.create();
+		 }catch (ClassNotFoundException e1) {
+		   System.out.println("Class Not Found");
+		}
 	
-		 	String sql = "SELECT * FROM items";
+		String sql = "SELECT * FROM items";
 	        String url = "jdbc:sqlite:C:/sqlite/"+"abc.db";
 	        
 	        try {  
@@ -42,9 +42,9 @@ ArrayList<items> ItemsinDB = new ArrayList<>();
 	                ItemsinDB.add(item1);
 	            	}
 	             
-	        }catch (SQLException e) {  
+	          }catch (SQLException e) {  
 	            System.out.println("SQL Exception");
-	        }
+	         } 
 	        
 	        /*
 	        ("iphone", 1, 12000, "raw")
