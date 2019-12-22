@@ -37,7 +37,7 @@ public class home {
 					System.out.println("Exception while Reading from database");
 				}
 			}	
-	});
+		});
 		
 		Thread t2 = new Thread(new Runnable() {
 			@Override
@@ -54,19 +54,19 @@ public class home {
 		 t2.start();
 		
 		 t1.join(); 
-	     t2.join();
+	     	 t2.join();
 	      
-	     System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
-	     System.out.println("Name"+"              "+"Quantity"+"       "+"Price"+"         "+"Type");
-	     System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
+	     	 System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
+	     	 System.out.println("Name"+"              "+"Quantity"+"       "+"Price"+"         "+"Type");
+	     	 System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
 			
 	      
-	     for(items i1: retrieveAndCompute.finalPricedItems)
-	     {
-	    	  System.out.println(i1.getName()+"               "+i1.getQuantity()+"          "+i1.getPrice()+"          "+i1.getType());
+	     	 for(items i1: retrieveAndCompute.finalPricedItems)
+	     	  {
+	    	      System.out.println(i1.getName()+"               "+i1.getQuantity()+"          "+i1.getPrice()+"          "+i1.getType());
 		      System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
 
-	     }
+	     	  }
 	      
-	}
+	 }
 }
