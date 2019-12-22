@@ -12,7 +12,6 @@ public class RetrievalAndComputation {
 	/** Items is a Shared Variable */
 	private static ArrayList<items> Items = new ArrayList<>();
 	public static ArrayList<items> finalPricedItems = new ArrayList<>();
-	public static ArrayList<items> ItemsRead= new ArrayList<>();
 	private static boolean stopCalculation=true;
 	
 	 public void select() throws InterruptedException{  
@@ -52,10 +51,9 @@ public class RetrievalAndComputation {
 	 public void CalculateTaxAndUpdatePrice() throws InterruptedException
 	 {
 		 
-		 while(stopCalculation || Items.size()!=0)
-		 {
-			 synchronized (this) 
-	         { 
+		 while(stopCalculation || Items.size()!=0) {
+		      synchronized (this) 
+	             { 
 	             // consumer thread waits while list 
 	             // is empty 
 	             while (Items.size() == 0) 
@@ -75,7 +73,7 @@ public class RetrievalAndComputation {
 	
 	             // and sleep 
 	             Thread.sleep(1000); 
-	         } 
+	            } 
 		 }
 		 
 	 }
