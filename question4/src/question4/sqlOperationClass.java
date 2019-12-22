@@ -48,10 +48,10 @@ public class sqlOperationClass {
             Statement stmt = conn.createStatement();  
             stmt.execute(sql);  
             System.out.println("Table Created");
-        } catch (SQLException e) {  
+         } catch (SQLException e) {  
             System.out.println("SQL Exception in Creating Table");  
-        }  
-    }
+         }  
+       }
 	
 	public void insert(String name, int quantity, float price, String type) { 
 		
@@ -65,10 +65,10 @@ public class sqlOperationClass {
             pstmt.setFloat(3, price);
             pstmt.setString(4, type);
             pstmt.executeUpdate();  
-        } catch (SQLException e) {  
+         } catch (SQLException e) {  
             System.out.println("SQL Exception while Inserting in Database");  
-        }  
-    }
+         }  
+      }
 	
 	
 }
