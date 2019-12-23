@@ -19,7 +19,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-import com.newsletter.newsletter.NewsletterApplication;
+
 import com.newsletter.newsletter.DTO.SubscriptionRepository;
 import com.newsletter.newsletter.model.Subscription;
 import com.newsletter.newsletter.model.SubscriptionDto;

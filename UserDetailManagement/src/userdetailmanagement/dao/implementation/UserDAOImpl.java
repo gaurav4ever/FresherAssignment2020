@@ -9,66 +9,59 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import userdetailmanagement.contants.Constants;
 import userdetailmanagement.dao.UserDAO;
-import userdetailmanagement.models.User;
+import userdetailmanagement.models.UserDetails;
 
 public class UserDAOImpl implements UserDAO {
-	// saves data in disk by writing each item of the list to disk
-    public void writeFile(List<User> list, String file) {
-        ObjectOutputStream outStream = null;
-        try {
-            outStream = new ObjectOutputStream(new FileOutputStream(file));
-            for (User p : list) {
+    /*
+     saves data in disk by writing each item of the list to disk
+     */
+    Logger logger = Logger.getLogger(UserDAOImpl.class.getName());
+    public void writeFile(List<UserDetails> list, String file) {
+        try(ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(file))){
+            for (UserDetails p : list) {
                 outStream.writeObject(p);
             }
         } catch (Exception e) {
-            System.err.println("Error in wirtting items!");
-        } finally {
-            try {
-                if (outStream != null)
-                    outStream.close();
-            } catch (IOException ioException) {
-                System.err.println("Error closing file.");
-            }
+            logger.log(Level.INFO, Constants.ERROR_WRITING_FILE);
         }
     }
 
-    // extract student file from memory if exists
+    /*
+     extract student file from memory if exists
+     */
     public String getFile() {
-        String fileName = "/Users/vishalsinghal/Desktop/nuclei_assignment/FresherAssignment2020/usersData.txt";
+        String fileName = Constants.FILE_PATH;
         File file = new File(fileName);
         try {
-            if (file.createNewFile()) {
-                // File created in root directory
-            } else {
-                // File already exists in root directory
+            boolean fileCreated  = file.createNewFile();
+            if(fileCreated){
+                logger.log(Level.INFO,Constants.FILE_CREATED_SUCCESSFULLY);
             }
         } catch (IOException e) {
-            System.out.print("Users Record not found!");
-            e.printStackTrace();
+            logger.log(Level.WARNING,Constants.NO_RECORD_FOUND);
         }
         return fileName;
     }
-    
-    public List<User> readFile(String file) {
-        List<User> list = new ArrayList<>();
-        ObjectInputStream inputStream=null;
-        try {
-            inputStream = new ObjectInputStream(new FileInputStream(file));
-            //reading of data from the file
+
+    public List<UserDetails> readFile(String file) {
+        List<UserDetails> list = new ArrayList<>();
+        try(ObjectInputStream inputStream=new ObjectInputStream(new FileInputStream(file))) {
+           /*
+            reading of data from the file
+             */
             while (true) {
-            	User p = (User) inputStream.readObject();
+                UserDetails p = (UserDetails) inputStream.readObject();
+                if(p==null){
+                    break;
+                }
                 list.add(p);
             }
         } catch (Exception e) {
-            //System.err.println("Error opening file."+e);
-        } finally {
-            try {
-                if (inputStream != null)
-                    inputStream.close();
-            } catch (IOException ioException) {
-                System.err.println("Error closing file.");
-            }
+            logger.log(Level.WARNING,Constants.ERROR_READING_FILE);
         }
         return list;
     }

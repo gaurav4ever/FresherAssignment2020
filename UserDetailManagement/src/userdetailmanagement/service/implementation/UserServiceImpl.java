@@ -1,147 +1,85 @@
 package userdetailmanagement.service.implementation;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import userdetailmanagement.contants.Constants;
 import userdetailmanagement.dao.implementation.UserDAOImpl;
-import userdetailmanagement.models.User;
-import userdetailmanagement.service.UserService;
+import userdetailmanagement.models.UserDetails;
+import userdetailmanagement.service.IUserService;
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
 	static Scanner sc=new Scanner(System.in);
-	
 	UserDAOImpl userDao = new UserDAOImpl();
-	
-	public boolean verifiedRollNo(int rollNo,List<User> l) {
-		for(User user : l) {
-			if(user.getRollNo() == rollNo) {
-				System.out.println("This roll no already exist. Please re-enter unique roll no.");
-				return false;
+	Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
+
+	public void deleteUser(List<UserDetails> userDetailsList,int rollNo) {
+		int flag=0;
+		for(UserDetails userDetails : userDetailsList) {
+			if(userDetails.getRollNo() == rollNo) {
+				userDetailsList.remove(userDetails);
+				logger.log(Level.INFO,"Successfully removed");
+				flag=1;
 			}
 		}
-		return true;
-	}
-	
-	public void deleteUser(List<User> l,int rollNo) {
-		//List<User> l = findAllUser();
-		int i=0;
-		for(User user : l) {
-			if(user.getRollNo() == rollNo) {
-				break;
-			}
-			i++;
-		}
-		if(i==l.size()) {
-			System.out.println("Invalid roll no");
-		}
-		else {
-			l.remove(i);
-			System.out.println("Successfully removed");
+		if(flag==0){
+			logger.log(Level.INFO,"Invalid roll no.");
 		}
 	}
-	
-	public List<User> sortNameAndRoll(List<User> userList){
-		 Collections.sort(userList, (User user1,User user2)->{
-			 if(user1.getName().equalsIgnoreCase(user2.getName())) {
-				 return user1.getRollNo() - user2.getRollNo();
+
+	public List<UserDetails> sortNameAndRoll(List<UserDetails> userDetailsList){
+		 Collections.sort(userDetailsList, (UserDetails userDetails1, UserDetails userDetails2)->{
+			 if(userDetails1.getName().equalsIgnoreCase(userDetails2.getName())) {
+				 return userDetails1.getRollNo() - userDetails2.getRollNo();
 			 }
-			 else return user1.getName().compareToIgnoreCase(user2.getName());
+			 else return userDetails1.getName().compareToIgnoreCase(userDetails2.getName());
 		 });
-		 return	userList; 
+		 return userDetailsList;
 	}
-	
-	public void displayUser(List<User> l) {
-		System.out.println("-----------------------------------------------------------------------------------------");
-		String head = String.format("%1$-15s %2$-15s %3$-15s %4$-20s %5$-10s", "Name", "Roll Number", "Age", "Address", "Courses");
-		System.out.println(head);
-		System.out.println("-----------------------------------------------------------------------------------------");
-		for(User user: l) {
-			System.out.println(user);
-		}	
-		System.out.println();
+
+	public List<UserDetails> sortUser(int choice,String order,List<UserDetails> usersList){
+		List<UserDetails> userDetails = getSortedUserDetails(choice,usersList);
+		if(order.equalsIgnoreCase("a")){
+			return userDetails;
+		}
+		Collections.reverse(userDetails);
+		return userDetails;
 	}
-	
-	public List<User> getSortedUserDetails(int choice, int order,List<User> users){
-		//List<User> users = findAllUser();
+	public List<UserDetails> getSortedUserDetails(int choice,List<UserDetails> userDetails){
 		switch(choice) {
 		case 1:
-			if(order == 'a') {
-				Collections.sort(users,(User o1,User o2)->{
-					return o1.getName().compareToIgnoreCase(o2.getName());
-				});
-			}
-			else {
-				Collections.sort(users,(User o1, User o2)->{
-					return -1*o1.getName().compareToIgnoreCase(o2.getName());
-				});
-			}
+			userDetails.sort((UserDetails o1, UserDetails o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
 			break;
 		case 2:
-			if(order == 'a') {
-				Collections.sort(users,(User o1,User o2)->{
-					if(o1.getRollNo()>o2.getRollNo()){
-						return 1;
-					}
-					return -1;
-				});
-			}
-			else {
-				Collections.sort(users,(User o1,User o2)->{
-					if(o1.getRollNo()>o2.getRollNo()){
-						return -1;
-					}
-					return 1;
-				});
-			}
+			userDetails.sort(Comparator.comparingInt(UserDetails::getRollNo));
 			break;
 		case 3:
-			if(order == 'a') {
-				Collections.sort(users,(User o1,User o2)->{
-					if(o1.getAge()>o2.getAge()){
-						return 1;
-					}
-					return -1;
-				});
-			}
-			else {
-				Collections.sort(users,(User o1,User o2)->{
-					if(o1.getAge()>o2.getAge()){
-						return -1;
-					}
-					return 1;
-				});
-			}
+			userDetails.sort(Comparator.comparingInt(UserDetails::getAge));
 			break;
 		case 4:
-			if(order == 'a') {
-				Collections.sort(users,(User o1,User o2)->{
-					return o1.getAddress().compareToIgnoreCase(o2.getAddress());
-				});
-			}
-			else {
-				Collections.sort(users,(User o1,User o2)->{
-					return -1*o1.getAddress().compareToIgnoreCase(o2.getAddress());
-				});
-			}
+			userDetails.sort((UserDetails o1, UserDetails o2) -> o1.getAddress().compareToIgnoreCase(o2.getAddress()));
 			break;
 		default :
-			System.out.println("Invalid Input");
+			logger.log(Level.INFO, Constants.INVALID_INPUT);
 		}
-		
-		return users;
+
+		return userDetails;
 	}
-	
+
 	public String getFile() {
 		return userDao.getFile();
 	}
-	
-	public List<User> readFile(String fileName){
+
+	public List<UserDetails> readFile(String fileName){
 		return userDao.readFile(fileName);
 	}
-	
-	public void writeFile(List<User> users,String fileName) {
-		userDao.writeFile(users, fileName);
+
+	public void writeFile(List<UserDetails> userDetails,String fileName) {
+		userDao.writeFile(userDetails, fileName);
 	}
-    
+
 }

@@ -3,8 +3,9 @@ package inventory.service;
 import inventory.model.Item;
 
 public class GetItemFactory {
+	private GetItemFactory(){}
 
-	public Item getItem(String itemType) {
+	public static Item getItem(String itemType) {
 		if(itemType == null) {
 			return null;
 		}

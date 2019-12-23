@@ -1,7 +1,10 @@
 package userdetailmanagement.models;
 import java.io.Serializable;
 import java.util.ArrayList;
-public class User implements Comparable<User>, Serializable{
+import java.util.List;
+import userdetailmanagement.contants.Constants;
+
+public class UserDetails implements Comparable<UserDetails>, Serializable{
 	
 	/**
 	 * 
@@ -36,26 +39,25 @@ public class User implements Comparable<User>, Serializable{
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public ArrayList<String> getCourses() {
+	public List<String> getCourses() {
 		return courses;
 	}
-	public void setCourses(ArrayList<String> courses) {
-		this.courses = courses;
+	public void setCourses(List<String> courses) {
+		this.courses = (ArrayList<String>) courses;
 	}
 	@Override
-	public int compareTo(User o) {
-		// TODO Auto-generated method stub
-		if(rollNo < o.getRollNo())
-			return -1;
-		return 0;
+	public int compareTo(UserDetails o) {
+		return Integer.compare(rollNo,o.getRollNo());
 	}
-	
+	/*
+	not able to understand the need of equals
+	 */
 	public String printCourseList() {
 		return "[ " + courses.get(0) + " " + courses.get(1) + " " + courses.get(2) + " " + courses.get(3)+ " ]";
 	}
 	
 	@Override
 	public String toString() {
-		return String.format("%1$-15s %2$-15d %3$-15d %4$-20s %5$-10s", name, rollNo, age , address, printCourseList() );
+		return String.format(Constants.USER_DETAILS_PRINT_FORMATOR, name, rollNo, age , address, printCourseList() );
 	}
 }
