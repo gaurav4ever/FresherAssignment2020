@@ -3,12 +3,12 @@ package com.nuclei.assignment2.beans;
 import java.io.Serializable;
 import java.util.Arrays;
 
-public class Student implements Serializable {
+public class Student implements Serializable, Comparable<Student> {
 	private static final long serialVersionUID = 1L;
 	String name;
 	int age;
 	String address;
-	String rollNo;
+	int rollNo;
 	String course[] = new String[4];
 	public String getName() {
 		return name;
@@ -28,10 +28,10 @@ public class Student implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getRollNo() {
+	public int getRollNo() {
 		return rollNo;
 	}
-	public void setRollNo(String rollNo) {
+	public void setRollNo(int rollNo) {
 		this.rollNo = rollNo;
 	}
 	public String[] getCourse() {
@@ -40,7 +40,7 @@ public class Student implements Serializable {
 	public void setCourse(String[] course) {
 		this.course = course;
 	}
-	public Student(String name, int age, String address, String rollNo, String[] course) {
+	public Student(String name, int age, String address, int rollNo, String[] course) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -52,6 +52,12 @@ public class Student implements Serializable {
 	public String toString() {
 		return "Student [name=" + name + ", age=" + age + ", address=" + address + ", rollNo=" + rollNo + ", course="
 				+ Arrays.toString(course) + "]";
+	}
+	@Override
+	public int compareTo(Student o) {
+		if (name.equals(o.name))
+            return rollNo - o.rollNo;
+        return name.compareTo(o.name);
 	}
 	
 	
