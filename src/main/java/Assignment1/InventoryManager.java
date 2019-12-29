@@ -1,18 +1,13 @@
 package Assignment1;
 
-import Assignment1.Item;
-import com.sun.tools.javac.comp.Todo;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class InventoryManager {
 
-    List<Item> items;
-    Scanner scan;
-    Item item;
-
+    private List<Item> items;
+    private Scanner scan;
 
     InventoryManager(){
         scan = new Scanner(System.in);
@@ -21,67 +16,85 @@ public class InventoryManager {
 
     void readData()
     {
-        String ch;
-        do{
-
-            item = new Item();
-            for(int i=0;i<4;i++) {
-                String input = scan.nextLine();
-                if( validateInput(input) )  i--;
-            }
-            item = taxCalculator(item);
-            items.add(item);
-
-            System.out.println("Do you want to add one more item (y/n) : ");
-            ch = scan.nextLine();
-
-        }while( ch.equals("y") );
-
-        displayDetails();
+        Item item = new Item();
+        System.out.println("Enter the item details: ");
+        validateInput(item);
+        item.setTax(new TaxCalculator().getTax(item));
+        items.add(item);
+        System.out.println("Item added successfully");
     }
 
     void displayDetails() {
         for( Item item: items){
-            StringBuilder message = new StringBuilder();
-            message.append("Name : ");
-            message.append(item.getName());
-            message.append("\t");
-            message.append("Price : ");
-            message.append(item.getPrice());
-            message.append("\t");
-            message.append("Liable Tax : ");
-            message.append(item.getTax());
-            message.append("\t");
-            message.append("Final Price : ");
-            message.append("\t");
-            message.append(item.getPrice() + item.getTax());
-            System.out.println();
+            String message = "Name : " +
+                    item.getName() +
+                    "\t\t" +
+                    "Price : " +
+                    item.getPrice() +
+                    "\t\t" +
+                    "Liable Tax : " +
+                    item.getTax() +
+                    "\t\t" +
+                    "Final Price : " +
+                    "\t\t" +
+                    (item.getPrice() + item.getTax());
+            System.out.println(message);
         }
     }
 
-    Item taxCalculator(Item item) {
-        double tax=0;
-        if(item.getType() == Item.ITEM_TYPE.RAW)
-            tax = item.getPrice()*0.125;
-        else if(item.getType() == Item.ITEM_TYPE.MANUFACTURED)
-            tax = item.getPrice()*0.125 + (item.getPrice()*0.125 + item.getPrice())*0.02;
-        else if(item.getType() == Item.ITEM_TYPE.IMPORTED) {
-            tax = 0.1 * item.getPrice();
-            if ((item.getPrice() + tax) <= 100) tax+=5;
-            else if ((item.getPrice() + tax) <= 200) tax+=10;
-            else tax+=0.05*item.getPrice();
+
+
+    private void validateInput(Item item) {
+        for(int i=0; i<4; i++)
+        {
+            System.out.print("> ");
+            String cmd = scan.next();
+            if(cmd.equals("-name") && scan.hasNext()) {
+                if (item.isNameFlag()) {
+                    System.out.println("Name is already added...");
+                    i--;
+                    scan.next();
+                    continue;
+                }
+                item.setName(scan.nextLine());
+                item.setNameFlag(true);
+                System.out.println("Name added");
+            } else if(cmd.equals("-price") && scan.hasNextDouble()) {
+                if (item.isPriceFlag()) {
+                    System.out.println("Price is already added...");
+                    i--;
+                    scan.next();
+                    continue;
+                }
+                item.setPrice(scan.nextDouble());
+                item.setPriceFlag(true);
+                System.out.println("Price added");
+            } else if(cmd.equals("-quantity") && scan.hasNextDouble()) {
+                if (item.isQuantityFlag()) {
+                    System.out.println("Quantity is already added...");
+                    i--;
+                    scan.next();
+                    continue;
+                }
+                item.setQuantity(scan.nextDouble());
+                item.setQuantityFlag(true);
+                System.out.println("Quantity added");
+            } else if(cmd.equals("-type") && scan.hasNext("RAW|IMPORTED|MANUFACTURED")) {
+                if (item.isTypeFlag()) {
+                    System.out.println("Type is already added...");
+                    i--;
+                    scan.next();
+                    continue;
+                }
+                item.setType(scan.next("RAW|IMPORTED|MANUFACTURED"));
+                item.setTypeFlag(true);
+                System.out.println("Type added");
+            } else {
+                System.out.println("Please enter a valid input...");
+                i--;
+                scan.next();
+            }
         }
-        item.setTax(tax);
-        return item;
-    }
-
-    boolean validateInput(String input) {
-
-        //FIXME Update the following
-        // - validate the input
-        // - update the item
-
-        return true;
     }
 
 }

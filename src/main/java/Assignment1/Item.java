@@ -1,49 +1,86 @@
 package Assignment1;
 
-public class Item {
-    String name;
-    double price, tax;
-    int quantity;
-    enum ITEM_TYPE {RAW, MANUFACTURED, IMPORTED };
-    ITEM_TYPE type;
+class Item {
+    private String name, type;
+    private double price, tax, quantity;
+    private boolean priceFlag, nameFlag, quantityFlag, typeFlag;
 
-    public String getName() {
+    Item() {
+        this.priceFlag = false;
+        this.nameFlag = false;
+        this.quantityFlag = false;
+        this.typeFlag = false;
+    }
+
+    public boolean isPriceFlag() {
+        return priceFlag;
+    }
+
+    public void setPriceFlag(boolean priceFlag) {
+        this.priceFlag = priceFlag;
+    }
+
+    public boolean isNameFlag() {
+        return nameFlag;
+    }
+
+    public void setNameFlag(boolean nameFlag) {
+        this.nameFlag = nameFlag;
+    }
+
+    public boolean isQuantityFlag() {
+        return quantityFlag;
+    }
+
+    public void setQuantityFlag(boolean quantityFlag) {
+        this.quantityFlag = quantityFlag;
+    }
+
+    public boolean isTypeFlag() {
+        return typeFlag;
+    }
+
+    public void setTypeFlag(boolean typeFlag) {
+        this.typeFlag = typeFlag;
+    }
+
+    String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public ITEM_TYPE getType() {
+    String getType() {
         return type;
     }
 
-    public void setType(ITEM_TYPE type) {
+    void setType(String type) {
         this.type = type;
     }
 
-    public double getTax() {
+    double getTax() {
         return tax;
     }
 
-    public void setTax(double tax) {
+    void setTax(double tax) {
         this.tax = tax;
     }
 
-    public double getPrice() {
+    double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    void setPrice(double price) {
         this.price = price;
     }
 
-    public int getQuantity() {
+    double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 }
