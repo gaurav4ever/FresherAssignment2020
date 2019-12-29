@@ -25,21 +25,10 @@ public class InventoryManager {
     }
 
     void displayDetails() {
-        for( Item item: items){
-            String message = "Name : " +
-                    item.getName() +
-                    "\t\t" +
-                    "Price : " +
-                    item.getPrice() +
-                    "\t\t" +
-                    "Liable Tax : " +
-                    item.getTax() +
-                    "\t\t" +
-                    "Final Price : " +
-                    "\t\t" +
-                    (item.getPrice() + item.getTax());
-            System.out.println(message);
-        }
+        System.out.println("NAME\t\tPRICE\t\tTAX\t\tFINAL PRICE");
+        System.out.println("====\t\t=====\t\t==========\t\t===========");
+        for( Item item: items)
+            System.out.println(item.getName() + "\t\t" + item.getPrice() + "\t\t" + item.getTax() + "\t\t" + (item.getPrice() + item.getTax()));
     }
 
 
