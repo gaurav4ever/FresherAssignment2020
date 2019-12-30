@@ -1,0 +1,61 @@
+replicaCount: 1
+version: v1
+name:
+
+CommonConfigMap: common-config
+VaultConfigMap: vault-config
+appSecret:
+
+protoServiceName: com.gonuclei.grpc.HelloService
+
+image:
+  repository:
+  tag:
+  pullPolicy: Always
+
+service:
+  name: nuclei-assignment5
+  version: v1
+  internalPort: 8080
+
+rest:
+  enabled: true
+  name: http-rest
+  port: 8080
+  targetPort: 8080
+  matchrewrite:
+  matchprefix:
+
+grpc:
+  enabled: false
+  name: grpc
+  port: 6565
+  targetPort: 6565
+  matchrewrite:
+  matchprefix:
+
+ingress:
+  enabled: true
+  gateway:
+  api: "networking.istio.io/v1alpha3"
+  hostname: "*"
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 256Mi
+  requests:
+    cpu: 80m
+    memory: 128Mi
+
+probePath: /assignment5/appVersion    #Change it with you application configurations
+livenessProbe:
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+readinessProbe:
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+terminationGracePeriodSeconds: 10
