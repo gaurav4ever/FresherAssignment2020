@@ -1,7 +1,7 @@
 package com.gonuclei.Assignment5.controller;
 
 import com.gonuclei.Assignment5.exception.SubscriptionNotFound;
-import com.gonuclei.Assignment5.model.Subscription;
+import com.gonuclei.Assignment5.bos.SubscriptionBo;
 import com.gonuclei.Assignment5.service.impl.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,23 +19,23 @@ public class SubscriptionController {
     }
 
     @GetMapping("/subscriptions")
-    public List<Subscription> getSubscriptions(){
+    public List<SubscriptionBo> getSubscriptions(){
         return service.getSubscriptions();
     }
 
     @GetMapping("/subscriptions/{id}")
-    public Subscription getSubscription(@PathVariable int id) throws SubscriptionNotFound {
+    public SubscriptionBo getSubscription(@PathVariable int id) throws SubscriptionNotFound {
         return service.getSubscription(id);
     }
 
     @PostMapping("/subscriptions")
-    public void addSubscription(@RequestBody Subscription sub){
+    public void addSubscription(@RequestBody SubscriptionBo sub){
         service.addSubscription(sub);
     }
 
     @PutMapping("/subscriptions/{id}")
-    public void modifySubscription(@PathVariable Integer id, @RequestBody Subscription sub) throws SubscriptionNotFound {
-        service.modifySubscription(id,sub);
+    public void modifySubscription(@PathVariable Integer id, @RequestBody SubscriptionBo sub) throws SubscriptionNotFound {
+        service.modifySubscription(sub);
     }
 
     @DeleteMapping("/subscriptions")

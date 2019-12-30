@@ -1,0 +1,21 @@
+spring:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/Nuclei
+    username: root
+    password: nuclei@123
+
+  redis:
+    database: 0
+    host: localhost
+    ssl: false
+    port: 6379
+    timeout: 5000
+
+subscription:
+  topic-name: advice-topic
+  messages-per-request: 10

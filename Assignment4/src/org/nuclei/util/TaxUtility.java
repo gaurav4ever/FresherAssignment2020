@@ -26,7 +26,7 @@ public class TaxUtility implements Runnable{
                 item = items.take();
                 item.getType().calculateTax(item);
                 ItemUtility.itemOutput(item);
-                Thread.sleep(500);
+//                Thread.sleep(500);
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
                 e.printStackTrace();
