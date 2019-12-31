@@ -39,6 +39,7 @@ public class InfoDAO {
 			
 		}
 		ois.close();
+		fis.close();
 		return students;
 	}
 

@@ -19,7 +19,8 @@ public class Main {
 		String course[] = new String[4];
 		ArrayList<Student> students = StudentService.readService();
 		boolean con = true;
-		while(true) {
+		int sentinel = 0;
+		while(sentinel++ < 999) {
 			System.out.println("Enter \n1. Add User Details \t 2. Display User Details \t 3. Delete User Details \t 4. Save User Details \t 5. Exit");
 			choice = sc.nextInt();
 			sc.nextLine();
@@ -96,5 +97,6 @@ public class Main {
 			default: System.out.println("Enter valid option!");
 			}
 		}
+		sc.close();
 	}
 }
