@@ -1,0 +1,9 @@
+package com.gonuclei.constant;
+
+public class Constants {
+
+    public static final String KAFKA_BOOTSTRAP_ADDRESS = "localhost:9092";
+
+
+
+}
