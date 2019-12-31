@@ -1,5 +1,7 @@
 package Assignment2;
 
+import Assignment2.models.User;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

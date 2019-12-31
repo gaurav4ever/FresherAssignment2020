@@ -4,6 +4,7 @@ import Assignment2.menu.AddUser;
 import Assignment2.menu.DeleteUser;
 import Assignment2.menu.DisplayUser;
 import Assignment2.menu.SaveUser;
+import Assignment2.models.User;
 
 import java.io.*;
 import java.util.HashMap;

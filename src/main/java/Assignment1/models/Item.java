@@ -1,11 +1,11 @@
-package Assignment1;
+package Assignment1.models;
 
-class Item {
+public class Item {
     private String name, type;
     private double price, tax, quantity;
     private boolean priceFlag, nameFlag, quantityFlag, typeFlag;
 
-    Item() {
+    public Item() {
         this.priceFlag = false;
         this.nameFlag = false;
         this.quantityFlag = false;
@@ -44,43 +44,43 @@ class Item {
         this.typeFlag = typeFlag;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    String getType() {
+    public String getType() {
         return type;
     }
 
-    void setType(String type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    double getTax() {
+    public double getTax() {
         return tax;
     }
 
-    void setTax(double tax) {
+    public void setTax(double tax) {
         this.tax = tax;
     }
 
-    double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    void setPrice(double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    double getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    void setQuantity(double quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 }

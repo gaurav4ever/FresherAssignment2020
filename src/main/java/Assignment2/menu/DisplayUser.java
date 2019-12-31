@@ -1,9 +1,8 @@
 package Assignment2.menu;
 
-import Assignment2.User;
+import Assignment2.models.User;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 

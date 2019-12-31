@@ -1,6 +1,6 @@
 package Assignment2.menu;
 
-import Assignment2.User;
+import Assignment2.models.User;
 import static Assignment2.MenuDriver.CHANGES_MADE;
 
 import java.util.HashMap;

@@ -1,5 +1,8 @@
 package Assignment1;
 
+
+import Assignment1.models.Item;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

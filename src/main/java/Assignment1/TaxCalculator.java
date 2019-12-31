@@ -1,5 +1,7 @@
 package Assignment1;
 
+import Assignment1.models.Item;
+
 public class TaxCalculator {
 
     public double getTax(Item item) {
