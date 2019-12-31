@@ -1,5 +1,8 @@
 package Assignment3;
 
+import Assignment3.exceptions.DependencyAlreadyExist;
+import Assignment3.exceptions.DependencyDoesNotExist;
+import Assignment3.exceptions.NodeNotExist;
 import Assignment3.interfaces.DependencyGraph;
 import Assignment3.models.Node;
 
@@ -18,27 +21,43 @@ public class MyGraph implements DependencyGraph {
 
     @Override
     public boolean addDependency(Integer parentId, Integer childId) {
-        /*
-        TODO: Check wether node exists or not
-         */
+        if(!graph.containsKey(parentId)) try {
+            throw new NodeNotExist("Parent node with id "+parentId+" not exist");
+        } catch (NodeNotExist nodeNotExist) {
+            nodeNotExist.printStackTrace();
+        }
+        if(!graph.containsKey(childId)) try {
+            throw new NodeNotExist("Child node with id "+childId+" not exist");
+        } catch (NodeNotExist nodeNotExist) {
+            nodeNotExist.printStackTrace();
+        }
+        if(graph.get(parentId).getchildrens().contains(childId)) try {
+            throw new DependencyAlreadyExist("Dependency already Exist");
+        } catch (DependencyAlreadyExist dependencyAlreadyExist) {
+            dependencyAlreadyExist.printStackTrace();
+        }
         graph.get(parentId).getchildrens().add(childId);
         return false;
     }
 
     @Override
     public boolean deleteDependency(Integer parentId, Integer childId) {
-        /*
-        TODO: Check existance of dependency
-         */
+        if(!graph.get(parentId).getchildrens().contains(childId)) try {
+            throw new DependencyDoesNotExist("Dependency doesn't Exist");
+        } catch (DependencyDoesNotExist dependencyDoesNotExist) {
+            dependencyDoesNotExist.printStackTrace();
+        }
         graph.get(parentId).getchildrens().remove(childId);
         return false;
     }
 
     @Override
     public boolean deleteNode(Integer nodeId) {
-        /*
-        TODO: Check wether node exist or not
-         */
+        if(!graph.containsKey(nodeId)) try {
+            throw new NodeNotExist("Node with id "+nodeId+" not exist");
+        } catch (NodeNotExist nodeNotExist) {
+            nodeNotExist.printStackTrace();
+        }
         for(Node node: graph.values())
             node.getchildrens().remove(nodeId);
         graph.remove(nodeId);
@@ -47,18 +66,22 @@ public class MyGraph implements DependencyGraph {
 
     @Override
     public boolean addNode(Integer nodeId, String nodeName) {
-        /*
-        TODO: check node with same id exist or not
-         */
+        if(graph.containsKey(nodeId)) try {
+            throw new NodeNotExist("Node with id "+nodeId+" already exist");
+        } catch (NodeNotExist nodeNotExist) {
+            nodeNotExist.printStackTrace();
+        }
         graph.put(nodeId, new Node(nodeName, nodeId));
         return false;
     }
 
     @Override
     public List<Integer> getParents(Integer nodeId) {
-        /*
-        TODO: Check node exist or not
-         */
+        if(!graph.containsKey(nodeId)) try {
+            throw new NodeNotExist("Node with id "+nodeId+" not exist");
+        } catch (NodeNotExist nodeNotExist) {
+            nodeNotExist.printStackTrace();
+        }
         List<Integer> parents = new ArrayList<>();
         for (Node node: graph.values())
             if(node.getchildrens().contains(nodeId))
@@ -69,17 +92,21 @@ public class MyGraph implements DependencyGraph {
 
     @Override
     public List<Integer> getChildrens(Integer nodeId) {
-        /*
-        TODO: Check node exist or not
-         */
+        if(!graph.containsKey(nodeId)) try {
+            throw new NodeNotExist("Node with id "+nodeId+" not exist");
+        } catch (NodeNotExist nodeNotExist) {
+            nodeNotExist.printStackTrace();
+        }
         return graph.get(nodeId).getchildrens();
     }
 
     @Override
     public List<Integer> getAncestors(Integer nodeId) {
-        /*
-        TODO: Check node exist or not
-         */
+        if(!graph.containsKey(nodeId)) try {
+            throw new NodeNotExist("Node with id "+nodeId+" not exist");
+        } catch (NodeNotExist nodeNotExist) {
+            nodeNotExist.printStackTrace();
+        }
         List<Integer> ancestors = new ArrayList<>();
         List<Integer> parents = new ArrayList<>(getParents(nodeId));
         while(!parents.isEmpty()){
@@ -94,9 +121,11 @@ public class MyGraph implements DependencyGraph {
 
     @Override
     public List<Integer> getDescendants(Integer nodeId) {
-        /*
-        TODO: Check node exist or not
-         */
+        if(!graph.containsKey(nodeId)) try {
+            throw new NodeNotExist("Node with id "+nodeId+" not exist");
+        } catch (NodeNotExist nodeNotExist) {
+            nodeNotExist.printStackTrace();
+        }
         List<Integer> decendants = new ArrayList<>();
         List<Integer> childrens = new ArrayList<>(getChildrens(nodeId));
         while(!childrens.isEmpty()){
