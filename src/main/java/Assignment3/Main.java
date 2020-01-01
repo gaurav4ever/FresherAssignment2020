@@ -25,6 +25,10 @@ public class Main {
         System.out.println(myGraph.getAncestors(2));
         System.out.println(myGraph.getChildrens(4));
         System.out.println(myGraph.getAncestors(5));
+        System.out.println(myGraph.deleteNode(4));
+        System.out.println(myGraph.getAncestors(7));
+        myGraph.deleteDependency(1,2);
+        myGraph.deleteDependency(0,2);
         System.out.println(myGraph.getAncestors(7));
 
     }

@@ -37,6 +37,7 @@ public class MyGraph implements DependencyGraph {
             dependencyAlreadyExist.printStackTrace();
         }
         graph.get(parentId).getchildrens().add(childId);
+        System.out.println("Dependency added successfully");
         return false;
     }
 
@@ -48,6 +49,7 @@ public class MyGraph implements DependencyGraph {
             dependencyDoesNotExist.printStackTrace();
         }
         graph.get(parentId).getchildrens().remove(childId);
+        System.out.println("Dependency deleted successfully");
         return false;
     }
 
@@ -61,6 +63,7 @@ public class MyGraph implements DependencyGraph {
         for(Node node: graph.values())
             node.getchildrens().remove(nodeId);
         graph.remove(nodeId);
+        System.out.println("Node deleted successfully");
         return false;
     }
 
@@ -72,6 +75,7 @@ public class MyGraph implements DependencyGraph {
             nodeNotExist.printStackTrace();
         }
         graph.put(nodeId, new Node(nodeName, nodeId));
+        System.out.println("Node added successfully");
         return false;
     }
 
