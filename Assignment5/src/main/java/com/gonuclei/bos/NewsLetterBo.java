@@ -9,8 +9,8 @@ public class NewsLetterBo extends AbstractNewsLetterModel {
 
     private Set<AbstractUserModel> subscribedUsers;
 
-    public NewsLetterBo(Set<AbstractUserModel> subscribedUsers) {
-        this.subscribedUsers = subscribedUsers;
+    public NewsLetterBo() {
+
     }
 
     public Set<AbstractUserModel> getSubscribedUsers() {

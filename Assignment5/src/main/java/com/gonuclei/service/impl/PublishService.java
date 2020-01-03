@@ -20,6 +20,7 @@ public class PublishService {
 
     @Autowired
     public PublishService(KafkaProducerConfig producerConfig, NewsLetterTransactionService subscriptionService, ArticleTransactionService articleService) {
+
         this.articleProducer = new KafkaProducer<>(producerConfig.producerConfigs());
         this.subscriptionService = subscriptionService;
         this.articleService = articleService;

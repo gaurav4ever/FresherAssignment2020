@@ -7,17 +7,17 @@ import java.util.Set;
 
 public class UserBo extends AbstractUserModel {
 
-    private Set<AbstractNewsLetterModel> subscriptions;
+    private Set<AbstractNewsLetterModel> newsLetters;
 
-    public UserBo(Set<AbstractNewsLetterModel> subscriptions) {
-        this.subscriptions = subscriptions;
+    public UserBo(Set<AbstractNewsLetterModel> newsLetters) {
+        this.newsLetters = newsLetters;
     }
 
-    public Set<AbstractNewsLetterModel> getSubscriptions() {
-        return subscriptions;
+    public Set<AbstractNewsLetterModel> getNewsLetters() {
+        return newsLetters;
     }
 
-    public void setSubscriptions(Set<AbstractNewsLetterModel> subscriptions) {
-        this.subscriptions = subscriptions;
+    public void setNewsLetters(Set<AbstractNewsLetterModel> newsLetters) {
+        this.newsLetters = newsLetters;
     }
 }

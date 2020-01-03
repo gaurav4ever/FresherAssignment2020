@@ -9,6 +9,15 @@ import java.util.Objects;
 @Table(name="user_subscriptions")
 public class SubscriptionEntity extends AbstractSubscriptionModel {
 
+    @Id
+    @ManyToOne
+    @JoinColumn
+    private NewsLetterEntity newsLetter;
+
+    @Id
+    @ManyToOne
+    @JoinColumn
+    private UserEntity user;
 
     public SubscriptionEntity() {
     }
@@ -18,8 +27,8 @@ public class SubscriptionEntity extends AbstractSubscriptionModel {
         if (this == o) return true;
         if (!(o instanceof SubscriptionEntity)) return false;
         SubscriptionEntity that = (SubscriptionEntity) o;
-        return Objects.equals(getUser().getId(), that.getUser().getId()) &&
-                Objects.equals(getNewsLetter().getId(), that.getNewsLetter().getId()) &&
+        return Objects.equals(user.getId(), that.user.getId()) &&
+                Objects.equals(newsLetter.getId(), that.newsLetter.getId()) &&
                 Objects.equals(getSubscriptionEndDate(), that.getSubscriptionEndDate()) &&
                 Objects.equals(getSubscriptionBeginDate(), that.getSubscriptionBeginDate()) &&
                 Objects.equals(getSubscriptionState(), that.getSubscriptionState());
@@ -27,6 +36,6 @@ public class SubscriptionEntity extends AbstractSubscriptionModel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUser().getId(), getNewsLetter().getId(), getSubscriptionEndDate(), getSubscriptionBeginDate(), getSubscriptionState() );
+        return Objects.hash(user.getId(), newsLetter.getId(), getSubscriptionEndDate(), getSubscriptionBeginDate(), getSubscriptionState() );
     }
 }
