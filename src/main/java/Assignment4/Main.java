@@ -8,3 +8,4 @@ public class Main {
         inventoryManager.start();
     }
 }
+
