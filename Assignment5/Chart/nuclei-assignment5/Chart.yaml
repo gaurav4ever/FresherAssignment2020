@@ -1,6 +1,0 @@
-apiVersion: v1
-appVersion: "1.0"
-description: A Helm-Chart for Templating Applications in Nuclei
-name: nuclei-assignment5 #please change this to the application name, must be same name as current dir so change that too
-version: 1.0.0
-author: Tanish
