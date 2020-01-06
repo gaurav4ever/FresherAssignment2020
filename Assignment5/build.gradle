@@ -1,22 +1,22 @@
 buildscript {
 
-ext { springBootVersion = '2.0.6.RELEASE' }
-    
-dependencies {
-    repositories {
-        jcenter()
-        mavenCentral()
-        maven { url "https://repo.spring.io/plugins-release" }
-        maven { url "https://plugins.gradle.org/m2" }
-    }
+    ext { springBootVersion = '2.0.6.RELEASE' }
+
+    dependencies {
+        repositories {
+            jcenter()
+            mavenCentral()
+            maven { url "https://repo.spring.io/plugins-release" }
+            maven { url "https://plugins.gradle.org/m2" }
+        }
         classpath(group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '4.+')
 
         classpath(group: 'net.ltgt.gradle', name: 'gradle-apt-plugin', version: '0.19')
-    
+
         classpath (group:  'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: "${springBootVersion}")
-    
+
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.6'
-        
+
     }
 }
 
@@ -27,9 +27,9 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'net.ltgt.apt'
 apply plugin: 'net.ltgt.apt-idea'
-apply plugin: 'net.ltgt.apt-eclipse'  
+apply plugin: 'net.ltgt.apt-eclipse'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management' 
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.gonuclei'
 version = '1.0.0-snapshot'
@@ -48,10 +48,10 @@ checkstyle {
 tasks.withType(Checkstyle).each { checkstyleTask ->
     checkstyleTask.doLast {
         reports.all { report ->
-                def outputFile = report.destination
-                if (outputFile.exists() && outputFile.text.contains("<error ")) {
-                    throw new GradleException("There were checkstyle warnings! For more info check $outputFile")
-                }
+            def outputFile = report.destination
+            if (outputFile.exists() && outputFile.text.contains("<error ")) {
+                throw new GradleException("There were checkstyle warnings! For more info check $outputFile")
+            }
         }
     }
 }
@@ -95,11 +95,11 @@ apply plugin: 'com.google.protobuf'
 ext {
     protobufVersion = "3.6.1"
 }
-        
+
 protobuf {
     protoc {
         artifact = "com.google.protobuf:protoc:${protobufVersion}"
-    //  generatedFilesBaseDir = "$projectDir/src"
+        //  generatedFilesBaseDir = "$projectDir/src"
     }
     plugins {
         grpc {
@@ -116,9 +116,9 @@ protobuf {
 sourceSets {
     main {
         java {
-                srcDirs 'build/generated/source/proto/main/grpc'
-                srcDirs 'build/generated/source/proto/main/java'
-        }    
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
     }
 }
 
@@ -148,77 +148,77 @@ repositories {
 }
 
 dependencies{
-    
-        implementation('org.springframework.boot:spring-boot-starter')
-        
-        testImplementation('org.springframework.boot:spring-boot-starter-test')
-    
-        
-        implementation('com.bizdirect:bizdirect-spring-boot-starter-data:2.0.8-SNAPSHOT')
-        
-        
-        implementation('com.bizdirect:bizdirect-spring-boot-starter-kafka:2.0.8-SNAPSHOT')
-        
-        
-        implementation('com.bizdirect:bizdirect-spring-boot-starter-rest-client:2.0.7-SNAPSHOT')
-        
-        
-        implementation('com.bizdirect:bizdirect-spring-boot-starter-security:2.0.8-SNAPSHOT')
-        
-        
-        implementation('org.springframework.boot:spring-boot-starter-web:')
-        
-        
-        implementation('org.springframework.boot:spring-boot-starter-data-redis:')
-        
-        
-        implementation('redis.clients:jedis:')
-        
-        
-        implementation('org.springframework.vault:spring-vault-core:2.1.1.RELEASE')
-        
-        
-        implementation('com.google.protobuf:protobuf-java:3.6.1')
-        
-        
-        implementation('com.google.protobuf:protobuf-java-util:3.6.1')
-        
-        
-        implementation('com.googlecode.protobuf-java-format:protobuf-java-format:1.4')
-        
-        
-        implementation('io.grpc:grpc-netty-shaded:1.16.1')
-        
-        
-        implementation('io.grpc:grpc-protobuf:1.16.1')
-        
-        
-        implementation('io.grpc:grpc-stub:1.16.1')
-        
-        
-        implementation('io.github.lognet:grpc-spring-boot-starter:3.0.0')
-        
-        
-        implementation('org.javassist:javassist:3.24.0-GA')
-        
-        
-        implementation('javax.xml.bind:jaxb-api:2.3.1')
-        
-        
-        implementation('javax.validation:validation-api:2.0.0.Final')
-        
-        
-        testImplementation('org.mockito:mockito-core:1.9.5')
-    
-        
-        testImplementation('junit:junit:4.12')
-    
-        
-        implementation('org.mapstruct:mapstruct-jdk8:1.2.0.Final')
-        
-        
-        implementation('org.mapstruct:mapstruct-processor:1.2.0.Final')
-        
+
+    implementation('org.springframework.boot:spring-boot-starter')
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+
+    implementation('com.bizdirect:bizdirect-spring-boot-starter-data:2.0.8-SNAPSHOT')
+
+
+    implementation('com.bizdirect:bizdirect-spring-boot-starter-kafka:2.0.8-SNAPSHOT')
+
+
+    implementation('com.bizdirect:bizdirect-spring-boot-starter-rest-client:2.0.7-SNAPSHOT')
+
+
+    implementation('com.bizdirect:bizdirect-spring-boot-starter-security:2.0.8-SNAPSHOT')
+
+
+    implementation('org.springframework.boot:spring-boot-starter-web:')
+
+
+    implementation('org.springframework.boot:spring-boot-starter-data-redis:')
+
+
+    implementation('redis.clients:jedis:')
+
+
+    implementation('org.springframework.vault:spring-vault-core:2.1.1.RELEASE')
+
+
+    implementation('com.google.protobuf:protobuf-java:3.6.1')
+
+
+    implementation('com.google.protobuf:protobuf-java-util:3.6.1')
+
+
+    implementation('com.googlecode.protobuf-java-format:protobuf-java-format:1.4')
+
+
+    implementation('io.grpc:grpc-netty-shaded:1.16.1')
+
+
+    implementation('io.grpc:grpc-protobuf:1.16.1')
+
+
+    implementation('io.grpc:grpc-stub:1.16.1')
+
+
+    implementation('io.github.lognet:grpc-spring-boot-starter:3.0.0')
+
+
+    implementation('org.javassist:javassist:3.24.0-GA')
+
+
+    implementation('javax.xml.bind:jaxb-api:2.3.1')
+
+
+    implementation('javax.validation:validation-api:2.0.0.Final')
+
+
+    testImplementation('org.mockito:mockito-core:1.9.5')
+
+
+    testImplementation('junit:junit:4.12')
+
+
+    implementation('org.mapstruct:mapstruct-jdk8:1.2.0.Final')
+
+
+    implementation('org.mapstruct:mapstruct-processor:1.2.0.Final')
+
 }
 
 
