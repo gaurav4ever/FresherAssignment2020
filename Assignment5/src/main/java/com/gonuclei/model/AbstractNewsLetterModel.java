@@ -10,13 +10,13 @@ public abstract class AbstractNewsLetterModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="name", nullable = false)
+    @Column(name="news_letter_name", nullable = false)
     private String name;
 
-    @Column(name="description")
+    @Column(name="news_letter_description")
     private String description;
 
-    @Column(name="kafka-topic-name", nullable = false, unique = true)
+    @Column(name="news_letter_kafka_topic_name", nullable = false, unique = true)
     private String kafkaTopic;
 
 

@@ -9,16 +9,22 @@ import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
-@Table(name="subscriptions")
+@Table(name="news_letter")
 public class NewsLetterEntity extends AbstractNewsLetterModel {
 
 
-    @OneToMany(mappedBy = "subscriptions", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user_subscriptions", cascade = CascadeType.ALL)
     private Set<SubscriptionEntity> userSubscriptions;
 
     public NewsLetterEntity() {
 
     }
 
+    public Set<SubscriptionEntity> getUserSubscriptions() {
+        return userSubscriptions;
+    }
 
+    public void setUserSubscriptions(Set<SubscriptionEntity> userSubscriptions) {
+        this.userSubscriptions = userSubscriptions;
+    }
 }

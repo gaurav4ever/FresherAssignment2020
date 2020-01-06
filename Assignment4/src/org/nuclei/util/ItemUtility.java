@@ -9,7 +9,6 @@ import org.nuclei.model.Item;
 public class ItemUtility {
 
     BlockingQueue<Item> items = new LinkedBlockingDeque<>();
-    static Scanner sc = new Scanner(System.in);
 
     public static void itemOutput(Item item) {
         System.out.println("Item Name    		 :  " + item.getName());
@@ -22,7 +21,7 @@ public class ItemUtility {
     }
 
     public void run() {
-        
+
         ItemFetchUtility fetch = new ItemFetchUtility(this.items);
         Thread fetchThread = new Thread(fetch);
         fetchThread.setPriority(10);

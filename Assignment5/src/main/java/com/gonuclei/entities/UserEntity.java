@@ -12,6 +12,14 @@ import java.util.Set;
 @Table(name = "users")
 public class UserEntity extends AbstractUserModel {
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user_subscriptions", cascade = CascadeType.ALL)
     private Set<SubscriptionEntity> userSubscriptions;
+
+    public Set<SubscriptionEntity> getUserSubscriptions() {
+        return userSubscriptions;
+    }
+
+    public void setUserSubscriptions(Set<SubscriptionEntity> userSubscriptions) {
+        this.userSubscriptions = userSubscriptions;
+    }
 }
