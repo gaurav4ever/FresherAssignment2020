@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Compiled class file
 *.class
 .idea/
@@ -23,3 +24,12 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 out/
+=======
+
+/.gradle/
+/.idea/
+/build/
+/gradle/
+/Assignment5/.idea/
+/Assignment5/gradle/
+>>>>>>> 86cf8fdff393bbcf05acd5b85eb777fe0ecabdd5
