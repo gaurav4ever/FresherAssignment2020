@@ -1,4 +1,6 @@
 package com.gonuclei.dto;
 
-public class UserDto {
+import com.gonuclei.model.AbstractUserModel;
+
+public class UserDto extends AbstractUserModel {
 }

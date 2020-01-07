@@ -4,18 +4,19 @@ import com.gonuclei.enums.SubscriptionStatusEnum;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-public abstract class AbstractSubscriptionModel {
+public abstract class AbstractSubscriptionModel implements Serializable {
 
-    @Column(name="subscription_begin_date", nullable = false)
+    @Column(name="begin_date", nullable = false)
     private Date subscriptionBeginDate;
 
-    @Column(name="subscription_begin_date", nullable = false)
+    @Column(name="end_date", nullable = false)
     private Date subscriptionEndDate;
 
-    @Column(name="subscription_status", nullable = false)
+    @Column(name="status", nullable = false)
     private SubscriptionStatusEnum subscriptionState;
 
     public AbstractSubscriptionModel() {

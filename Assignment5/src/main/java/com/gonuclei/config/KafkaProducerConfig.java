@@ -4,7 +4,6 @@ import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +19,6 @@ import java.util.Map;
 public class KafkaProducerConfig {
     //Producer
 
-    @Value("${subscriptions.topic-name}")
-    private String topicName;
     private KafkaProperties kafkaProperties;
 
     @Autowired
@@ -50,9 +47,9 @@ public class KafkaProducerConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    @Bean
-    public NewTopic adviceTopic() {
-        return new NewTopic(topicName, 3, (short) 1);
-    }
+//    @Bean
+//    public NewTopic adviceTopic() {
+//        return new NewTopic(topicName, 3, (short) 1);
+//    }
 
 }

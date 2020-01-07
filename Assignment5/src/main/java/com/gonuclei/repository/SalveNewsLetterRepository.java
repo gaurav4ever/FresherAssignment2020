@@ -5,15 +5,19 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
+/**
+ * The interface Salve news letter repository.
+ */
 public interface SalveNewsLetterRepository extends CrudRepository<NewsLetterEntity, Integer> {
 
+
     /**
-     * Find by category list.
+     * Find by id news letter entity.
      *
-     * @param category the category
-     * @return the list
+     * @param id the id
+     * @return the news letter entity
      */
-    List<NewsLetterEntity> findByCategory(String category);
+    NewsLetterEntity findById(Long id);
 
     /**
      * Find by name containing list.
