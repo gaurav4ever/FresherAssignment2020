@@ -1,9 +1,6 @@
-import java.lang.System;
-import java.util.*;
-import java.text.DecimalFormat;
 import java.util.Scanner;
 
-class Item
+public class Item_Values
 { 
 	String name; 
 	double price; 
@@ -24,7 +21,7 @@ class Item
 	public void setType(String type){
             while(true){
                 if(!(type.equals("raw") || type.equals("manufactured") || type.equals("imported"))){
-                    System.out.println("Please retype correct type!!");
+                    System.out.println("Type should be manufactured or imported or raw!");
                     type = sc.next().toLowerCase();
                 }
                 else
@@ -89,63 +86,4 @@ class Item
                     
   
 
-} 
-
-class ItemInput {
-
-    public Item readItem() {
-
-        Scanner sc = new Scanner(System.in);
-        Item item = new Item();
-
-        
-
-        System.out.println("Item name:");
-        item.setName(sc.next());
-
-        System.out.println("Item price");
-        
-        item.setPrice(Double.parseDouble(sc.next()));
-            
-        
-
-        System.out.println("Item quantity");
-       
-        item.setQuantity(Integer.parseInt(sc.next()));
-             
-
-        System.out.println("Item type:- raw, manufactured or imported:");
-        item.setType(sc.next().toLowerCase());
-
-        item.setTax(item.calculateTax());
-
-        return item;
-
-    }
-
-}
-
-public class Solution1{
-
-    private static DecimalFormat df = new DecimalFormat("#.##");
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        ArrayList<Item> ar = new ArrayList<Item>();
-        ItemInput items = new ItemInput();
-
-        String choice = "y";
-        while (choice.equals("y")) {
-            ar.add(items.readItem());
-            System.out.println("Do you want to enter details of any other item (y/n):");
-            choice = sc.next();
-        }
-
-        System.out.println("Item\tPrice\tTax\tFinal Price");
-        for (Item item : ar) {
-            System.out.println(item.getName() + "\t" + df.format(item.getPrice()) + "\t" + df.format(item.getTax()) + "\t" + df.format(item.getFinalPrice()));
-        }
-
-    }
 }
