@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 public class Main{
 
-
 	public static void main(String[] args) {
 
 		ArrayList<Node> root = new ArrayList<>();
