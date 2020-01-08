@@ -6,12 +6,20 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+/**
+ * The type Kafka repo.
+ */
 public class KafkaRepo {
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
     private String topicName = "topic1";
 
+    /**
+     * Send message.
+     *
+     * @param message the message
+     */
     public void sendMessage(String message) {
 
         ListenableFuture<SendResult<String, String>> future =

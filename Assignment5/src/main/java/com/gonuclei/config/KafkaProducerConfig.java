@@ -15,17 +15,30 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The type Kafka producer config.
+ */
 @Configuration
 public class KafkaProducerConfig {
     //Producer
 
     private KafkaProperties kafkaProperties;
 
+    /**
+     * Instantiates a new Kafka producer config.
+     *
+     * @param kafkaProperties the kafka properties
+     */
     @Autowired
     public KafkaProducerConfig(KafkaProperties kafkaProperties) {
         this.kafkaProperties = kafkaProperties;
     }
 
+    /**
+     * Producer configs map.
+     *
+     * @return the map
+     */
     @Bean
     public Map<String, Object> producerConfigs() {
         Map<String, Object> props =
@@ -37,11 +50,21 @@ public class KafkaProducerConfig {
         return props;
     }
 
+    /**
+     * Producer factory producer factory.
+     *
+     * @return the producer factory
+     */
     @Bean
     public ProducerFactory<String, Object> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
+    /**
+     * Kafka template kafka template.
+     *
+     * @return the kafka template
+     */
     @Bean
     public KafkaTemplate<String, Object> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());

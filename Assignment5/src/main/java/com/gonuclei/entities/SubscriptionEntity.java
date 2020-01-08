@@ -5,6 +5,9 @@ import com.gonuclei.model.AbstractSubscriptionModel;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * The type Subscription entity.
+ */
 @Entity(name="Subscription")
 @Table(name="user_subscriptions")
 public class SubscriptionEntity extends AbstractSubscriptionModel {
@@ -21,21 +24,44 @@ public class SubscriptionEntity extends AbstractSubscriptionModel {
   @MapsId("userId")
   private UserEntity user;
 
+  /**
+   * Instantiates a new Subscription entity.
+   */
   public SubscriptionEntity() {
   }
 
+  /**
+   * Gets news letter.
+   *
+   * @return the news letter
+   */
   public NewsLetterEntity getNewsLetter() {
     return newsLetter;
   }
 
+  /**
+   * Sets news letter.
+   *
+   * @param newsLetterEntityLetter the news letter entity letter
+   */
   public void setNewsLetter(NewsLetterEntity newsLetterEntityLetter) {
     this.newsLetter = newsLetterEntityLetter;
   }
 
+  /**
+   * Gets user.
+   *
+   * @return the user
+   */
   public UserEntity getUser() {
     return user;
   }
 
+  /**
+   * Sets user.
+   *
+   * @param userEntity the user entity
+   */
   public void setUser(UserEntity userEntity) {
     this.user = userEntity;
   }

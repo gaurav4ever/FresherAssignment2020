@@ -1,6 +1,6 @@
 package com.gonuclei.repository.impl;
 
-import com.gonuclei.bos.NewsLetterBo;
+import com.gonuclei.dto.NewsLetterDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -9,13 +9,24 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The type News letter cache repository.
+ */
 @Repository
 public class NewsLetterCacheRepository {
 
+    /**
+     * The constant redisKey.
+     */
     public static final String redisKey = "SUBSCRIPTION";
     private HashOperations hashOperations;
     private RedisTemplate redisTemplate;
 
+    /**
+     * Instantiates a new News letter cache repository.
+     *
+     * @param redisTemplate the redis template
+     */
     @Autowired
     public NewsLetterCacheRepository(RedisTemplate<String, Object> redisTemplate) {
 
@@ -23,42 +34,82 @@ public class NewsLetterCacheRepository {
         this.redisTemplate = redisTemplate;
     }
 
-    public void save(NewsLetterBo subscription) {
+    /**
+     * Save.
+     *
+     * @param newsLetterDto the newsLetterDto
+     */
+    public void save(NewsLetterDto newsLetterDto) {
 
-        hashOperations.put(redisKey, subscription.getId(), subscription);
+        hashOperations.put(redisKey, newsLetterDto.getId(), newsLetterDto);
     }
 
+    /**
+     * Is empty boolean.
+     *
+     * @return the boolean
+     */
     public boolean isEmpty() {
         return !redisTemplate.hasKey(redisKey);
     }
 
-    public void update(NewsLetterBo subscription) {
+    /**
+     * Update.
+     *
+     * @param subscription the subscription
+     */
+    public void update(NewsLetterDto subscription) {
         save(subscription);
     }
 
-    public List<NewsLetterBo> findAll() {
+    /**
+     * Find all list.
+     *
+     * @return the list
+     */
+    public List<NewsLetterDto> findAll() {
 
-        return (List<NewsLetterBo>)hashOperations.entries(redisKey)
+        return (List<NewsLetterDto>)hashOperations.entries(redisKey)
                 .values()
                 .stream()
                 .collect(Collectors.toList());
     }
 
-    public void delete(Integer id){
+    /**
+     * Delete.
+     *
+     * @param id the id
+     */
+    public void delete(Long id){
 
         hashOperations.delete(redisKey, id);
     }
 
-    public NewsLetterBo findById(Integer id) {
+    /**
+     * Find by id news letter bo.
+     *
+     * @param id the id
+     * @return the news letter bo
+     */
+    public NewsLetterDto findById(Long id) {
 
-        return (NewsLetterBo)hashOperations.get(redisKey, id);
+        return (NewsLetterDto)hashOperations.get(redisKey, id);
     }
 
-    public boolean hasSubscription(Integer id) {
+    /**
+     * Has subscription boolean.
+     *
+     * @param id the id
+     * @return the boolean
+     */
+    public boolean hasSubscription(Long id) {
 
         return hashOperations.hasKey(redisKey, id);
     }
 
+    /**
+     * Clear.
+     */
     public void clear() {
 
         hashOperations.delete(redisKey, hashOperations.keys(redisKey));

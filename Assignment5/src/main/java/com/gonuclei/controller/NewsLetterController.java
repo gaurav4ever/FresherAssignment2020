@@ -1,50 +1,91 @@
 package com.gonuclei.controller;
 
+import com.gonuclei.dto.NewsLetterDto;
 import com.gonuclei.exception.NewsLetterNotFound;
-import com.gonuclei.bos.NewsLetterBo;
 import com.gonuclei.service.impl.NewsLetterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * The type News letter controller.
+ */
 @RestController
 public class NewsLetterController {
 
-    private final NewsLetterService service;
+    private final NewsLetterService newsLetterService;
 
+    /**
+     * Instantiates a new News letter controller.
+     *
+     * @param newsLetterService the service
+     */
     @Autowired
-    public NewsLetterController(NewsLetterService service) {
-        this.service = service;
+    public NewsLetterController(NewsLetterService newsLetterService) {
+        this.newsLetterService = newsLetterService;
     }
 
-    @GetMapping("/subscriptions")
-    public List<NewsLetterBo> getSubscriptions(){
-        return service.getSubscriptions();
+    /**
+     * Get subscriptions list.
+     *
+     * @return the list
+     */
+    @GetMapping("/news-letters")
+    public List<NewsLetterDto> getNewsLetters(){
+        return newsLetterService.getNewsLetters();
     }
 
-    @GetMapping("/subscriptions/{id}")
-    public NewsLetterBo getSubscription(@PathVariable int id) throws NewsLetterNotFound {
-        return service.getSubscription(id);
+    /**
+     * Gets subscription.
+     *
+     * @param id the id
+     * @return the subscription
+     * @throws NewsLetterNotFound the news letter not found
+     */
+    @GetMapping("/news-letters/{id}")
+    public NewsLetterDto getNewsLetter(@PathVariable long id) throws NewsLetterNotFound {
+        return newsLetterService.getNewsLetter(id);
     }
 
-    @PostMapping("/subscriptions")
-    public void addSubscription(@RequestBody NewsLetterBo sub){
-        service.addSubscription(sub);
+    /**
+     * Add subscription.
+     *
+     * @param newsLetter the news letter
+     */
+    @PostMapping("/news-letters")
+    public void addNewsLetter(@RequestBody NewsLetterDto newsLetter){
+        newsLetterService.addNewsLetter(newsLetter);
     }
 
-    @PutMapping("/subscriptions/{id}")
-    public void modifySubscription(@PathVariable Integer id, @RequestBody NewsLetterBo sub) throws NewsLetterNotFound {
-        service.modifySubscription(sub);
+    /**
+     * Modify subscription.
+     *
+     * @param id         the id
+     * @param newsLetter the news letter
+     * @throws NewsLetterNotFound the news letter not found
+     */
+    @PutMapping("/news-letters/{id}")
+    public void modifyNewsLetter(@PathVariable Integer id, @RequestBody NewsLetterDto newsLetter) throws NewsLetterNotFound {
+        newsLetterService.modifyNewsLetter(newsLetter);
     }
 
-    @DeleteMapping("/subscriptions")
-    public void removeAllSubscription(){
-        service.removeAllSubscription();
+    /**
+     * Remove all subscription.
+     */
+    @DeleteMapping("/news-letters")
+    public void removeAllNewsLetter(){
+        newsLetterService.removeAllNewsLetters();
     }
 
-    @DeleteMapping("/subscriptions/{id}")
-    public void removeSubscription(@PathVariable Integer id) throws NewsLetterNotFound {
-        service.removeSubscription(id);
+    /**
+     * Remove subscription.
+     *
+     * @param id the id
+     * @throws NewsLetterNotFound the news letter not found
+     */
+    @DeleteMapping("/news-letters/{id}")
+    public void removeNewsLetter(@PathVariable long id) throws NewsLetterNotFound {
+        newsLetterService.removeNewsLetter(id);
     }
 }

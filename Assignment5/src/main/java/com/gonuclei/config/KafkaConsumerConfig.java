@@ -12,7 +12,9 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 
-
+/**
+ * The type Kafka consumer config.
+ */
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfig {
@@ -20,11 +22,21 @@ public class KafkaConsumerConfig {
 
     private KafkaProperties kafkaProperties;
 
+    /**
+     * Instantiates a new Kafka consumer config.
+     *
+     * @param kafkaProperties the kafka properties
+     */
     @Autowired
     public KafkaConsumerConfig(KafkaProperties kafkaProperties){
         this.kafkaProperties = kafkaProperties;
     }
 
+    /**
+     * Consumer factory consumer factory.
+     *
+     * @return the consumer factory
+     */
     @Bean
     public ConsumerFactory<String, Object> consumerFactory() {
         final JsonDeserializer<Object> jsonDeserializer = new JsonDeserializer<>();
@@ -34,6 +46,11 @@ public class KafkaConsumerConfig {
         );
     }
 
+    /**
+     * Kafka listener container factory concurrent kafka listener container factory.
+     *
+     * @return the concurrent kafka listener container factory
+     */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, Object> factory =

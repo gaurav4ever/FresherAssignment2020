@@ -4,16 +4,22 @@ import com.gonuclei.entities.UserEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface SlaveUserRepository extends CrudRepository<UserEntity, Integer> {
+/**
+ * The interface Slave user repository.
+ */
+public interface SlaveUserRepository extends CrudRepository<UserEntity, Long> {
+
+
 
   /**
-   * Find by id user entity.
+   * Find by id containing list.
    *
-   * @param id the id
-   * @return the user entity
+   * @param id the name
+   * @return user entity
    */
-  UserEntity findById(Long id);
+  Optional<UserEntity> findById(Long id);
 
   /**
    * Find by name containing list.

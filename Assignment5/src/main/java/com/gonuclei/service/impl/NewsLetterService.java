@@ -1,7 +1,7 @@
 package com.gonuclei.service.impl;
 
+import com.gonuclei.dto.NewsLetterDto;
 import com.gonuclei.exception.NewsLetterNotFound;
-import com.gonuclei.bos.NewsLetterBo;
 import com.gonuclei.repository.impl.NewsLetterCacheRepository;
 import com.gonuclei.repository.MasterNewsLetterRepository;
 import com.gonuclei.service.transactions.NewsLetterTransactionService;
@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The type News letter service.
+ */
 @Service
 public class NewsLetterService {
 
@@ -17,6 +20,13 @@ public class NewsLetterService {
     private final NewsLetterCacheRepository redisRepo;
     private final NewsLetterTransactionService subscriptionTransaction;
 
+    /**
+     * Instantiates a new News letter service.
+     *
+     * @param databaseRepository      the database repository
+     * @param redisRepo               the redis repo
+     * @param subscriptionTransaction the subscription transaction
+     */
     @Autowired
     public NewsLetterService(MasterNewsLetterRepository databaseRepository, NewsLetterCacheRepository redisRepo, NewsLetterTransactionService subscriptionTransaction){
         this.subscriptionTransaction = subscriptionTransaction;
@@ -26,13 +36,15 @@ public class NewsLetterService {
 
     //TODO: Add Redis Logic using Scheduler
 
-    public List<NewsLetterBo> getSubscriptions() {
-        List<NewsLetterBo> responseSubscriptions;
+    /**
+     * Gets subscriptions.
+     *
+     * @return the subscriptions
+     */
+    public List<NewsLetterDto> getNewsLetters() {
+        List<NewsLetterDto> responseSubscriptions;
         if(redisRepo.isEmpty()){
-//            responseSubscriptions =  StreamSupport.stream(databaseRepository.findAll().spliterator(),false)
-//                    .collect(Collectors.toList());
-            responseSubscriptions = subscriptionTransaction.getAllSubscriptions();
-//          responseSubscriptions.forEach(subscription -> redisRepo.save(subscription));
+            responseSubscriptions = subscriptionTransaction.getAllNewsLetters();
             responseSubscriptions.forEach(redisRepo::save);
             System.out.println("Filled cache from db");
         }else{
@@ -41,24 +53,41 @@ public class NewsLetterService {
         return responseSubscriptions;
     }
 
-    public NewsLetterBo getSubscription(Integer id) throws NewsLetterNotFound {
+    /**
+     * Gets subscription.
+     *
+     * @param id the id
+     * @return the subscription
+     * @throws NewsLetterNotFound the news letter not found
+     */
+    public NewsLetterDto getNewsLetter(Long id) throws NewsLetterNotFound {
 
-        NewsLetterBo obtainedSubscription;
+        NewsLetterDto newsLetter;
         if(redisRepo.hasSubscription(id)){
-            obtainedSubscription = redisRepo.findById(id);
+            newsLetter = redisRepo.findById(id);
         }else {
-            obtainedSubscription = subscriptionTransaction.getSubscription(id);
-            redisRepo.save(obtainedSubscription);
+            newsLetter = subscriptionTransaction.getNewsLetter(id);
+            redisRepo.save(newsLetter);
         }
-        return obtainedSubscription;
+        return newsLetter;
     }
 
-    public void addSubscription(NewsLetterBo sub){
+    /**
+     * Add subscription.
+     *
+     * @param sub the sub
+     */
+    public void addNewsLetter(NewsLetterDto sub){
 
-        subscriptionTransaction.addSubscription(sub);
+        subscriptionTransaction.addNewsLetter(sub);
     }
 
-    public void modifySubscription(NewsLetterBo sub) {
+    /**
+     * Modify subscription.
+     *
+     * @param sub the sub
+     */
+    public void modifyNewsLetter(NewsLetterDto sub) {
 
 //        subs.set(subs.indexOf(subs.stream()
 //                .filter( tsub -> id.equals(tsub.getId()))
@@ -66,10 +95,15 @@ public class NewsLetterService {
 //                .orElseThrow(SubscriptionNotFound::new)
 //        ), sub);
         //TODO: Modify this method for proper implementation
-        subscriptionTransaction.addSubscription(sub);
+        subscriptionTransaction.addNewsLetter(sub);
     }
 
-    public void removeSubscription(Integer id) {
+    /**
+     * Remove subscription.
+     *
+     * @param id the id
+     */
+    public void removeNewsLetter(Long id) {
 
 //        subs.remove(subs.stream()
 //                .filter( tsub -> id.equals(tsub.getId()))
@@ -81,10 +115,13 @@ public class NewsLetterService {
         databaseRepository.deleteById(id);
     }
 
-    public void removeAllSubscription() {
+    /**
+     * Remove all subscription.
+     */
+    public void removeAllNewsLetters() {
 
         redisRepo.clear();
         //TODO: Modify this service
-        databaseRepository.deleteAll();
+        //databaseRepository.deleteAll();
     }
 }

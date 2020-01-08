@@ -9,6 +9,6 @@ import java.util.List;
 /**
  * The interface Master user repository.
  */
-public interface MasterUserRepository extends CrudRepository<UserEntity, Integer> {
+public interface MasterUserRepository extends CrudRepository<UserEntity, Long> {
 
 }

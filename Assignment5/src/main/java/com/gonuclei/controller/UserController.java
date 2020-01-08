@@ -7,6 +7,8 @@ import com.gonuclei.exception.NewsLetterNotFound;
 import com.gonuclei.exception.UserNotFoundException;
 import com.gonuclei.service.impl.NewsLetterService;
 import com.gonuclei.service.impl.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +31,7 @@ public class UserController {
     }
 
     private final UserService userService;
+    public static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     /**
      * Instantiates a new User controller.
@@ -46,8 +49,8 @@ public class UserController {
      * @return the list
      */
     @GetMapping("/users")
-    public List<UserDto> getSubscriptions(){
-        return null; //userService.getSubscriptions();
+    public List<UserDto> getUsers(){
+        return userService.getUsers();
     }
 
     /**
@@ -58,8 +61,13 @@ public class UserController {
      * @throws UserNotFoundException the user not found exception
      */
     @GetMapping("/users/{id}")
-    public UserDto getSubscription(@PathVariable int id) throws UserNotFoundException {
-        return null; //userService.getSubscription(id);
+    public UserDto getUser(@PathVariable long id) {
+        try {
+            return userService.getUser(id);
+        } catch (UserNotFoundException e) {
+            LOGGER.error(e.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -68,8 +76,9 @@ public class UserController {
      * @param user the user
      */
     @PostMapping("/users")
-    public void addSubscription(@RequestBody UserDto user){
-        //userService.addSubscription(user);
+    public void addUser(@RequestBody UserDto user){
+        //TODO: Add exceptions of user already exists
+        userService.addUser(user);
     }
 
     /**
@@ -80,26 +89,27 @@ public class UserController {
      * @throws UserNotFoundException the user not found exception
      */
     @PutMapping("/users/{id}")
-    public void modifySubscription(@PathVariable Integer id, @RequestBody UserDto user) throws UserNotFoundException {
-        //userService.modifySubscription(user);
+    public void modifyUser(@PathVariable Integer id, @RequestBody UserDto user) throws UserNotFoundException {
+        //TODO:Add validations
+        userService.modifyUser(user);
     }
 
-    /**
-     * Remove all subscription.
-     */
-    @DeleteMapping("/users")
-    public void removeAllSubscription(){
-        //userService.removeAllSubscription();
-    }
-
-    /**
-     * Remove subscription.
-     *
-     * @param id the id
-     * @throws UserNotFoundException the user not found exception
-     */
-    @DeleteMapping("/users/{id}")
-    public void removeSubscription(@PathVariable Integer id) throws UserNotFoundException {
-        //userService.removeSubscription(id);
-    }
+//    /**
+//     * Remove all subscription.
+//     */
+//    @DeleteMapping("/users")
+//    public void removeAllSubscription(){
+//        //userService.removeAllSubscription();
+//    }
+//
+//    /**
+//     * Remove subscription.
+//     *
+//     * @param id the id
+//     * @throws UserNotFoundException the user not found exception
+//     */
+//    @DeleteMapping("/users/{id}")
+//    public void removeSubscription(@PathVariable Integer id) throws UserNotFoundException {
+//        //userService.removeSubscription(id);
+//    }
 }

@@ -4,11 +4,12 @@ import com.gonuclei.entities.NewsLetterEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The interface Salve news letter repository.
  */
-public interface SalveNewsLetterRepository extends CrudRepository<NewsLetterEntity, Integer> {
+public interface SalveNewsLetterRepository extends CrudRepository<NewsLetterEntity, Long> {
 
 
     /**
@@ -17,7 +18,7 @@ public interface SalveNewsLetterRepository extends CrudRepository<NewsLetterEnti
      * @param id the id
      * @return the news letter entity
      */
-    NewsLetterEntity findById(Long id);
+    Optional<NewsLetterEntity> findById(Long id);
 
     /**
      * Find by name containing list.

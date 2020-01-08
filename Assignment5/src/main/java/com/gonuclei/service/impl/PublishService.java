@@ -1,6 +1,5 @@
 package com.gonuclei.service.impl;
 
-import com.gonuclei.bos.ArticleBo;
 import com.gonuclei.config.KafkaProducerConfig;
 import com.gonuclei.dto.ArticleDto;
 import com.gonuclei.exception.NewsLetterNotFound;
@@ -11,25 +10,42 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * The type Publish service.
+ */
 @Service
 public class PublishService {
 
     private final KafkaProducer<String, ArticleDto> articleProducer;
-    private final NewsLetterTransactionService subscriptionService;
+    private final NewsLetterTransactionService newsLetterTransactionService;
     private final ArticleTransactionService articleService;
 
+    /**
+     * Instantiates a new Publish service.
+     *
+     * @param producerConfig      the producer config
+     * @param newsLetterTransactionService the subscription service
+     * @param articleService      the article service
+     */
     @Autowired
-    public PublishService(KafkaProducerConfig producerConfig, NewsLetterTransactionService subscriptionService, ArticleTransactionService articleService) {
+    public PublishService(KafkaProducerConfig producerConfig, NewsLetterTransactionService newsLetterTransactionService, ArticleTransactionService articleService) {
 
         this.articleProducer = new KafkaProducer<>(producerConfig.producerConfigs());
-        this.subscriptionService = subscriptionService;
+        this.newsLetterTransactionService = newsLetterTransactionService;
         this.articleService = articleService;
     }
 
-    public void publishArticle(Integer subscriptionId, ArticleBo article) throws NewsLetterNotFound {
+    /**
+     * Publish article.
+     *
+     * @param newsLetterId the news letter id
+     * @param article      the article
+     * @throws NewsLetterNotFound the news letter not found
+     */
+    public void publishArticle(Long newsLetterId, ArticleDto article) throws NewsLetterNotFound {
 
-        final String kafkaTopic = subscriptionService.getSubscription(subscriptionId).getKafkaTopic();
-        final ArticleDto payload = articleService.getArticleDto(article);
-        articleProducer.send(new ProducerRecord<>(kafkaTopic, payload));
+        final String kafkaTopic = newsLetterTransactionService.getNewsLetter(newsLetterId).getKafkaTopic();
+        //final ArticleDto payload = articleService.getArticleDto(article);
+        articleProducer.send(new ProducerRecord<>(kafkaTopic, article));
     }
 }
