@@ -18,7 +18,7 @@ public class parser {
 		else
 		{
 			name = extract(str,str.indexOf("-name")+5);
-			if("name".equals(""))
+			if(name.equals(""))
 			{
 				System.out.println("Name Field Empty after -name");
 				return -1;
