@@ -6,12 +6,6 @@ import assignment2.models.User;
 
 import java.util.List;
 
-// TODO: 08/01/20 Seperate user methods : DONE
-// TODO: 08/01/20 displayUserDetailsInSortedOrderBasedOnUserChoice
-// TODO: 08/01/20 deleteUserBasedOnChoice
-// TODO: 08/01/20 Strings class to StringConstants  , enum for itemtype , factory pattern
-
-
 public class NewUserCreator {
    static User getNewUser() throws InvalidUserDetailException {
         System.out.println("Enter new user details");
