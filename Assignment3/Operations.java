@@ -18,7 +18,7 @@ public class Operations {
 		cc = new cycle_check(hashmap);
 	}
 
-	int add(int pid,int cid,Scanner sc)
+	void add(int pid,int cid,Scanner sc)
 	{
 		if(!hashmap.containsKey(pid) && !hashmap.containsKey(cid) && cid!=pid)
 		{
@@ -33,7 +33,7 @@ public class Operations {
 			root.add(pnode);
 			hashmap.put(pid,pnode);
 			hashmap.put(cid,cnode);
-			return 1;
+
 		}
 		else if(hashmap.containsKey(pid) && !hashmap.containsKey(cid))
 		{
@@ -44,7 +44,7 @@ public class Operations {
 			pnode.child_nodes.add(cnode);
 			cnode.parent_nodes.add(pnode);
 			hashmap.put(cid,cnode);
-			return 1;
+
 		}
 		else if(!hashmap.containsKey(pid) && hashmap.containsKey(cid))
 		{
@@ -60,7 +60,7 @@ public class Operations {
 			{
 				root.remove(cnode);
 			}
-			return 1;
+
 		}
 		else if(hashmap.containsKey(pid) && hashmap.containsKey(cid))
 		{
@@ -80,11 +80,11 @@ public class Operations {
 				{
 					pnode.child_nodes.add(cnode);
 					cnode.parent_nodes.add(pnode);
-					return 1;
+
 				}
 			}
 		}
-		return 0;
+
 	}
 
 	void get_immediate_children(int nodeid)

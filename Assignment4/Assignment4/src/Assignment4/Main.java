@@ -1,5 +1,3 @@
-package Assignment4;
-
 public class Main {
     public static void main(String[] args) throws ClassNotFoundException, InterruptedException {
 
@@ -12,7 +10,10 @@ public class Main {
             @Override
             public void run() {
                 try {
+
+                    conn.insert("asd",34,34,"manufactured");
                     operate.select();
+
                 } catch (InterruptedException e) {
                     System.out.println("Exception while Reading from database");
                 }

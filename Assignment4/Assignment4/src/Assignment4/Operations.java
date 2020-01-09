@@ -1,4 +1,3 @@
-package Assignment4;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,8 +7,8 @@ import java.util.ArrayList;
 
 public class Operations {
 
-    /** Items is a Shared Variable */
-    private ArrayList<Items> Items = new ArrayList<>();
+
+    public ArrayList<Items> Items = new ArrayList<>();
     public ArrayList<Items> finalPricedItems = new ArrayList<>();
     private boolean stopCalculation=true;
 
@@ -19,14 +18,15 @@ public class Operations {
 
         int maxCapacity=3;
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_test","root","root");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_test?useSSl=false","root","Sini@@17");
             Statement stmt  = conn.createStatement();
             ResultSet rs    = stmt.executeQuery(sql);
 
-            // loop through the result set
             while (rs.next()) {
+
                 synchronized(this)
                 {
+
                     if(Items.size()==maxCapacity)
                         wait();
 

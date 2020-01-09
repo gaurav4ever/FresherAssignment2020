@@ -1,12 +1,10 @@
-package Assignment4;
-
 public class Items {
 
     String name;
     int quantity;
     double price;
     String type;
-    double tax=0;
+    double tax=0.00;
 
     public Items() {}
 
@@ -34,6 +32,7 @@ public class Items {
     }
 
     public double calculateTax(String type, double price){
+        System.out.println("inside tax calculation...");
         if(type.equals("raw")){
             tax = 0.125*price;
         }

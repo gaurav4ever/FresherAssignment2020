@@ -1,5 +1,3 @@
-package Assignment4;
-
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -21,7 +19,7 @@ public class connectionClass {
 
         Class.forName("com.mysql.jdbc.Driver");
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_test","root","Sini@@17");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_test?useSSl=false","root","Sini@@17");
 
         }
         catch(SQLException e) {
@@ -35,10 +33,10 @@ public class connectionClass {
 
 
         // SQL statement for creating a new table
-        String sql = "CREATE TABLE IF NOT EXISTS items (Name text PRIMARY KEY,Quantity integer,Price real,Type text);";
+        String sql = "CREATE TABLE IF NOT EXISTS items (Name varchar(30) PRIMARY KEY,Quantity int,Price int,Type varchar(10));";
 
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_test","root","root");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_test?useSSl=false","root","Sini@@17");
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
             System.out.println("Table Created");
@@ -52,7 +50,7 @@ public class connectionClass {
         String sql = "INSERT INTO items(Name, Quantity, Price, Type) VALUES(?,?,?,?)";
 
         try{
-            Connection conn =   DriverManager.getConnection("jdbc:mysql://localhost:3306/db_test","root","root");
+            Connection conn =   DriverManager.getConnection("jdbc:mysql://localhost:3306/db_test?useSSl=false","root","Sini@@17");
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, name);
             pstmt.setInt(2, quantity);
