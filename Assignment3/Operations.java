@@ -1,4 +1,3 @@
-package FresherAssignment2020.Assignment3;
 
 import java.util.ArrayList;
 import java.util.HashMap;

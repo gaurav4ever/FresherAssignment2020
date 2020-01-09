@@ -1,4 +1,4 @@
-package FresherAssignment2020.Assignment3;
+
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -149,7 +149,7 @@ public class Main{
         				   System.out.println("Exception occur while entering child id");
         				   break;  
         			   }
-        			   o.add(pid,cid,sc)
+        			   o.add(pid,cid,sc);
 
         			   break;
 
