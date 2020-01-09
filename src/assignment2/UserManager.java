@@ -38,28 +38,20 @@ public class UserManager {
         }
     }
 
-    private void displayUserDetailsInSortedOrder() throws InvalidChoiceException {
-        System.out.println("1. Name");
-        System.out.println("2. roll number");
-        System.out.println("3. age");
-        System.out.println("4. address");
-        System.out.print("On what field should the users be sorted on (Enter choice) :  ");
-        Scanner scan = new Scanner(System.in);
+    private void displayUserDetailsInSortedOrderBasedOnUserChoice() {
+       UserUtil.showFieldChoicesForSorting();
+       Scanner scan = new Scanner(System.in);
         int choice, order;
         try {
             choice = Integer.parseInt(scan.nextLine());
-            System.out.println("1. Ascending order ");
-            System.out.println("2. Descending order");
-            System.out.print("Enter choice : ");
+            UserUtil.showChoiceForSortingOrder();
             order = Integer.parseInt(scan.nextLine());
-            if (order < 1 || order > 2 || choice < 1 || choice > 4) throw new NumberFormatException();
-        } catch (NumberFormatException e) {
-            throw new InvalidChoiceException("Invalid choice entered ! ");
+            if (order < 1 || order > 2 || choice < 1 || choice > 4) throw new InvalidChoiceException();
+        } catch (InvalidChoiceException e) {
+            System.out.println("Invalid choice entered !");
+            return ;
         }
-
-        System.out.println("-------------------------------------------------------------------------------------------------");
-        System.out.println("Name\t\t\t\t\tRoll Number\t\t\t\t\tAge\t\t\t\t\tAddress\t\t\t\t\tCourses");
-        System.out.println("-------------------------------------------------------------------------------------------------");
+        UserUtil.showUserDisplayHeader();
 
         users.stream().sorted((a, b) -> {
             int result = 0;
@@ -84,17 +76,8 @@ public class UserManager {
     }
 
     //    Returns the user that is deleted else returns null if no such roll number is present
-    private User deleteUser() {
-        System.out.println("Enter roll number : ");
-
-        int roll;
-        try {
-            roll = (new Scanner(System.in)).nextInt();
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid Roll number ! It must be an integer ");
-            return null;
-        }
-
+    private User deleteUserByRollNumber() {
+        int roll = UserUtil.getRollNumber();
         final User[] user = {null};
         users.stream().filter(e -> e.getRollNumber() == roll).findFirst().ifPresent(u -> user[0] = u);
         User userToDelete = user[0];
@@ -126,14 +109,10 @@ public class UserManager {
                     getNewUser();
                     break;
                 case 2:
-                    try {
-                        displayUserDetailsInSortedOrder();
-                    } catch (InvalidChoiceException e) {
-                        System.out.println("Invalid entry : " + e.getMessage());
-                    }
+                    displayUserDetailsInSortedOrderBasedOnUserChoice();
                     break;
                 case 3:
-                    deleteUser();
+                    deleteUserByRollNumber();
                     break;
                 case 4:
                     saveToDisk();
