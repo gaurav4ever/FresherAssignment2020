@@ -10,30 +10,30 @@ import java.util.Set;
  */
 public class NewsLetterBo extends AbstractNewsLetterModel {
 
-    private Set<AbstractUserModel> subscribedUsers;
+  private Set<AbstractUserModel> subscribedUsers;
 
-    /**
-     * Instantiates a new News letter bo.
-     */
-    public NewsLetterBo() {
+  /**
+   * Instantiates a new News letter bo.
+   */
+  public NewsLetterBo() {
 
-    }
+  }
 
-    /**
-     * Gets subscribed users.
-     *
-     * @return the subscribed users
-     */
-    public Set<AbstractUserModel> getSubscribedUsers() {
-        return subscribedUsers;
-    }
+  /**
+   * Gets subscribed users.
+   *
+   * @return the subscribed users
+   */
+  public Set<AbstractUserModel> getSubscribedUsers() {
+    return subscribedUsers;
+  }
 
-    /**
-     * Sets subscribed users.
-     *
-     * @param subscribedUsers the subscribed users
-     */
-    public void setSubscribedUsers(Set<AbstractUserModel> subscribedUsers) {
-        this.subscribedUsers = subscribedUsers;
-    }
+  /**
+   * Sets subscribed users.
+   *
+   * @param subscribedUsers the subscribed users
+   */
+  public void setSubscribedUsers(Set<AbstractUserModel> subscribedUsers) {
+    this.subscribedUsers = subscribedUsers;
+  }
 }

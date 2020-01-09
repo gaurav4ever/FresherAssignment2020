@@ -1,9 +1,6 @@
 package com.gonuclei.service.impl;
 
-import com.gonuclei.bos.NewsLetterBo;
-import com.gonuclei.bos.UserBo;
 import com.gonuclei.dto.UserDto;
-import com.gonuclei.exception.NewsLetterNotFound;
 import com.gonuclei.exception.UserNotFoundException;
 import com.gonuclei.service.transactions.UserTransactionService;
 import org.springframework.beans.factory.annotation.Autowired;

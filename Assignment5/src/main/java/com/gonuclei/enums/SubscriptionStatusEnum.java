@@ -5,16 +5,16 @@ package com.gonuclei.enums;
  */
 public enum SubscriptionStatusEnum {
 
-    /**
-     * Subscribed subscription status enum.
-     */
-    SUBSCRIBED,
-    /**
-     * Unsubscribed subscription status enum.
-     */
-    UNSUBSCRIBED,
-    /**
-     * Inactive subscription status enum.
-     */
-    INACTIVE;
+  /**
+   * Subscribed subscription status enum.
+   */
+  SUBSCRIBED,
+  /**
+   * Unsubscribed subscription status enum.
+   */
+  UNSUBSCRIBED,
+  /**
+   * Inactive subscription status enum.
+   */
+  INACTIVE;
 }

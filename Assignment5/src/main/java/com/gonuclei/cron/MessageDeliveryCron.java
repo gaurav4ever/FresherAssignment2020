@@ -11,18 +11,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageDeliveryCron {
 
-    /**
-     * The constant LOGGER.
-     */
-    public static final Logger LOGGER = LoggerFactory.getLogger(MessageDeliveryCron.class);
+  /**
+   * The constant LOGGER.
+   */
+  public static final Logger LOGGER = LoggerFactory.getLogger(MessageDeliveryCron.class);
 
-    /**
-     * Send mails.
-     */
+  /**
+   * Send mails.
+   */
 //@Scheduled(cron = "0 0 19 * * ?")
-    @Scheduled(cron = "0 */10 * * * ?")
-    public void sendMails() {
-        LOGGER.info("Cron Active");
-    }
+  @Scheduled(cron = "0 */10 * * * ?")
+  public void sendMails() {
+    LOGGER.info("Cron Active");
+  }
 
 }

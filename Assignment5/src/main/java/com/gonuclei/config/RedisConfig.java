@@ -13,30 +13,30 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisConfig {
 
-    /**
-     * Redis connection factory jedis connection factory.
-     *
-     * @return the jedis connection factory
-     */
-    @Bean
-    public JedisConnectionFactory redisConnectionFactory() {
+  /**
+   * Redis connection factory jedis connection factory.
+   *
+   * @return the jedis connection factory
+   */
+  @Bean
+  public JedisConnectionFactory redisConnectionFactory() {
 
-        return new JedisConnectionFactory();
-    }
+    return new JedisConnectionFactory();
+  }
 
-    /**
-     * Redis template redis template.
-     *
-     * @return the redis template
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate() {
+  /**
+   * Redis template redis template.
+   *
+   * @return the redis template
+   */
+  @Bean
+  public RedisTemplate<String, Object> redisTemplate() {
 
-        final RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(redisConnectionFactory());
-        redisTemplate.setEnableTransactionSupport(true);
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        return redisTemplate;
-    }
+    final RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+    redisTemplate.setConnectionFactory(redisConnectionFactory());
+    redisTemplate.setEnableTransactionSupport(true);
+    redisTemplate.setKeySerializer(new StringRedisSerializer());
+    redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+    return redisTemplate;
+  }
 }

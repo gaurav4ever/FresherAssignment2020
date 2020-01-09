@@ -2,8 +2,7 @@ package com.gonuclei.model;
 
 import com.gonuclei.enums.SubscriptionStatusEnum;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,72 +12,95 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class AbstractSubscriptionModel implements Serializable {
 
-    @Column(name="begin_date", nullable = false)
-    private Date subscriptionBeginDate;
 
-    @Column(name="end_date", nullable = false)
-    private Date subscriptionEndDate;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(name="status", nullable = false)
-    private SubscriptionStatusEnum subscriptionState;
+  @Column(name="begin_date", nullable = false)
+  private Date subscriptionBeginDate;
 
-    /**
-     * Instantiates a new Abstract subscription model.
-     */
-    public AbstractSubscriptionModel() {
-    }
+  @Column(name="end_date", nullable = false)
+  private Date subscriptionEndDate;
 
-    /**
-     * Gets subscription begin date.
-     *
-     * @return the subscription begin date
-     */
-    public Date getSubscriptionBeginDate() {
-        return subscriptionBeginDate;
-    }
+  @Column(name="status", nullable = false)
+  private SubscriptionStatusEnum subscriptionState;
 
-    /**
-     * Sets subscription begin date.
-     *
-     * @param subscriptionBeginDate the subscription begin date
-     */
-    public void setSubscriptionBeginDate(Date subscriptionBeginDate) {
-        this.subscriptionBeginDate = subscriptionBeginDate;
-    }
+  /**
+   * Instantiates a new Abstract subscription model.
+   */
+  public AbstractSubscriptionModel() {
+  }
 
-    /**
-     * Gets subscription end date.
-     *
-     * @return the subscription end date
-     */
-    public Date getSubscriptionEndDate() {
-        return subscriptionEndDate;
-    }
+  /**
+   * Gets id.
+   *
+   * @return the id
+   */
+  public Long getId() {
+    return id;
+  }
 
-    /**
-     * Sets subscription end date.
-     *
-     * @param subscriptionEndDate the subscription end date
-     */
-    public void setSubscriptionEndDate(Date subscriptionEndDate) {
-        this.subscriptionEndDate = subscriptionEndDate;
-    }
+  /**
+   * Sets id.
+   *
+   * @param id the id
+   */
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    /**
-     * Gets subscription state.
-     *
-     * @return the subscription state
-     */
-    public SubscriptionStatusEnum getSubscriptionState() {
-        return subscriptionState;
-    }
+  /**
+   * Gets subscription begin date.
+   *
+   * @return the subscription begin date
+   */
+  public Date getSubscriptionBeginDate() {
+    return subscriptionBeginDate;
+  }
 
-    /**
-     * Sets subscription state.
-     *
-     * @param subscriptionState the subscription state
-     */
-    public void setSubscriptionState(SubscriptionStatusEnum subscriptionState) {
-        this.subscriptionState = subscriptionState;
-    }
+  /**
+   * Sets subscription begin date.
+   *
+   * @param subscriptionBeginDate the subscription begin date
+   */
+  public void setSubscriptionBeginDate(Date subscriptionBeginDate) {
+    this.subscriptionBeginDate = subscriptionBeginDate;
+  }
+
+  /**
+   * Gets subscription end date.
+   *
+   * @return the subscription end date
+   */
+  public Date getSubscriptionEndDate() {
+    return subscriptionEndDate;
+  }
+
+  /**
+   * Sets subscription end date.
+   *
+   * @param subscriptionEndDate the subscription end date
+   */
+  public void setSubscriptionEndDate(Date subscriptionEndDate) {
+    this.subscriptionEndDate = subscriptionEndDate;
+  }
+
+  /**
+   * Gets subscription state.
+   *
+   * @return the subscription state
+   */
+  public SubscriptionStatusEnum getSubscriptionState() {
+    return subscriptionState;
+  }
+
+  /**
+   * Sets subscription state.
+   *
+   * @param subscriptionState the subscription state
+   */
+  public void setSubscriptionState(SubscriptionStatusEnum subscriptionState) {
+    this.subscriptionState = subscriptionState;
+  }
 }

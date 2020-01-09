@@ -12,16 +12,16 @@ import java.util.Objects;
 @Table(name="user_subscriptions")
 public class SubscriptionEntity extends AbstractSubscriptionModel {
 
-  @Id
+  //@Id
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn
-  @MapsId("newsLetterId")
+  //@MapsId("newsLetterId")
   private NewsLetterEntity newsLetter;
 
-  @Id
+  //@Id
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn
-  @MapsId("userId")
+  //@MapsId("userId")
   private UserEntity user;
 
   /**

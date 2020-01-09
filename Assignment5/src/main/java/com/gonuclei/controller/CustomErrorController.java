@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CustomErrorController implements ErrorController {
 
-    /**
-     * Error message string.
-     *
-     * @return the string
-     */
-    @RequestMapping("/error")
-    public String errorMessage(){
-        return getErrorPath();
-    }
+  /**
+   * Error message string.
+   *
+   * @return the string
+   */
+  @RequestMapping("/error")
+  public String errorMessage(){
+    return getErrorPath();
+  }
 
-    @Override
-    public String getErrorPath() {
-        return "Error 404 Not Found!";
-    }
+  @Override
+  public String getErrorPath() {
+    return "Error 404 Not Found!";
+  }
 }

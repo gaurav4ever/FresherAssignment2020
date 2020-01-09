@@ -5,10 +5,10 @@ package com.gonuclei.constant;
  */
 public class Constants {
 
-    /**
-     * The constant KAFKA_BOOTSTRAP_ADDRESS.
-     */
-    public static final String KAFKA_BOOTSTRAP_ADDRESS = "localhost:9092";
+  /**
+   * The constant KAFKA_BOOTSTRAP_ADDRESS.
+   */
+  public static final String KAFKA_BOOTSTRAP_ADDRESS = "localhost:9092";
 
 
 

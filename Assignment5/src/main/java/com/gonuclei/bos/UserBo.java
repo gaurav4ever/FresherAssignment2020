@@ -10,32 +10,32 @@ import java.util.Set;
  */
 public class UserBo extends AbstractUserModel {
 
-    private Set<AbstractNewsLetterModel> newsLetters;
+  private Set<AbstractNewsLetterModel> newsLetters;
 
-    /**
-     * Instantiates a new User bo.
-     *
-     * @param newsLetters the news letters
-     */
-    public UserBo(Set<AbstractNewsLetterModel> newsLetters) {
-        this.newsLetters = newsLetters;
-    }
+  /**
+   * Instantiates a new User bo.
+   *
+   * @param newsLetters the news letters
+   */
+  public UserBo(Set<AbstractNewsLetterModel> newsLetters) {
+    this.newsLetters = newsLetters;
+  }
 
-    /**
-     * Gets news letters.
-     *
-     * @return the news letters
-     */
-    public Set<AbstractNewsLetterModel> getNewsLetters() {
-        return newsLetters;
-    }
+  /**
+   * Gets news letters.
+   *
+   * @return the news letters
+   */
+  public Set<AbstractNewsLetterModel> getNewsLetters() {
+    return newsLetters;
+  }
 
-    /**
-     * Sets news letters.
-     *
-     * @param newsLetters the news letters
-     */
-    public void setNewsLetters(Set<AbstractNewsLetterModel> newsLetters) {
-        this.newsLetters = newsLetters;
-    }
+  /**
+   * Sets news letters.
+   *
+   * @param newsLetters the news letters
+   */
+  public void setNewsLetters(Set<AbstractNewsLetterModel> newsLetters) {
+    this.newsLetters = newsLetters;
+  }
 }

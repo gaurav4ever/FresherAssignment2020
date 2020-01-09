@@ -11,33 +11,33 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
  */
 public class KafkaRepo {
 
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
-    private String topicName = "topic1";
+  @Autowired
+  private KafkaTemplate<String, String> kafkaTemplate;
+  private String topicName = "topic1";
 
-    /**
-     * Send message.
-     *
-     * @param message the message
-     */
-    public void sendMessage(String message) {
+  /**
+   * Send message.
+   *
+   * @param message the message
+   */
+  public void sendMessage(String message) {
 
-        ListenableFuture<SendResult<String, String>> future =
-                kafkaTemplate.send(topicName, message);
+    ListenableFuture<SendResult<String, String>> future =
+        kafkaTemplate.send(topicName, message);
 
-        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+    future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 
-            @Override
-            public void onSuccess(SendResult<String, String> result) {
-                System.out.println("Sent message=[" + message +
-                        "] with offset=[" + result.getRecordMetadata().offset() + "]");
-            }
-            @Override
-            public void onFailure(Throwable ex) {
-                System.out.println("Unable to send message=["
-                        + message + "] due to : " + ex.getMessage());
-            }
-        });
-    }
+      @Override
+      public void onSuccess(SendResult<String, String> result) {
+        System.out.println("Sent message=[" + message +
+            "] with offset=[" + result.getRecordMetadata().offset() + "]");
+      }
+      @Override
+      public void onFailure(Throwable ex) {
+        System.out.println("Unable to send message=["
+            + message + "] due to : " + ex.getMessage());
+      }
+    });
+  }
 
 }
