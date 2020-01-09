@@ -10,7 +10,13 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+// TODO: 08/01/20 Seperate user methods 
+// TODO: 08/01/20 displayUserDetailsInSortedOrderBasedOnUserChoice
+// TODO: 08/01/20 deleteUserBasedOnChoice
+// TODO: 08/01/20 Strings class to StringConstants  , enum for itemtype , factory pattern
+
 public class NewUserCreator {
+
     static User getNewUser() throws InvalidUserDetailException {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter new user details");
@@ -33,7 +39,7 @@ public class NewUserCreator {
         } catch (NumberFormatException e) {
             throw new InvalidUserDetailException("Roll number must be a valid positive integer");
         }
-        System.out.print("Courses enrolled : ");
+        System.out.print("Course enrolled : ");
 
         String[] courses = scan.nextLine().split(" ");
         List<Course> coursesList = new ArrayList<>(

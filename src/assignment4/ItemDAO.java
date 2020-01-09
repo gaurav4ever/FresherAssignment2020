@@ -1,6 +1,6 @@
 package assignment4;
 
-import assignment1.Strings;
+import assignment1.Constants;
 import assignment1.models.*;
 
 import java.sql.Connection;
@@ -37,21 +37,21 @@ public class ItemDAO {
 
                 Item item;
 
-                switch (rs.getString(Strings.type)) {
-                    case Strings.raw:
-                        item = new RawItem(rs.getString(Strings.name), rs.getDouble(Strings.price));
+                switch (rs.getString(Constants.TYPE)) {
+                    case Constants.RAW:
+                        item = new RawItem(rs.getString(Constants.NAME), rs.getDouble(Constants.PRICE));
                         break;
-                    case Strings.imported:
-                        item = new ImportedItem(rs.getString(Strings.name), rs.getDouble(Strings.price));
+                    case Constants.IMPORTED:
+                        item = new ImportedItem(rs.getString(Constants.NAME), rs.getDouble(Constants.PRICE));
                         break;
-                    case Strings.manufactured:
-                        item = new ManufacturedItem(rs.getString(Strings.name), rs.getDouble(Strings.price));
+                    case Constants.MANUFACTURED:
+                        item = new ManufacturedItem(rs.getString(Constants.NAME), rs.getDouble(Constants.PRICE));
                         break;
                     default:
-                        throw new IllegalStateException("Unexpected value: " + rs.getString(Strings.type));
+                        throw new IllegalStateException("Unexpected value: " + rs.getString(Constants.TYPE));
                 }
 
-                items.add(new ItemDetail(item, rs.getInt(Strings.quantity)));
+                items.add(new ItemDetail(item, rs.getInt(Constants.QUANTITY)));
             }
             return items;
         } catch (SQLException e) {

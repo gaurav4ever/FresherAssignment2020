@@ -11,7 +11,7 @@ import java.util.Set;
 public class UserManager {
     Set<User> users;
 
-    public UserManager() {
+    public UserManager() { // TODO: 08/01/20
         this.users = (new UserDiskStorageHandler()).getUsersFromDisk();
     }
 

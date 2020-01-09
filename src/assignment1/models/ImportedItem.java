@@ -1,18 +1,12 @@
 package assignment1.models;
 
 public class ImportedItem extends Item {
-    private Double mTax;
-
     public ImportedItem(String name, Double price) {
         super(name, price);
-        mTax = 10.0 / 100 * price;
-        if (mTax <= 100) mTax += 5;
-        else if (mTax >= 100 && mTax <= 200) mTax += 10;
-        else mTax += 5.0 / 100 * (mTax + price); // 5 % of final cost which means original price + tax
-    }
-
-    @Override
-    public Double getTax() {
-        return mTax;
+        tax = 10.0 / 100 * price;
+        if (tax <= 100) tax += 5;
+        else if (tax >= 100 && tax <= 200) tax += 10;
+        else tax += 5.0 / 100 * (tax + price); // 5 % of final cost which means original price + tax
+        setTax(tax);
     }
 }
