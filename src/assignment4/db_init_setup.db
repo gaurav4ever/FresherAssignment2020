@@ -1,0 +1,5 @@
+create table Item (name varchar(30), type varchar(30),price double, quantity int, check (type in ('raw','manufactured','imported')));
+insert into Item values('pen',20,4,'manufactured');
+insert into Item values('steel',100,3,'raw');
+insert into Item values('mac',700000,1,'imported);
+insert into Item values('bag',500,3, 'manufactured');
