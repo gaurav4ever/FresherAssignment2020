@@ -1,12 +1,16 @@
 package com.company.main;
 
+import java.io.Serializable;
 import java.util.*;
+import java.io.*;
 
-public class Details {
+public class Details implements Serializable {
     String name, addr, courses;
     String[] coursesSplit ;
     int age, rollNo;
     static List<Student> students = new ArrayList<>();
+
+    Student st = new Student();
 
     Scanner input = new Scanner(System.in);
     public void input()
@@ -15,6 +19,7 @@ public class Details {
 
         System.out.println("Enter name");
         name = input.next();
+
         if(name.equals(""))
         {
             System.out.println("Enter valid name");
@@ -46,6 +51,13 @@ public class Details {
             System.out.println("Enter valid roll number");
             rollNo = input.nextInt();
         }
+        for( Student st: students)
+        {
+            if(rollNo == st.getRollNo()){
+                System.out.println("Roll no. already exists, please re-enter");
+                rollNo = input.nextInt();
+            }
+        }
 
         System.out.println("Enter atleast four courses : A,B,C,D,E,F");
         courses = input.next();
@@ -56,8 +68,8 @@ public class Details {
             courses = input.next();
         }
         student.Assign(name,addr,courses,age,rollNo);
-        //students.add(student);
         addStudent(student);
+
     }
 
     public String addStudent(Student student)
@@ -72,17 +84,54 @@ public class Details {
             return "Please enter valid address";
         students.add(student);
 
-        //Collections.sort(students.);
+        Collections.sort(students, Student.stuNameComparator);
+        System.out.println("Student details added");
 
-        return "Student added successfully";
+//       --------------------------------------------------------------------------------------------------------------------------------------------------------
+//        Sorting with Hashmap logic
+//       --------------------------------------------------------------------------------------------------------------------------------------------------------
+//        HashMap<String, Student> map = new HashMap<>();
+//        List<String> sortedNames = new ArrayList<>();
+//        for( Student student1 : students) {
+//            map.put(student1.getName(), student1);
+//            sortedNames.add(student1.getName());
+//        }
+//        Collections.sort(sortedNames);
+//        System.out.println("Sorted based on names :");
+//        System.out.println("--------------------------------------------------------------------------\n");
+//        for(String key : sortedNames)
+//            System.out.println(map.get(key).getName()+"\t\t"+map.get(key).getAge()+"\t\t"+map.get(key).getAddr()+"\t\t"+map.get(key).getRollNo()+"\t\t"+map.get(key).getCourses());
+//        System.out.println("--------------------------------------------------------------------------\n");
+//       --------------------------------------------------------------------------------------------------------------------------------------------------------
+          return "Student added successfully";
     }
+
+    public void delete()
+    {
+        System.out.println("Enter Roll no.");
+        int rollNo = input.nextInt();
+        int f=0;
+        for(Student st: students)
+        {
+            if(st.getRollNo()==rollNo)
+            {
+                f=1;
+                students.remove(st);
+                System.out.println("Student detail with roll no."+rollNo+"deleted");
+            }
+        }
+        if(f==0)
+            System.out.println("Roll No. does not exist");
+    }
+
     public void display()
     {
-        System.out.println("Name \t\t Age \t\t Address \t\t Roll No. \t\t Courses");
+        System.out.println("Student details in sorted order :");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("Name \t\t Roll No. \t\t Age \t\t Address  \t\t Courses");
         System.out.println("-----------------------------------------------------------------------------");
         for( Student st: students)
-            System.out.println(st.getName() + "\t\t" + st.getAge() + "\t\t\t" + st.getAddr() + "\t\t" + st.getRollNo() + "\t\t\t" + st.getCourses() );
-
+            System.out.println(st.getName() + "\t\t" + st.getRollNo() + "\t\t" + st.getAge() + "\t\t\t" + st.getAddr() + "\t\t\t" + st.getCourses() );
+        System.out.println("-----------------------------------------------------------------------------");
     }
-
 }
