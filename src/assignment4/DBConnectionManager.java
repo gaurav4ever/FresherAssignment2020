@@ -2,6 +2,9 @@ package assignment4;
 
 import assignment1.models.Item;
 import java.sql.*;
+
+import assignment1.models.ManufacturedItem;
+import assignment1.models.RawItem;
 import assignment4.Exceptions.AllRecordsFetchException;
 
 public class DBConnectionManager {
@@ -27,7 +30,17 @@ public class DBConnectionManager {
     }
     public static Item getNextItem()throws Exception{
         if(rs.next()){
-            Item item = new Item(rs.getString(1),rs.getString(2),rs.getDouble(3),rs.getInt(4));
+            Item item = null;
+            String type = rs.getString(2);
+            if(type.equals("raw")) {
+                item = new RawItem(rs.getString(1), rs.getDouble(3), rs.getInt(4));
+            }else if(type.equals("manufactured")){
+                item = new ManufacturedItem(rs.getString(1),rs.getDouble(3),rs.getInt(4));
+            }else if(type.equals("imported")) {
+                item = new RawItem(rs.getString(1), rs.getDouble(3), rs.getInt(4));
+            }else{
+                throw new Exception("item type is not valid type "+ type);
+            }
             return item;
         }else{
             con.close();
