@@ -117,7 +117,7 @@ public class Details implements Serializable {
             {
                 f=1;
                 students.remove(st);
-                System.out.println("Student detail with roll no."+rollNo+"deleted");
+                System.out.println("Student detail with roll no. "+rollNo+" deleted");
             }
         }
         if(f==0)
@@ -126,6 +126,19 @@ public class Details implements Serializable {
 
     public void display()
     {
+        System.out.println(" Sort based on ?   1.Name   2.Roll No.   3.Age   4.Address");
+        int ch = input.nextInt();
+        switch(ch)
+        {
+            case 1: Collections.sort(students, Student.stuNameComparator);
+                    break;
+            case 2: Collections.sort(students, Student.stuRollComparator);
+                    break;
+            case 3: Collections.sort(students, Student.stuAgeComparator);
+                    break;
+            case 4: Collections.sort(students, Student.stuAddrComparator);
+                    break;
+        }
         System.out.println("Student details in sorted order :");
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("Name \t\t Roll No. \t\t Age \t\t Address  \t\t Courses");

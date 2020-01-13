@@ -6,6 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         int ch=1;
+        char c;
         Details details = new Details();
         FileOperations file = new FileOperations();
         Scanner input = new Scanner(System.in);
@@ -35,23 +36,16 @@ public class Main {
                     System.out.println("Details saved to file");
                     break;
                 case 5:
-                    return;
+                    System.out.println("Save changes done? y/n : ");
+                    c = input.next().charAt(0);
+                    if(c=='y')
+                    {
+                        file.writeToFile();
+                        System.out.println("Changes saved to file");
+                    }
+                    else
+                        return;
             }
         }
     }
-
-
-    /*public void sortBasedOnName(List<Student> students) {
-        HashMap<String, Student> map = new HashMap<>();
-        List<String> sortedNames = new ArrayList<>();
-        for( Student student : students) {
-            map.put(student.getName(), student);
-            sortedNames.add(student.getName());
-        }
-        Collections.sort(sortedNames);
-        for(String key : sortedNames)
-            System.out.println(map.get(key).getName()+" : "+map.get(key).getAddr());
-    }*/
-
-
 }

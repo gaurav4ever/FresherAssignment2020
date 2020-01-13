@@ -59,4 +59,31 @@ public class Student implements Serializable{
             }
             return StudentName1.compareTo(StudentName2);
         }};
+
+    public static Comparator<Student> stuRollComparator = new Comparator<Student>() {
+        @Override
+        public int compare(Student s1, Student s2) {
+            int StudentRoll1 = s1.getRollNo();
+            int StudentRoll2 = s2.getRollNo();
+
+            return StudentRoll1-StudentRoll2;
+        }};
+
+    public static Comparator<Student> stuAgeComparator = new Comparator<Student>() {
+        @Override
+        public int compare(Student s1, Student s2) {
+            int StudentAge1 = s1.getAge();
+            int StudentAge2 = s2.getAge();
+
+            return StudentAge1-StudentAge2;
+        }};
+
+    public static Comparator<Student> stuAddrComparator = new Comparator<Student>() {
+        @Override
+        public int compare(Student s1, Student s2) {
+            String StudentAddr1 = s1.getAddr().toUpperCase();
+            String StudentAddr2 = s2.getAddr().toUpperCase();
+
+            return StudentAddr1.compareTo(StudentAddr2);
+        }};
 }

@@ -1,6 +1,4 @@
 package com.company.main;
-
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,18 +11,15 @@ public class FileOperations {
         try {
             FileOutputStream f = new FileOutputStream(new File("myObjects.ser"));
             ObjectOutputStream o = new ObjectOutputStream(f);
-
             o.writeObject(students);
-
             o.close();
             f.close();
-
         }
         catch (Exception e){
             System.out.println("Student details couldn't write to file");
         }
-
     }
+
     public void readFromFile(){
 
         try{
