@@ -14,7 +14,6 @@ public class Details {
     public enum Type{
         RAW,IMPORTED,MANUFACTURED;
     }
-   // Item its=new Item();
     void input()
     {
         Item item = new Item();
@@ -98,10 +97,12 @@ public class Details {
 
     public void DisplayItems()
     {
-        System.out.println("NAME\t\tTAX\t\tPRICE\t\tFINAL PRICE");
-        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------");
+        System.out.println("NAME\t\tPRICE\t\tTAX\t\t\tFINAL PRICE");
+        System.out.println("------------------------------------------------------");
         for( Item item: items)
-            System.out.println(item.getName() + "\t\t" + item.getPrice() + "\t\t" + item.getTax() + "\t\t" + (item.getPrice() + item.getTax()));
+            System.out.println(item.getName()+"\t\t" + item.getPrice() + "\t\t" + item.getTax() + "\t\t" + ((item.getPrice()*item.getQuantity()) + item.getTax()));
+        System.out.println("------------------------------------------------------");
     }
 
     public static class Tax {
