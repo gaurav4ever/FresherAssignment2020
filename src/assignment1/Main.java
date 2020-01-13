@@ -28,11 +28,11 @@ public class Main {
             String type = sc.next();
             try {
                 Item item = null;
-                if(type.equals("raw")) {
+                if("raw".equals(type)) {
                     item = new RawItem(name, price, quantity);
-                }else if(type.equals("manufactured")){
+                }else if("manufactured".equals(type)){
                     item = new ManufacturedItem(name, price, quantity);
-                }else if(type.equals("imported")){
+                }else if("imported".equals(type)){
                     item = new ImportedItem(name,price,quantity);
                 }else{
                     System.out.println("type is mandatory and should raw/manufactured/imported");

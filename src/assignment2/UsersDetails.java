@@ -20,7 +20,7 @@ public class UsersDetails implements Serializable{
         if(rollnoToUserMap.containsKey(user.rollno)){
             throw new Exception("roll no already exists");
         }
-        size++;
+        size = size + 1;
         rollnoToUserMap.put(user.rollno, user);
         return true;
     }
@@ -76,7 +76,7 @@ public class UsersDetails implements Serializable{
             throw new Exception("user with rollno "+ rollno + " does not exists");
         }
         rollnoToUserMap.remove(rollno);
-        --size;
+        size = size - 1;
         return true;
     }
 

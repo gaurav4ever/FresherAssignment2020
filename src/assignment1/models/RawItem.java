@@ -1,6 +1,7 @@
 package assignment1.models;
 
 public class RawItem extends Item{
+
     public RawItem(String name){
         super(name);
     }
@@ -15,7 +16,7 @@ public class RawItem extends Item{
     }
     @Override
     public Double calculateTax() {
-        return 0.125 * price;
+        return RAW_ITEM_TAX_RATE * price;
     }
 
 }

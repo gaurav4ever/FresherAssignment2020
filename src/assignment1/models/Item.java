@@ -1,6 +1,13 @@
 package assignment1.models;
 
 public abstract class Item {
+    protected static final Double RAW_ITEM_TAX_RATE = 0.125;
+    protected static final Double MANUFACTURED_ITEM_ADDITIONAL_TAX_RATE = 0.02;
+    protected static final Double IMPORT_DUTY = 0.10;
+    protected static final Double SURCHARGE_FOR_ITEM_COST_WITH_IMPORT_DUTY_UP_TO_100 = 5.0;
+    protected static final Double SURCHARGE_FOR_ITEM_COST_WITH_IMPORT_DUTY_UP_TO_200 = 10.0;
+    protected static final Double SURCHARGE_PERCENTAGE_FOR_ITEM_COST_WITH_IMPORT_DUTY_GREATER_THAN_200 = 0.05;
+
     public String name;
     public Double price;
     public Integer quantity;

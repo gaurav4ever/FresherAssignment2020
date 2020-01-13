@@ -134,7 +134,7 @@ public class FamilyTree {
       child.parent.remove(curNode);
     }
     nodeIdToNodeMap.remove(nodeId);
-    --size;
+    size = size - 1 ;
     return true;
   }
   

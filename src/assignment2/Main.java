@@ -144,7 +144,7 @@ public class Main{
                     flag = false;
                     System.out.println("Do you want to save users details y/n");
                     String ans = sc.next();
-                    if(ans.equals("y"))
+                    if("y".equals(ans))
                         saveUserDetails(userDetailsObj);
                     break;
                 default :

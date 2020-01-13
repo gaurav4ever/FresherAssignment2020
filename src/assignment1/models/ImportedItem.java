@@ -1,6 +1,7 @@
 package assignment1.models;
 
 public class ImportedItem extends Item{
+
     public ImportedItem(String name){
         super(name);
     }
@@ -13,18 +14,21 @@ public class ImportedItem extends Item{
     public ImportedItem(String name, Double price, Integer quantity){
         super(name,price,quantity);
     }
+
     @Override
     public Double calculateTax() {
-        Double importDuty = 0.10 * price;
+        Double importDuty = IMPORT_DUTY * price;
         Double itemCostWithImportDuty = price + importDuty;
         Double surcharge = 0.0;
+
         if(itemCostWithImportDuty <=100){
-            surcharge =  5.0;
+            surcharge =  SURCHARGE_FOR_ITEM_COST_WITH_IMPORT_DUTY_UP_TO_100;
         }else if(itemCostWithImportDuty <=200){
-            surcharge =  10.0;
+            surcharge =  SURCHARGE_FOR_ITEM_COST_WITH_IMPORT_DUTY_UP_TO_200;
         }else {
-            surcharge = 0.05 * (itemCostWithImportDuty);
+            surcharge = SURCHARGE_PERCENTAGE_FOR_ITEM_COST_WITH_IMPORT_DUTY_GREATER_THAN_200 * (itemCostWithImportDuty);
         }
+
         return importDuty + surcharge;
     }
 

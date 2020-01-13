@@ -15,6 +15,9 @@ public class ManufacturedItem extends Item{
     }
     @Override
     public Double calculateTax() {
-        return  0.125  * price + 0.02 * ( price + 0.125 * price);
+        Double rawTax = RAW_ITEM_TAX_RATE * price;
+        Double manufacturedItemTax = MANUFACTURED_ITEM_ADDITIONAL_TAX_RATE * (price + rawTax);
+
+        return   rawTax + manufacturedItemTax;
     }
 }

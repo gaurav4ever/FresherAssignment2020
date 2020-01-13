@@ -32,11 +32,11 @@ public class DBConnectionManager {
         if(rs.next()){
             Item item = null;
             String type = rs.getString(2);
-            if(type.equals("raw")) {
+            if("raw".equals(type)) {
                 item = new RawItem(rs.getString(1), rs.getDouble(3), rs.getInt(4));
-            }else if(type.equals("manufactured")){
+            }else if("manufactured".equals(type)){
                 item = new ManufacturedItem(rs.getString(1),rs.getDouble(3),rs.getInt(4));
-            }else if(type.equals("imported")) {
+            }else if("imported".equals(type)) {
                 item = new RawItem(rs.getString(1), rs.getDouble(3), rs.getInt(4));
             }else{
                 throw new Exception("item type is not valid type "+ type);
