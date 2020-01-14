@@ -24,7 +24,7 @@ public class Main {
                     graphOperation.printAncestors(0);
                     break;
                 case 4:
-                    graphOperation.getDescendants(0);
+                    graphOperation.printDescendants(0);
                     break;
                 case 5:
                     graphOperation.deleteDependency();

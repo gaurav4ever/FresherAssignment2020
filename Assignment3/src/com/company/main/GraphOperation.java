@@ -94,7 +94,18 @@ public class GraphOperation {
         for(Integer ancestor : ancestors)
             System.out.print(ancestor + " , ");
     }
-    public void getDescendants(int nodeId)
+    public List<Integer> getDescendants(int nodeId)
+    {
+        List<Integer> descendants = new ArrayList<>();
+        descendants.addAll(graph.get(nodeId).children.keySet());
+
+        for(Integer i : graph.get(nodeId).children.keySet()){
+            descendants.addAll(getDescendants(i));
+        }
+        return descendants;
+    }
+
+    public void printDescendants(int nodeId)
     {
         //id as a flag
         if(nodeId == 0)
@@ -103,12 +114,9 @@ public class GraphOperation {
             nodeId = scan.nextInt();
             System.out.println("Descendants are : ");
         }
-        for(Integer i : graph.get(nodeId).children.keySet()){
-            System.out.println(i);
-            getDescendants(i);
-        }
+        List<Integer> descendants = getDescendants(nodeId);
+        System.out.println(descendants);
     }
-
     public void deleteDependency()
     {
         System.out.println("Enter parent ID and children ID whose dependency to be deleted : ");
