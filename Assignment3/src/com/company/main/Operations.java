@@ -14,7 +14,7 @@ public class Operations {
         System.out.println("Enter ID :");
         int id = scan.nextInt();
         if(!graph.containsKey(id)){
-            System.out.println("Node with id : "+id+" does snot exist");
+            System.out.println("Node with id : "+id+" does not exist");
         }
         List<Integer> parents = new ArrayList<>();
         for (Node node : graph.values())
@@ -62,11 +62,6 @@ public class Operations {
             System.out.println(i.intValue());
         for(Integer i : parents)
             getAncestors(i);
-
-        //Termination
-        if(!graph.containsKey(id)){
-            return;
-        }
     }
 
     public void getDescendants(int id)
@@ -74,9 +69,6 @@ public class Operations {
         for(Integer i : graph.get(id).children.keySet()){
             System.out.println(i);
             getDescendants(i);
-        }
-        if(graph.get(id).children.keySet()== null){
-            return;
         }
     }
 
