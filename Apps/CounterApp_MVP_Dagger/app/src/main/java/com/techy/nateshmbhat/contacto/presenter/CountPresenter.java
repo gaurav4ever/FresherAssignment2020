@@ -1,12 +1,23 @@
 package com.techy.nateshmbhat.contacto.presenter;
 import com.techy.nateshmbhat.contacto.model.Counter;
 
-public class CountPresenter {
-    private Counter counter = Counter.getInstance() ;
-    private final View view ;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-    public CountPresenter(View view) {
+import dagger.Component;
+
+public class CountPresenter {
+    private Counter counter ;
+
+    public void setView(View view) {
         this.view = view;
+    }
+
+    private View view ;
+
+    @Inject
+    public CountPresenter() {
+        counter =  Counter.getInstance() ;
     }
 
     public void incrementCount(){

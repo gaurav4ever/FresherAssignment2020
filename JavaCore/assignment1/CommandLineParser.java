@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 // Used to parse the commandline arguments
-class CommandLineParser {
+public class CommandLineParser {
 
     private  void validateNumberOfArguments(ArrayList<String> args) {
         if (args.size() < 4)
@@ -64,7 +64,7 @@ class CommandLineParser {
 
 
     // Returns an ItemDetail based on the arguments given here after validating their values
-     ItemDetail getItemDetail(String[] commandLineArgs) throws InvalidCommandLineArgument {
+    public ItemDetail getItemDetail(String[] commandLineArgs) throws InvalidCommandLineArgument {
         ArrayList<String> argsList = new ArrayList<>(Arrays.asList(commandLineArgs));
 
         validate(argsList);
@@ -82,6 +82,6 @@ class CommandLineParser {
         }
         if (quantity == null) quantity = 1; //default quantity
 
-         return ItemDetailFactory.getItem(name , type , price , quantity) ;
+         return new ItemDetail(ItemFactory.getItem(name , type , price) , quantity) ;
     }
 }

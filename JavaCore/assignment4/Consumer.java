@@ -3,6 +3,7 @@ package assignment4;
 import assignment1.models.ItemDetail;
 
 import java.util.List;
+import java.util.Random;
 
 public class Consumer implements  Runnable{
     final List<ItemDetail> list ;
@@ -20,7 +21,7 @@ public class Consumer implements  Runnable{
                 }
             }
             try {
-                Thread.sleep(100);
+                Thread.sleep(new Random().nextInt(1000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -1,8 +1,10 @@
-package assignment3;
+package test.assignment3;
 
+import assignment3.DependencyGraphImpl;
 import assignment3.exceptions.CyclicDependencyException;
 import assignment3.exceptions.NoSuchNodeException;
 import assignment3.exceptions.NodeAlreadyExistsException;
+import assignment3.interfaces.DependencyGraph;
 import assignment3.models.Node;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class DependencyGraphTest {
-    DependencyGraph dependencyGraph ;
+    DependencyGraphImpl dependencyGraph ;
     @BeforeEach
     void init(){
-        dependencyGraph = new DependencyGraph(new Node(1,"Root"));
+        dependencyGraph = new DependencyGraphImpl(new Node(1,"Root"));
         try {
             dependencyGraph.addNode(2 , "multi child");
             dependencyGraph.addDependency(1,2);

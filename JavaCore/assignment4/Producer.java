@@ -2,7 +2,6 @@ package assignment4;
 
 import assignment1.models.ItemDetail;
 
-import java.sql.Connection;
 import java.util.List;
 
 public class Producer implements Runnable  {
@@ -14,8 +13,6 @@ public class Producer implements Runnable  {
 
     @Override
     public void run() {
-        synchronized (list){
-            list.addAll(new ItemDAO().getItems()) ;
-        }
+            new ItemDAO().putItemsIntoList(list) ;
     }
 }

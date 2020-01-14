@@ -7,7 +7,7 @@ import assignment3.models.Node;
 
 import java.util.Set;
 
-public interface DependencyGraphOperations {
+public interface DependencyGraph {
     Set<Node> getParents(Integer nodeId) throws NoSuchNodeException;
 
     Set<Node> getChildren(Integer nodeId) throws NoSuchNodeException;

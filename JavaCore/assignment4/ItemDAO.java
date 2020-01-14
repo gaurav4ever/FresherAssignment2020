@@ -1,6 +1,7 @@
 package assignment4;
 
 import assignment1.Constants;
+import assignment1.ItemFactory;
 import assignment1.models.*;
 
 import java.sql.Connection;
@@ -9,25 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ItemDAO {
-    public void create(ItemDetail itemDetail) {
+    public void putItemsIntoList(List<ItemDetail> items) {
         Connection con = DBConnectionManager.getConnection();
-        try {
-            PreparedStatement preparedStatement = con.prepareStatement("insert into Item values (? , ? , ? ,?)");
-            preparedStatement.setString(1, itemDetail.getItem().getName());
-            preparedStatement.setDouble(2, itemDetail.getItem().getPrice());
-            preparedStatement.setInt(3, itemDetail.getQuantity());
-            preparedStatement.setString(4, itemDetail.getItem().getClass().getSimpleName().toLowerCase());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public List<ItemDetail> getItems() {
-        Connection con = DBConnectionManager.getConnection();
-        List<ItemDetail> items = new ArrayList<>();
 
         try {
             PreparedStatement preparedStatement = con.prepareStatement("select * from Item");
@@ -35,28 +22,19 @@ public class ItemDAO {
 
             while (rs != null && rs.next()) {
 
-                Item item;
+                Item item = ItemFactory.getItem(rs.getString(Constants.NAME) ,
+                        rs.getString(Constants.TYPE),
+                        rs.getDouble(Constants.PRICE)
+                );
 
-                switch (rs.getString(Constants.TYPE)) {
-                    case Constants.RAW:
-                        item = new RawItem(rs.getString(Constants.NAME), rs.getDouble(Constants.PRICE));
-                        break;
-                    case Constants.IMPORTED:
-                        item = new ImportedItem(rs.getString(Constants.NAME), rs.getDouble(Constants.PRICE));
-                        break;
-                    case Constants.MANUFACTURED:
-                        item = new ManufacturedItem(rs.getString(Constants.NAME), rs.getDouble(Constants.PRICE));
-                        break;
-                    default:
-                        throw new IllegalStateException("Unexpected value: " + rs.getString(Constants.TYPE));
+                System.out.println("Got Item : " + item.getName() + " from db");
+                synchronized (item){
+                    items.add(new ItemDetail(item, rs.getInt(Constants.QUANTITY)));
                 }
-
-                items.add(new ItemDetail(item, rs.getInt(Constants.QUANTITY)));
+                Thread.sleep(new Random().nextInt(1000)) ;
             }
-            return items;
-        } catch (SQLException e) {
+        } catch (SQLException | InterruptedException e) {
             e.printStackTrace();
         }
-        return items;
     }
 }

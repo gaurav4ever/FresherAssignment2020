@@ -3,18 +3,18 @@ package assignment3;
 import assignment3.exceptions.CyclicDependencyException;
 import assignment3.exceptions.NoSuchNodeException;
 import assignment3.exceptions.NodeAlreadyExistsException;
-import assignment3.interfaces.DependencyGraphOperations;
+import assignment3.interfaces.DependencyGraph;
 import assignment3.models.Node;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class DependencyGraph implements DependencyGraphOperations {
+public class DependencyGraphImpl implements DependencyGraph {
     private Map<Integer, Node> idToNodeMap;
     private Node root;
 
-    DependencyGraph(Node root) {
+    public DependencyGraphImpl(Node root) {
         this.root = root;
         idToNodeMap = new HashMap<>();
         idToNodeMap.put(root.getId(), root);
