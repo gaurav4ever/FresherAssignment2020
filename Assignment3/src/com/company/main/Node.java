@@ -19,7 +19,6 @@ public class Node {
     {
         this.id = id;
         this.name = name;
-        //this.children = children;
     }
     public void fetchNodeInfo(int id)
     {

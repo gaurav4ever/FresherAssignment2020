@@ -23,11 +23,11 @@ public class Main {
         System.out.println("8. Add new node : ");
         System.out.println("9. Exit");
 
+        op.addData();
         while(true)
         {
             System.out.println("Enter choice : ");
             ch = scan.nextInt();
-            op.addData();
             switch (ch)
             {
                 case 1:
@@ -39,10 +39,14 @@ public class Main {
                 case 3:
                     System.out.println("Enter ID of the node whose ancestors to be found : ");
                     int id = scan.nextInt();
+                    System.out.println("Ancestors are : ");
                     op.getAncestors(id);
                     break;
                 case 4:
-                    op.getDescendants();
+                    System.out.println("Enter ID of the node whose descendants to be found : ");
+                    int id3 = scan.nextInt();
+                    System.out.println("Descendants are : ");
+                    op.getDescendants(id3);
                     break;
                 case 5:
                     op.deleteDependency();

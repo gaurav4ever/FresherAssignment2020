@@ -1,7 +1,9 @@
 package com.company.main;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
 import static com.company.main.Main.graph;
 
 public class Operations {
@@ -11,13 +13,25 @@ public class Operations {
     {
         System.out.println("Enter ID :");
         int id = scan.nextInt();
+        if(!graph.containsKey(id)){
+            System.out.println("Node with id : "+id+" does snot exist");
+        }
+        List<Integer> parents = new ArrayList<>();
+        for (Node node : graph.values())
+            if(node.children.containsKey(id))
+                parents.add(node.id);
+
+        System.out.println("Parents of node with ID : "+id+ " is ");
+        for(Integer i : parents)
+            System.out.println(i.intValue());
+
     }
 
     public void getChildren()
     {
         System.out.println("Enter ID of parent whose children to be found :");
         int id = scan.nextInt();
-        System.out.println("Children are : "+graph.get(id).children.get(id));
+        System.out.println("Children are : "+ graph.get(id).children.keySet());
     }
 
     public void addNode()
@@ -38,12 +52,32 @@ public class Operations {
 
     public void getAncestors(int id)
     {
-        
+        List<Integer> parents = new ArrayList<>();
+        for (Node node : graph.values())
+            if(node.children.containsKey(id))
+                parents.add(node.id);
+
+        System.out.println("  ");
+        for(Integer i : parents)
+            System.out.println(i.intValue());
+        for(Integer i : parents)
+            getAncestors(i);
+
+        //Termination
+        if(!graph.containsKey(id)){
+            return;
+        }
     }
 
-    public void getDescendants()
+    public void getDescendants(int id)
     {
-
+        for(Integer i : graph.get(id).children.keySet()){
+            System.out.println(i);
+            getDescendants(i);
+        }
+        if(graph.get(id).children.keySet()== null){
+            return;
+        }
     }
 
     public void deleteDependency()
@@ -96,6 +130,4 @@ public class Operations {
     {
         graph.get(id1).children.put(id2,graph.get(id2));
     }
-
-
 }
