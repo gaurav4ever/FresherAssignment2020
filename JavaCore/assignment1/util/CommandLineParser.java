@@ -1,5 +1,6 @@
-package assignment1;
+package assignment1.util;
 
+import assignment1.factory.ItemFactory;
 import assignment1.exceptions.InvalidCommandLineArgument;
 import assignment1.models.*;
 

@@ -1,14 +1,13 @@
 package assignment4;
 
-import assignment1.Constants;
-import assignment1.ItemFactory;
+import assignment1.util.Constants;
+import assignment1.factory.ItemFactory;
 import assignment1.models.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 

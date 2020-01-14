@@ -1,6 +1,6 @@
-package assignment1;
+package assignment1.factory;
 
-import assignment1.ItemType;
+import assignment1.models.ItemType;
 import assignment1.models.*;
 
 public class ItemFactory {

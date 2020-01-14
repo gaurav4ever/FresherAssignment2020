@@ -1,6 +1,8 @@
-package assignment2;
+package assignment2.manager;
 
 import assignment2.DiskStorage.UserDiskStorageHandler;
+import assignment2.util.NewUserCreatorUtil;
+import assignment2.util.UserUtil;
 import assignment2.exceptions.InvalidUserDetailException;
 import assignment2.models.User;
 import assignment3.exceptions.InvalidChoiceException;
@@ -32,7 +34,7 @@ public class UserManager {
     //    Get a new user by showing a menu to add the new user
     private void getNewUser() throws InvalidUserDetailException {
         try {
-            users.add(NewUserCreator.getNewUser());
+            users.add(NewUserCreatorUtil.getNewUser());
         } catch (InvalidUserDetailException e) {
             System.out.println("Invalid Details entered : " + e.getMessage());
         }

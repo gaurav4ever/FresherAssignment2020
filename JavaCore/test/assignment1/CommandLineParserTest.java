@@ -1,6 +1,6 @@
 package test.assignment1;
 
-import assignment1.CommandLineParser;
+import assignment1.util.CommandLineParser;
 import assignment1.exceptions.InvalidCommandLineArgument;
 import assignment1.models.Item;
 import assignment1.models.ItemDetail;

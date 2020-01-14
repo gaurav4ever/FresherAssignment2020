@@ -1,4 +1,4 @@
-package assignment1;
+package assignment1.util;
 
 public class Constants {
     public final static String QUANTITY = "quantity";
@@ -7,8 +7,3 @@ public class Constants {
     public final static String PRICE = "price";
 }
 
-class ItemType {
-    public final static String RAW = "raw";
-    public final static String IMPORTED = "imported";
-    public final static String MANUFACTURED = "manufactured";
-}

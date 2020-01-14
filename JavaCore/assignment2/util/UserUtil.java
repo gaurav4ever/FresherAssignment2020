@@ -1,4 +1,4 @@
-package assignment2;
+package assignment2.util;
 
 import assignment2.exceptions.InvalidUserDetailException;
 import assignment2.models.Course;

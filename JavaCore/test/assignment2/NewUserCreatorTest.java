@@ -1,8 +1,8 @@
 package assignment2;
 
 import assignment2.exceptions.InvalidUserDetailException;
-import assignment2.models.Course;
 import assignment2.models.User;
+import assignment2.util.NewUserCreatorUtil;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -24,7 +24,7 @@ class NewUserCreatorTest {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        User user = NewUserCreator.getNewUser() ;
+        User user = NewUserCreatorUtil.getNewUser() ;
 
         assertEquals(user.getName(), "Natesh");
         assertEquals(user.getRollNumber(), 1);
@@ -38,7 +38,7 @@ class NewUserCreatorTest {
             e.printStackTrace();
         }
         assertThrows(InvalidUserDetailException.class , ()->{
-            NewUserCreator.getNewUser() ;
+            NewUserCreatorUtil.getNewUser() ;
         }, "student2 file has wrong entries for student");
     }
 }

@@ -1,11 +1,12 @@
-package assignment1;
+package assignment1.manager;
 
 import assignment1.exceptions.InvalidCommandLineArgument;
 import assignment1.models.ItemDetail;
+import assignment1.util.CommandLineParser;
 
 import java.util.Scanner;
 
-class ItemManager {
+public class ItemManager {
 
     private void promptForNewItemUntilExit() {
         System.out.println("Do you want to enter details of any other item (y/n): ");
@@ -33,7 +34,7 @@ class ItemManager {
         System.exit(0);
     }
 
-    void startManager(String[] args) {
+    public void startManager(String[] args) {
         try {
             ItemDetail itemDetail = new CommandLineParser().getItemDetail(args);
             itemDetail.display();
