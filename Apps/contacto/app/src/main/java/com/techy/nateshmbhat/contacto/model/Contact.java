@@ -1,6 +1,14 @@
 package com.techy.nateshmbhat.contacto.model;
 
+import androidx.annotation.NonNull;
+
 public class Contact {
+
+    @NonNull
+    @Override
+    public String toString() {
+        return displayName+" - " + mobileNumber ;
+    }
 
     private String id ;
     private String displayName ;

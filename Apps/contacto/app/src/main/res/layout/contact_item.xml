@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:padding="0dp"
+    android:layout_margin="0dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-<TextView android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    android:padding="10dp"
-    android:text="Natesh"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/contact_list_item_image"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Natesh"
+            android:id="@+id/contact_list_item_name"
+            xmlns:android="http://schemas.android.com/apk/res/android" />
+
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="9288382939328"
+            android:id="@+id/contact_list_item_mobile"
+            xmlns:android="http://schemas.android.com/apk/res/android" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+</layout>
+
