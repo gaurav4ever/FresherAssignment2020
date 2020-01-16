@@ -13,13 +13,13 @@ import java.util.Objects;
 public class SubscriptionEntity extends AbstractSubscriptionModel {
 
   //@Id
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn
   //@MapsId("newsLetterId")
   private NewsLetterEntity newsLetter;
 
   //@Id
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn
   //@MapsId("userId")
   private UserEntity user;

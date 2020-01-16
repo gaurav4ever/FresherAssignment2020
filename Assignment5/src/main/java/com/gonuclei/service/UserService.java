@@ -1,4 +1,4 @@
-package com.gonuclei.service.impl;
+package com.gonuclei.service;
 
 import com.gonuclei.dto.UserDto;
 import com.gonuclei.exception.UserNotFoundException;

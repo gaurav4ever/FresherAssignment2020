@@ -3,7 +3,7 @@ package com.gonuclei.controller;
 import com.gonuclei.dto.SubscriptionDto;
 import com.gonuclei.exception.NewsLetterNotFoundException;
 import com.gonuclei.exception.UserNotFoundException;
-import com.gonuclei.service.impl.SubscriptionService;
+import com.gonuclei.service.SubscriptionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

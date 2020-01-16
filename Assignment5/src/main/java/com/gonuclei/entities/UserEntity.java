@@ -2,10 +2,7 @@ package com.gonuclei.entities;
 
 import com.gonuclei.model.AbstractUserModel;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,7 +15,7 @@ import java.util.stream.Stream;
 @Table(name = "users")
 public class UserEntity extends AbstractUserModel {
 
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private Set<SubscriptionEntity> userSubscriptionEntities = new HashSet<>();
 
   /**

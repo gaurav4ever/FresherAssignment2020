@@ -2,7 +2,7 @@ package com.gonuclei.controller;
 
 import com.gonuclei.dto.UserDto;
 import com.gonuclei.exception.UserNotFoundException;
-import com.gonuclei.service.impl.UserService;
+import com.gonuclei.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

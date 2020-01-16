@@ -18,6 +18,18 @@ spring:
     port: 6379
     timeout: 5000
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username:
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 subscription:
   topic-name: advice-topic
   messages-per-request: 10

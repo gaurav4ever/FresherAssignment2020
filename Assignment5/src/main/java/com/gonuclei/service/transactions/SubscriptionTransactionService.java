@@ -1,9 +1,11 @@
 package com.gonuclei.service.transactions;
 
+import com.gonuclei.bos.SubscriptionBo;
 import com.gonuclei.dto.SubscriptionDto;
 import com.gonuclei.entities.NewsLetterEntity;
 import com.gonuclei.entities.SubscriptionEntity;
 import com.gonuclei.entities.UserEntity;
+import com.gonuclei.enums.SubscriptionStatusEnum;
 import com.gonuclei.exception.NewsLetterNotFoundException;
 import com.gonuclei.exception.SubscriptionNotFoundException;
 import com.gonuclei.exception.UserNotFoundException;
@@ -15,6 +17,9 @@ import com.gonuclei.repository.SlaveUserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * The type Article transaction service.
@@ -43,6 +48,20 @@ public class SubscriptionTransactionService {
     this.slaveUserRepository = slaveUserRepository;
     this.salveNewsLetterRepository = salveNewsLetterRepository;
     this.modelMapper = new ModelMapper();
+
+    /**
+     * Lambda expression to populate user and newsletter from SubscriptionEntity to SubscriptionBo
+     */
+//    this.modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+//    Converter<SubscriptionEntity, SubscriptionBo> entityToBoConverter = context -> {
+//      SubscriptionEntity source = context.getSource();
+//      SubscriptionBo destination = context.getDestination();
+//      destination.setUser(source.getUser());
+//      destination.setNewsLetter(source.getNewsLetter());
+//      return destination;
+//    };
+//
+//    this.modelMapper.addConverter(entityToBoConverter);
   }
 
 
@@ -74,6 +93,20 @@ public class SubscriptionTransactionService {
     final SubscriptionEntity subscription = slaveSubscriptionRepository.findById(subscriptionId)
         .orElseThrow(SubscriptionNotFoundException::new);
     return modelMapper.map(subscription, SubscriptionDto.class);
+  }
+
+  /**
+   * Gets all subscription bo.
+   *
+   * @return the all subscription bo
+   */
+  public List<SubscriptionBo> getAllSubscriptionBo() {
+
+    return slaveSubscriptionRepository.findAllBySubscriptionState(SubscriptionStatusEnum.SUBSCRIBED).stream()
+        .map(subscriptionEntity -> {
+          SubscriptionBo subscriptionBo = modelMapper.map(subscriptionEntity, SubscriptionBo.class);
+          return subscriptionBo;
+        }).collect(Collectors.toList());
   }
 
 }

@@ -2,7 +2,7 @@ package com.gonuclei.controller;
 
 import com.gonuclei.dto.ArticleDto;
 import com.gonuclei.exception.NewsLetterNotFoundException;
-import com.gonuclei.service.impl.PublishService;
+import com.gonuclei.service.PublishService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

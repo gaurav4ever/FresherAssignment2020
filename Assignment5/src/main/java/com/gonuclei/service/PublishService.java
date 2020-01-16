@@ -1,4 +1,4 @@
-package com.gonuclei.service.impl;
+package com.gonuclei.service;
 
 import com.gonuclei.config.KafkaProducerConfig;
 import com.gonuclei.dto.ArticleDto;

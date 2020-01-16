@@ -2,10 +2,7 @@ package com.gonuclei.entities;
 
 import com.gonuclei.model.AbstractNewsLetterModel;
 
-import javax.persistence.Entity;
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,7 +17,7 @@ import java.util.stream.Stream;
 public class NewsLetterEntity extends AbstractNewsLetterModel {
 
 
-  @OneToMany(mappedBy = "newsLetter", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "newsLetter", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private Set<SubscriptionEntity> userSubscriptionEntities = new HashSet<>();
 
   /**
