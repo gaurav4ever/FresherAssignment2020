@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
 dependencies {
@@ -30,4 +34,6 @@ dependencies {
     implementation 'com.bluelinelabs:conductor:3.0.0-rc1'
     implementation 'com.bluelinelabs:conductor-support:3.0.0-rc1'
     implementation 'com.bluelinelabs:conductor-rxlifecycle2:3.0.0-rc1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.17'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 }
