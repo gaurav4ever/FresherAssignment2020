@@ -1,4 +1,7 @@
 package com.techy.nateshmbhat.contacto.presenter;
 
-public class UpdateContactPresenter {
+import com.techy.nateshmbhat.contacto.view.controllers.UpdateContactControllers.UpdateContactContract;
+
+public class UpdateContactPresenter implements UpdateContactContract.Presenter {
+
 }

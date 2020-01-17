@@ -19,6 +19,7 @@ import com.techy.nateshmbhat.contacto.databinding.ListContactsLayoutBinding;
 import com.techy.nateshmbhat.contacto.model.Contact;
 import com.techy.nateshmbhat.contacto.presenter.ListContactsPresenter.ListContactsPresenter;
 import com.techy.nateshmbhat.contacto.permission.ContactPermissionManager;
+import com.techy.nateshmbhat.contacto.view.controllers.AddContactControllers.AddContactController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class ListContactsController extends Controller  implements ListContactsC
     protected View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
         viewBinding = DataBindingUtil.inflate(inflater, R.layout.list_contacts_layout, container, false);
         viewBinding.btnAddContact.setOnClickListener(v ->
-                getRouter().pushController(RouterTransaction.with(new ListContactsController())
+                getRouter().pushController(RouterTransaction.with(new AddContactController())
                         .pushChangeHandler(new HorizontalChangeHandler())
                         .popChangeHandler(new HorizontalChangeHandler())
                 )

@@ -1,14 +1,20 @@
 package com.techy.nateshmbhat.contacto.view.controllers.ListContactsPageController;
 
 import android.content.Context;
+import android.media.Image;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.techy.nateshmbhat.contacto.R;
 import com.techy.nateshmbhat.contacto.databinding.ContactItemBinding;
 import com.techy.nateshmbhat.contacto.model.Contact;
@@ -16,9 +22,11 @@ import java.util.List;
 
 public class ContactsListViewAdapter extends ArrayAdapter<Contact> {
     private ContactItemBinding binding= null ;
+    private ImageLoader imageLoader = ImageLoader.getInstance() ;
 
     public ContactsListViewAdapter(@NonNull Context context, int resource, @NonNull List<Contact> objects) {
         super(context, resource, objects);
+        imageLoader.init( new ImageLoaderConfiguration.Builder(getContext()).build() );
     }
 
     @NonNull
@@ -33,7 +41,9 @@ public class ContactsListViewAdapter extends ArrayAdapter<Contact> {
 
         binding.contactListItemName.setText(contact.getDisplayName());
         binding.contactListItemMobile.setText(contact.getMobileNumber());
-        if(contact.getImageUrl()!=null) binding.contactListItemImage.setImageURI(Uri.parse(contact.getImageUrl()));
+        if(contact.getImageUrl()!=null) {
+            imageLoader.displayImage(contact.getImageUrl() , binding.contactListItemImage) ;
+        }
         return binding.getRoot();
     }
 }

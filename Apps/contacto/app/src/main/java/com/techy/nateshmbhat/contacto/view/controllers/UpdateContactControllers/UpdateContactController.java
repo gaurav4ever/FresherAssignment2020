@@ -1,4 +1,4 @@
 package com.techy.nateshmbhat.contacto.view.controllers.UpdateContactControllers;
 
-public class UpdateContactController {
+public class UpdateContactController implements UpdateContactContract.View {
 }

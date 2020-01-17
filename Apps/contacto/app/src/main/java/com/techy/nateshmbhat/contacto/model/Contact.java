@@ -12,9 +12,18 @@ public class Contact {
 
     private String id ;
     private String displayName ;
+    private String email ;
     private String fullName ;
     private String mobileNumber ;
     private String imageUrl ;
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     public String getId() {
         return id;
