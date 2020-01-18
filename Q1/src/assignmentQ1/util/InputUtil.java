@@ -13,7 +13,7 @@ public class InputUtil {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Product Name: ");
-        String productName = sc.next();
+        String productName = sc.nextLine();
 
         System.out.println("Product Price: ");
         double productPrice = sc.nextDouble();

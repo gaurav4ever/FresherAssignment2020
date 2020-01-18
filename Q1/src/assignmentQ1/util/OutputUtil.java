@@ -9,6 +9,6 @@ public class OutputUtil {
         System.out.println("Product Name:\t"+ productListItems.productName);
         System.out.println("Product Price:\t"+ productListItems.productPrice);
         System.out.println("Product Name:\t"+ salesTax);
-        System.out.println("Product Name:\t"+ totalPrice);
+        System.out.println("Product Name:\t \n"+ totalPrice);
     }
 }
