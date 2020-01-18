@@ -2,15 +2,18 @@ package assignmentQ1.model;
 
 // Properties of item
 public class Item {
-    public String name;
-    public double price;
-    public int quantiy;
-    public int type;
-
-    public Item(String name, double price, int quantiy, int type) {
-        this.name = name;
-        this.price = price;
-        this.quantiy = quantiy;
-        this.type = type;
+//    Constructor
+    public Item(String productName, double productPrice, int productQuantity, int productType) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productQuantity = productQuantity;
+        this.productType = productType;
     }
+
+    public String productName;
+    public double productPrice;
+    public int productQuantity;
+    public int productType;
+
+
 }
