@@ -16,7 +16,7 @@ class Assignment1Test {
 		hmap.put("price","1000");
 		hmap.put("quantity","5");
 		try {
-		Item item = new Item(hmap);
+		Item item = new RawItem(hmap);
 		assertEquals(125,item.getSalesTax());
 		}
 		catch(Exception e) {
@@ -31,7 +31,7 @@ class Assignment1Test {
 		hmap.put("price","1000");
 		hmap.put("quantity","5");
 		try {
-		Item item = new Item(hmap);
+		Item item = new ManufacturedItem(hmap);
 		assertEquals(147.5,item.getSalesTax());
 		}
 		catch(Exception e) {
@@ -40,27 +40,16 @@ class Assignment1Test {
 	}
 	@Test
 	void test_type_imported() {
-		HashMap<String,String> hmap = new HashMap<String,String>();
-		hmap.put("name","item3");
-		hmap.put("type","imported");
-		hmap.put("price","1000");
-		hmap.put("quantity","5");
+		HashMap<String, String> hmap = new HashMap<String, String>();
+		hmap.put("name", "item3");
+		hmap.put("type", "imported");
+		hmap.put("price", "1000");
+		hmap.put("quantity", "5");
 		try {
-		Item item = new Item(hmap);
-		assertEquals(155,item.getSalesTax());
-		}
-		catch(Exception e) {
+			Item item = new ImportedItem(hmap);
+			assertEquals(155, item.getSalesTax());
+		} catch (Exception e) {
 			fail(e.getMessage());
 		}
-	}
-	@Test
-	void test_commandline_arguments() {
-		String args[] = {"-name","item4","-type","random","-price","1000","-quantity","5"};
-		String args1[] = {"-name","item4","-price","1000","-quantity","5"};
-		assertAll(
-				() -> assertThrows(Exception.class,() -> Assignment1.main(args)),
-				() -> assertThrows(Exception.class,() -> Assignment1.main(args1))
-				);
-		
 	}
 }
