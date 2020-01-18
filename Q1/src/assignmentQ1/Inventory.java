@@ -6,7 +6,7 @@ import assignmentQ1.services.CalculateTaxService;
 import assignmentQ1.services.Tax;
 import assignmentQ1.util.InputUtil;
 import assignmentQ1.util.OutputUtil;
-
+//TODO: JUNIT Test cases
 public class Inventory {
     private static ArrayList<Item> productList = new ArrayList<Item>();
 
@@ -16,6 +16,7 @@ public class Inventory {
            calculateTax();
        } catch (Exception e) {
             //prints exception which is caught
+           //TODO: Get more exceptions seperately
             System.out.println(e.getMessage());
         }
     }
