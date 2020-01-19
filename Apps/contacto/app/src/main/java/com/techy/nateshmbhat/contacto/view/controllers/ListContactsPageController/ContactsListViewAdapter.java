@@ -1,13 +1,10 @@
 package com.techy.nateshmbhat.contacto.view.controllers.ListContactsPageController;
 
 import android.content.Context;
-import android.media.Image;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,8 +39,8 @@ public class ContactsListViewAdapter extends ArrayAdapter<Contact> {
         binding.contactListItemName.setText(contact.getDisplayName());
         binding.contactListItemMobile.setText(contact.getMobileNumber());
         binding.contactListItemEmail.setText("email :  "+ contact.getEmail());
-        if(contact.getImageUrl()!=null) {
-            binding.contactListItemImage.setImageURI(Uri.parse(contact.getImageUrl())) ;
+        if(contact.getImageDrawable()!=null) {
+            binding.contactListItemImage.setImageDrawable(contact.getImageDrawable()) ;
         }
         return binding.getRoot();
     }

@@ -1,5 +1,7 @@
 package com.techy.nateshmbhat.contacto.model;
 
+import android.graphics.drawable.Drawable;
+
 import androidx.annotation.NonNull;
 
 public class Contact {
@@ -15,7 +17,15 @@ public class Contact {
     private String email  ; 
     private String companyInfo;
     private String mobileNumber  ; 
-    private String imageUrl  ; 
+    private Drawable imageDrawable;
+
+    public void setPropertiesFromContact(Contact contact){
+        displayName = contact.getDisplayName();
+        email = contact.getEmail() ;
+        companyInfo = contact.getCompanyInfo() ;
+        mobileNumber = contact.getMobileNumber() ;
+        imageDrawable = contact.getImageDrawable() ;
+    }
 
 
     public String getCompanyInfo() {
@@ -47,8 +57,8 @@ public class Contact {
         return mobileNumber;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public Drawable getImageDrawable() {
+        return imageDrawable;
     }
 
     public void setId(String id) {
@@ -63,7 +73,7 @@ public class Contact {
         this.mobileNumber = mobileNumber;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageDrawable(Drawable imageDrawable) {
+        this.imageDrawable = imageDrawable;
     }
 }

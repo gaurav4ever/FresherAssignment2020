@@ -7,6 +7,6 @@ public interface AddContactContract {
         Contact createContactFromView();
     }
     public  interface  Presenter {
-        void writeContactToDevice(Contact contact);
+        void addContact(Contact contact);
     }
 }

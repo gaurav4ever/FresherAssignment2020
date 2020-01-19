@@ -1,7 +1,7 @@
 package com.techy.nateshmbhat.contacto.presenter;
 
 import com.techy.nateshmbhat.contacto.model.Contact;
-import com.techy.nateshmbhat.contacto.util.ContactUpdateUtil;
+import com.techy.nateshmbhat.contacto.util.ContactUtil;
 import com.techy.nateshmbhat.contacto.view.controllers.UpdateContactController.UpdateContactContract;
 
 public class UpdateContactPresenter implements UpdateContactContract.Presenter {
@@ -13,6 +13,6 @@ public class UpdateContactPresenter implements UpdateContactContract.Presenter {
 
     @Override
     public void updateContact(Contact oldContact , Contact newContact) {
-        ContactUpdateUtil.updateContactByName( oldContact , newContact  , view.getView().getContext());
+        ContactUtil.updateContact(oldContact.getId() , newContact) ;
     }
 }

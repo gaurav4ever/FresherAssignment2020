@@ -2,6 +2,7 @@ package com.techy.nateshmbhat.contacto.view.controllers.ListContactsPageControll
 
 import android.app.AlertDialog;
 import android.content.pm.PackageManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import com.bluelinelabs.conductor.Controller;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
+import com.techy.nateshmbhat.contacto.DataHolder.DataHolder;
 import com.techy.nateshmbhat.contacto.R;
 import com.techy.nateshmbhat.contacto.constant.AppConstant;
 import com.techy.nateshmbhat.contacto.databinding.ListContactsLayoutBinding;
@@ -55,10 +57,15 @@ public class ListContactsController extends Controller  implements ListContactsC
             return false ;
         });
 
-        presenter = new ListContactsPresenter();
-        presenter.setView(this) ;
+        presenter = new ListContactsPresenter(this);
         presenter.fetchContactsAndPopulateListView(getActivity());
         return viewBinding.getRoot();
+    }
+
+    @Override
+    protected void onAttach(@NonNull View view) {
+        setAndUpdateContactListView(DataHolder.getInstance().getContactList());
+        Log.d(TAG, "onAttach: " );
     }
 
     @Override
@@ -95,6 +102,7 @@ public class ListContactsController extends Controller  implements ListContactsC
                 .setCancelable(true)
                 .setPositiveButton("Yes", (dialog, id) -> {
                     presenter.deleteContact(contact);
+                    setAndUpdateContactListView(DataHolder.getInstance().getContactList());
                     Toast.makeText(getApplicationContext(),contact.getDisplayName() + " deleted.",
                             Toast.LENGTH_SHORT).show();
                 })

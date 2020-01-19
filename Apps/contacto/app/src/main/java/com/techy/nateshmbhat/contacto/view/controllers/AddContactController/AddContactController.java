@@ -12,6 +12,9 @@ import com.techy.nateshmbhat.contacto.R;
 import com.techy.nateshmbhat.contacto.databinding.AddContactLayoutBinding;
 import com.techy.nateshmbhat.contacto.model.Contact;
 import com.techy.nateshmbhat.contacto.presenter.AddContactPresenter.AddContactPresenter;
+
+import java.util.Random;
+
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class AddContactController extends Controller implements AddContactContract.View {
@@ -27,7 +30,7 @@ public class AddContactController extends Controller implements AddContactContra
 
         viewBinding.btnAddContact.setText("Add Contact");
         viewBinding.btnAddContact.setOnClickListener(v -> {
-                    presenter.writeContactToDevice(
+                    presenter.addContact(
                            createContactFromView()
                     );
                 }
@@ -48,6 +51,8 @@ public class AddContactController extends Controller implements AddContactContra
         contact.setMobileNumber(viewBinding.phoneEditText.getText().toString());
         contact.setEmail(viewBinding.emailEditText.getText().toString());
         contact.setCompanyInfo(viewBinding.companyInfoEditText.getText().toString());
+        contact.setId((new Random().nextInt())+viewBinding.phoneEditText.getText().toString());
+        contact.setImageDrawable(viewBinding.contactImage.getDrawable());
         return contact ;
     }
 }
