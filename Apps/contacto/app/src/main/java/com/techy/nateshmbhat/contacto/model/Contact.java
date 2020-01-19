@@ -10,12 +10,22 @@ public class Contact {
         return displayName+" - " + mobileNumber ;
     }
 
-    private String id ;
-    private String displayName ;
-    private String email ;
-    private String fullName ;
-    private String mobileNumber ;
-    private String imageUrl ;
+    private String id = "" ;   
+    private String displayName  = "" ; 
+    private String email = "" ; 
+    private String fullName = "" ; 
+    private String companyInfo;
+    private String mobileNumber = "" ; 
+    private String imageUrl = "" ; 
+
+
+    public String getCompanyInfo() {
+        return companyInfo;
+    }
+
+    public void setCompanyInfo(String companyInfo) {
+        this.companyInfo = companyInfo;
+    }
 
     public void setEmail(String email) {
         this.email = email;

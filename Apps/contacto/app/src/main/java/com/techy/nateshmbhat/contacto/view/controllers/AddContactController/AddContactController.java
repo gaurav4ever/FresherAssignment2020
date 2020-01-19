@@ -1,6 +1,5 @@
-package com.techy.nateshmbhat.contacto.view.controllers.AddContactControllers;
+package com.techy.nateshmbhat.contacto.view.controllers.AddContactController;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ public class AddContactController extends Controller implements AddContactContra
         viewBinding = DataBindingUtil.inflate(inflater, R.layout.add_contact_layout, container, false);
         presenter = new AddContactPresenter(viewBinding.getRoot());
 
+        viewBinding.btnAddContact.setText("Add Contact");
         viewBinding.btnAddContact.setOnClickListener(v -> {
                     presenter.writeContactToDevice(
                            createContactFromView()

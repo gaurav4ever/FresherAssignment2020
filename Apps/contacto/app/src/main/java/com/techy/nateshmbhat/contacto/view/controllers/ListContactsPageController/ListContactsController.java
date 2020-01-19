@@ -1,15 +1,15 @@
 package com.techy.nateshmbhat.contacto.view.controllers.ListContactsPageController;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-
 import com.bluelinelabs.conductor.Controller;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
@@ -18,11 +18,15 @@ import com.techy.nateshmbhat.contacto.constant.AppConstant;
 import com.techy.nateshmbhat.contacto.databinding.ListContactsLayoutBinding;
 import com.techy.nateshmbhat.contacto.model.Contact;
 import com.techy.nateshmbhat.contacto.presenter.ListContactsPresenter.ListContactsPresenter;
-import com.techy.nateshmbhat.contacto.permission.ContactPermissionManager;
-import com.techy.nateshmbhat.contacto.view.controllers.AddContactControllers.AddContactController;
+import com.techy.nateshmbhat.contacto.util.ContactWriteUtil;
+import com.techy.nateshmbhat.contacto.view.controllers.AddContactController.AddContactController;
+import com.techy.nateshmbhat.contacto.view.controllers.UpdateContactController.UpdateContactController;
+import com.techy.nateshmbhat.contacto.view.controllers.UpdateContactController.UpdateContactDataHolder;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Observable;
 
 public class ListContactsController extends Controller  implements ListContactsContract.View{
     private static final String TAG = "ListContactsController";
@@ -40,8 +44,21 @@ public class ListContactsController extends Controller  implements ListContactsC
                         .popChangeHandler(new HorizontalChangeHandler())
                 )
         );
+
         contactsArrayAdapter = new ContactsListViewAdapter(viewBinding.getRoot().getContext() , R.layout.contact_item , new ArrayList<Contact>());
         viewBinding.listviewContacts.setAdapter(contactsArrayAdapter);
+        viewBinding.listviewContacts.setOnItemClickListener((parent, view, position, id) -> {
+            UpdateContactDataHolder.getInstance().setContact(contactsArrayAdapter.getItem(position));
+            getRouter().pushController(RouterTransaction.with(new UpdateContactController())
+                    .pushChangeHandler(new HorizontalChangeHandler())
+                    .popChangeHandler(new HorizontalChangeHandler())
+            );
+        });
+
+        viewBinding.listviewContacts.setOnItemLongClickListener((parent, view, position, id) -> {
+            showDeleteConfirmationDialog(contactsArrayAdapter.getItem(position));
+            return false ;
+        });
 
         presenter = new ListContactsPresenter();
         presenter.setView(this) ;
@@ -72,4 +89,29 @@ public class ListContactsController extends Controller  implements ListContactsC
     public void showToast(String msg) {
         Toast.makeText(getApplicationContext() , msg , Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void showDeleteConfirmationDialog(Contact contact) {
+        AlertDialog.Builder builder =new AlertDialog.Builder(getView().getContext());
+
+        //Setting message manually and performing action on button click
+        builder.setTitle("Delete this contact ?")
+                .setMessage("Are you sure that you wish to delete the contact with name : " + contact.getFullName()+ " number : " + contact.getMobileNumber() + "  ?")
+                .setCancelable(true)
+                .setPositiveButton("Yes", (dialog, id) -> {
+                    presenter.deleteContact(contact);
+                    Toast.makeText(getApplicationContext(),contact.getFullName() + " deleted.",
+                            Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("No", (dialog, id) -> {
+                    //  Action for 'NO' Button
+                    dialog.cancel();
+                });
+
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        alert.show();
+    }
+
 }

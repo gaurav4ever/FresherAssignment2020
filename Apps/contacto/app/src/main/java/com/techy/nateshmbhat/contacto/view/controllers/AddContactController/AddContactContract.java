@@ -1,6 +1,5 @@
-package com.techy.nateshmbhat.contacto.view.controllers.AddContactControllers;
+package com.techy.nateshmbhat.contacto.view.controllers.AddContactController;
 
-import android.content.Context;
 import com.techy.nateshmbhat.contacto.model.Contact;
 
 public interface AddContactContract {

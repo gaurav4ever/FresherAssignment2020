@@ -6,6 +6,7 @@
     android:padding="0dp"
     android:layout_margin="0dp"
     android:weightSum="1"
+    android:descendantFocusability="blocksDescendants"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageButton
@@ -35,8 +36,14 @@
             xmlns:android="http://schemas.android.com/apk/res/android" />
 
 
-    </LinearLayout>
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:text="email"
+            android:id="@+id/contact_list_item_email"
+            xmlns:android="http://schemas.android.com/apk/res/android" />
 
+    </LinearLayout>
 
 </LinearLayout>
 </layout>
