@@ -1,12 +1,6 @@
 package Assignment_2;
 
 import java.util.Scanner;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Serializable;
-import java.util.Comparator;
-import java.util.Collections;
-import java.util.ArrayList;
 import Assignment_2.models.UserInfo;
 import Assignment_2.services.UserServices;
 
