@@ -2,18 +2,14 @@ package com.techy.nateshmbhat.contacto.presenter.ListContactsPresenter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ContentResolver;
-import android.database.Cursor;
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.widget.Toast;
 import com.techy.nateshmbhat.contacto.model.Contact;
 import com.techy.nateshmbhat.contacto.permission.ContactPermissionManager;
+import com.techy.nateshmbhat.contacto.util.ContactDeleteUtil;
 import com.techy.nateshmbhat.contacto.util.ContactReadUtil;
-import com.techy.nateshmbhat.contacto.util.ContactWriteUtil;
+import com.techy.nateshmbhat.contacto.util.ContactAddUtil;
 import com.techy.nateshmbhat.contacto.view.controllers.ListContactsPageController.ListContactsContract;
-import java.util.ArrayList;
-import java.util.List;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -44,6 +40,6 @@ public class ListContactsPresenter implements ListContactsContract.Presenter {
 
     @Override
     public void deleteContact(Contact contact) {
-        ContactWriteUtil.deleteContactFromDevice(contact , view.getView());
+        ContactDeleteUtil.deleteContactFromDevice(contact , view.getView().getContext()) ;
     }
 }

@@ -45,7 +45,6 @@ public class ContactReadUtil {
                 Contact contact = new Contact();
                 contact.setId(cur.getString(id));
                 contact.setDisplayName(cur.getString(name));
-                contact.setFullName(cur.getString(name));
                 contact.setMobileNumber(cur.getString(mobileNumber));
                 contact.setImageUrl(cur.getString(thumbnail));
                 contact.setEmail(getEmailOfContact(contact.getId()));

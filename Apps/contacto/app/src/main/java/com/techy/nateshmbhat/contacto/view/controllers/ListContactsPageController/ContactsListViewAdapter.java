@@ -39,7 +39,7 @@ public class ContactsListViewAdapter extends ArrayAdapter<Contact> {
             binding = DataBindingUtil.inflate(inflater,R.layout.contact_item ,parent , false) ;
         }
 
-        binding.contactListItemName.setText(contact.getFullName());
+        binding.contactListItemName.setText(contact.getDisplayName());
         binding.contactListItemMobile.setText(contact.getMobileNumber());
         binding.contactListItemEmail.setText("email :  "+ contact.getEmail());
         if(contact.getImageUrl()!=null) {

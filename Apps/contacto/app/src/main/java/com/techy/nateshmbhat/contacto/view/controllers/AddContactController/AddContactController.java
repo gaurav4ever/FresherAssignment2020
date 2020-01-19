@@ -44,10 +44,10 @@ public class AddContactController extends Controller implements AddContactContra
     @Override
     public Contact createContactFromView() {
         Contact contact = new Contact();
-        contact.setFullName(viewBinding.nameEditText.getText().toString());
-        contact.setDisplayName(viewBinding.companyInfoEditText.getText().toString());
+        contact.setDisplayName(viewBinding.nameEditText.getText().toString());
         contact.setMobileNumber(viewBinding.phoneEditText.getText().toString());
         contact.setEmail(viewBinding.emailEditText.getText().toString());
+        contact.setCompanyInfo(viewBinding.companyInfoEditText.getText().toString());
         return contact ;
     }
 }

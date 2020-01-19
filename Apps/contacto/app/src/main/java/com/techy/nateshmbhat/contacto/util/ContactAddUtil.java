@@ -1,18 +1,15 @@
 package com.techy.nateshmbhat.contacto.util;
 
-import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.database.Cursor;
+import android.content.Context;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.view.View;
 
 import com.techy.nateshmbhat.contacto.model.Contact;
 
-public class ContactWriteUtil {
-    private static View view ;
-    private ContactWriteUtil(){}
+public class ContactAddUtil {
+    private static Context context;
 
     private static void insertContactDisplayName(Uri addContactsUri, long rawContactId, String displayName)
     {
@@ -24,9 +21,9 @@ public class ContactWriteUtil {
         contentValues.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE);
 
         // Put contact display name value.
-        contentValues.put(ContactsContract.Contacts.DISPLAY_NAME , displayName);
+        contentValues.put(ContactsContract.Contacts.NAME_RAW_CONTACT_ID , displayName);
 
-        view.getContext().getContentResolver().insert(addContactsUri, contentValues);
+        context.getContentResolver().insert(addContactsUri, contentValues);
     }
 
     private static void insertContactEmail(Uri addContactsUri, long rawContactId, String email)
@@ -40,7 +37,7 @@ public class ContactWriteUtil {
 
         contentValues.put(ContactsContract.CommonDataKinds.Email.ADDRESS , email);
 
-        view.getContext().getContentResolver().insert(addContactsUri, contentValues);
+        context.getContentResolver().insert(addContactsUri, contentValues);
     }
 
 
@@ -75,54 +72,27 @@ public class ContactWriteUtil {
         contentValues.put(ContactsContract.CommonDataKinds.Phone.TYPE, phoneContactType);
 
         // Insert new contact data into phone contact list.
-        view.getContext().getContentResolver().insert(addContactsUri, contentValues);
+        context.getContentResolver().insert(addContactsUri, contentValues);
     }
 
     private static long getRawContactId()
     {
         // Inser an empty contact.
         ContentValues contentValues = new ContentValues();
-        Uri rawContactUri = view.getContext().getContentResolver().insert(ContactsContract.RawContacts.CONTENT_URI, contentValues);
+        Uri rawContactUri = context.getContentResolver().insert(ContactsContract.RawContacts.CONTENT_URI, contentValues);
         // Get the newly created contact raw id.
         long ret = ContentUris.parseId(rawContactUri);
         return ret;
     }
 
-    public static void writeContactToDevice(Contact contact, View viewContext){
-        view = viewContext ;
-        if(contact.getId()==null){
-            contact.setId(String.valueOf(getRawContactId()));
-        }
-
+    public static void writeContactToDevice(Contact contact, Context newcontext){
         Uri addContactsUri = ContactsContract.Data.CONTENT_URI ;
+        context = newcontext ;
 
         // Add an empty contact and get the generated id.
         long rawContactId = getRawContactId();
-        insertContactDisplayName(addContactsUri , rawContactId , contact.getFullName());
+        insertContactDisplayName(addContactsUri , rawContactId , contact.getDisplayName());
         insertContactEmail(addContactsUri , rawContactId , contact.getEmail());
-        insertContactPhoneNumber(addContactsUri , rawContactId , contact.getMobileNumber() , "work");
-    }
-
-
-    public static void deleteContactFromDevice(Contact contact, View viewContext){
-            Uri contactUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(contact.getMobileNumber()));
-            ContentResolver cr = viewContext.getContext().getContentResolver() ;
-            Cursor cur = cr.query(contactUri, null, null, null, null);
-            try {
-                if (cur.moveToFirst()) {
-                    do {
-                        if (cur.getString(cur.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME)).equalsIgnoreCase(contact.getDisplayName())) {
-                            String lookupKey = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
-                            Uri uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey);
-                            cr.delete(uri, null, null);
-                        }
-                    } while (cur.moveToNext());
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace() ;
-            } finally {
-                cur.close();
-            }
+        insertContactPhoneNumber(addContactsUri , rawContactId , contact.getMobileNumber() , "mobile");
     }
 }
