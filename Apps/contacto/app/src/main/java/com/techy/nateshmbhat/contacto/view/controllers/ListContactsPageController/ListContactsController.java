@@ -12,12 +12,12 @@ import androidx.databinding.DataBindingUtil;
 import com.bluelinelabs.conductor.Controller;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
-import com.techy.nateshmbhat.contacto.DataHolder.DataHolder;
 import com.techy.nateshmbhat.contacto.R;
 import com.techy.nateshmbhat.contacto.constant.AppConstant;
 import com.techy.nateshmbhat.contacto.databinding.ListContactsLayoutBinding;
 import com.techy.nateshmbhat.contacto.model.Contact;
 import com.techy.nateshmbhat.contacto.presenter.ListContactsPresenter.ListContactsPresenter;
+import com.techy.nateshmbhat.contacto.util.ViewUtil;
 import com.techy.nateshmbhat.contacto.view.controllers.AddContactController.AddContactController;
 import com.techy.nateshmbhat.contacto.view.controllers.UpdateContactController.UpdateContactController;
 import com.techy.nateshmbhat.contacto.view.controllers.UpdateContactController.UpdateContactDataHolder;
@@ -34,6 +34,7 @@ public class ListContactsController extends Controller  implements ListContactsC
     @NonNull
     @Override
     protected View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
+        presenter = new ListContactsPresenter(this);
         viewBinding = DataBindingUtil.inflate(inflater, R.layout.list_contacts_layout, container, false);
         viewBinding.btnAddContact.setOnClickListener(v ->
                 getRouter().pushController(RouterTransaction.with(new AddContactController())
@@ -57,14 +58,12 @@ public class ListContactsController extends Controller  implements ListContactsC
             return false ;
         });
 
-        presenter = new ListContactsPresenter(this);
-        presenter.fetchContactsAndPopulateListView(getActivity());
         return viewBinding.getRoot();
     }
 
     @Override
     protected void onAttach(@NonNull View view) {
-        setAndUpdateContactListView(DataHolder.getInstance().getContactList());
+        presenter.fetchContactsAndPopulateListView(getActivity());
         Log.d(TAG, "onAttach: " );
     }
 
@@ -101,10 +100,9 @@ public class ListContactsController extends Controller  implements ListContactsC
                 .setMessage("Are you sure that you wish to delete the contact with name : " + contact.getDisplayName()+ " number : " + contact.getMobileNumber() + "  ?")
                 .setCancelable(true)
                 .setPositiveButton("Yes", (dialog, id) -> {
-                    presenter.deleteContact(contact);
-                    setAndUpdateContactListView(DataHolder.getInstance().getContactList());
-                    Toast.makeText(getApplicationContext(),contact.getDisplayName() + " deleted.",
-                            Toast.LENGTH_SHORT).show();
+                    presenter.deleteContact(contact) ;
+                    presenter.fetchContactsAndPopulateListView(getActivity());
+                    ViewUtil.showShortToast(getApplicationContext(),contact.getDisplayName() + " deleted.");
                 })
                 .setNegativeButton("No", (dialog, id) -> {
                     //  Action for 'NO' Button

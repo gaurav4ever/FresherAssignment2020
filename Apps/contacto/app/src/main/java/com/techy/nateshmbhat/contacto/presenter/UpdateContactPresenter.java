@@ -12,7 +12,7 @@ public class UpdateContactPresenter implements UpdateContactContract.Presenter {
     }
 
     @Override
-    public void updateContact(Contact oldContact , Contact newContact) {
-        ContactUtil.updateContact(oldContact.getId() , newContact) ;
+    public void updateContact(Contact newContact) {
+        ContactUtil.updateContact(view.getView().getContext() , newContact) ;
     }
 }

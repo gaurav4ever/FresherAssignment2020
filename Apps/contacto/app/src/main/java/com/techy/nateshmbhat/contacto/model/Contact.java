@@ -1,9 +1,21 @@
 package com.techy.nateshmbhat.contacto.model;
 
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Entity
 public class Contact {
 
     @NonNull
@@ -12,19 +24,20 @@ public class Contact {
         return displayName+" - " + mobileNumber ;
     }
 
-    private String id  ;   
-    private String displayName   ; 
-    private String email  ; 
+    @PrimaryKey
+    @NonNull
+    private String id  ;
+
+    private String displayName   ;
+    private String email  ;
     private String companyInfo;
-    private String mobileNumber  ; 
-    private Drawable imageDrawable;
+    private String mobileNumber  ;
 
     public void setPropertiesFromContact(Contact contact){
         displayName = contact.getDisplayName();
         email = contact.getEmail() ;
         companyInfo = contact.getCompanyInfo() ;
         mobileNumber = contact.getMobileNumber() ;
-        imageDrawable = contact.getImageDrawable() ;
     }
 
 
@@ -57,10 +70,6 @@ public class Contact {
         return mobileNumber;
     }
 
-    public Drawable getImageDrawable() {
-        return imageDrawable;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -73,7 +82,4 @@ public class Contact {
         this.mobileNumber = mobileNumber;
     }
 
-    public void setImageDrawable(Drawable imageDrawable) {
-        this.imageDrawable = imageDrawable;
-    }
 }

@@ -6,6 +6,6 @@ public interface UpdateContactContract {
         android.view.View getView()  ;
     }
     interface Presenter{
-        void updateContact(Contact oldContact , Contact newContact) ;
+        void updateContact(Contact newContact) ;
     }
 }

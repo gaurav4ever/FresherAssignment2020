@@ -46,4 +46,10 @@ dependencies {
     implementation 'pub.devrel:easypermissions:2.0.1'
 
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    def room_version = "2.2.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    // optional - RxJava support for Room
+    implementation "androidx.room:room-rxjava2:$room_version"
 }

@@ -12,6 +12,7 @@ import com.techy.nateshmbhat.contacto.R;
 import com.techy.nateshmbhat.contacto.databinding.AddContactLayoutBinding;
 import com.techy.nateshmbhat.contacto.model.Contact;
 import com.techy.nateshmbhat.contacto.presenter.AddContactPresenter.AddContactPresenter;
+import com.techy.nateshmbhat.contacto.util.ViewUtil;
 
 import java.util.Random;
 
@@ -26,13 +27,13 @@ public class AddContactController extends Controller implements AddContactContra
     @Override
     protected View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
         viewBinding = DataBindingUtil.inflate(inflater, R.layout.add_contact_layout, container, false);
-        presenter = new AddContactPresenter(viewBinding.getRoot());
+        presenter = new AddContactPresenter(this);
 
         viewBinding.btnAddContact.setText("Add Contact");
         viewBinding.btnAddContact.setOnClickListener(v -> {
-                    presenter.addContact(
-                           createContactFromView()
-                    );
+                    presenter.addContact(createContactFromView());
+                    ViewUtil.showShortToast(getApplicationContext() , "Contact Added");
+                    getRouter().popCurrentController() ;
                 }
         );
         return viewBinding.getRoot();
@@ -52,7 +53,6 @@ public class AddContactController extends Controller implements AddContactContra
         contact.setEmail(viewBinding.emailEditText.getText().toString());
         contact.setCompanyInfo(viewBinding.companyInfoEditText.getText().toString());
         contact.setId((new Random().nextInt())+viewBinding.phoneEditText.getText().toString());
-        contact.setImageDrawable(viewBinding.contactImage.getDrawable());
         return contact ;
     }
 }

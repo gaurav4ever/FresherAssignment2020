@@ -39,9 +39,7 @@ public class ContactsListViewAdapter extends ArrayAdapter<Contact> {
         binding.contactListItemName.setText(contact.getDisplayName());
         binding.contactListItemMobile.setText(contact.getMobileNumber());
         binding.contactListItemEmail.setText("email :  "+ contact.getEmail());
-        if(contact.getImageDrawable()!=null) {
-            binding.contactListItemImage.setImageDrawable(contact.getImageDrawable()) ;
-        }
+
         return binding.getRoot();
     }
 }

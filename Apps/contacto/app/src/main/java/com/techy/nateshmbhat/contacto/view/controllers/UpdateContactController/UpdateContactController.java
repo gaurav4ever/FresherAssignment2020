@@ -12,6 +12,7 @@ import com.techy.nateshmbhat.contacto.R;
 import com.techy.nateshmbhat.contacto.databinding.AddContactLayoutBinding;
 import com.techy.nateshmbhat.contacto.model.Contact;
 import com.techy.nateshmbhat.contacto.presenter.UpdateContactPresenter;
+import com.techy.nateshmbhat.contacto.util.ViewUtil;
 
 public class UpdateContactController extends Controller implements UpdateContactContract.View {
 
@@ -32,11 +33,14 @@ public class UpdateContactController extends Controller implements UpdateContact
 
         binding.btnAddContact.setOnClickListener(v -> {
                     Contact newContact = new Contact();
+                    newContact.setId(contact.getId());
                     newContact.setDisplayName(binding.nameEditText.getText().toString());
                     newContact.setMobileNumber(binding.phoneEditText.getText().toString());
                     newContact.setEmail(binding.emailEditText.getText().toString());
                     newContact.setCompanyInfo(binding.companyInfoEditText.getText().toString());
-                    presenter.updateContact(contact, newContact);
+                    presenter.updateContact(newContact);
+                    ViewUtil.showShortToast(getApplicationContext() , contact.getDisplayName()+" Updated.");
+                    getRouter().popCurrentController() ;
                 }
         );
 
