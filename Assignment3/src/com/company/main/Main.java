@@ -1,46 +1,19 @@
 package com.company.main;
+
+import com.company.main.driver.ChoiceDriver;
+import com.company.main.model.Node;
+
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
+    public static Scanner scan = new Scanner(System.in);
+    static HashMap<Integer, Node> graph = new HashMap<>();
+
     public static void main(String[] args) {
 
-        int choice;
-        Scanner scan = new Scanner(System.in);
-        GraphOperation graphOperation = new GraphOperation();
+        new SampleGraph().build(graph);
+        new ChoiceDriver().start(graph);
 
-        while(true)
-        {
-            choice = graphOperation.graphOperationMenu();
-            switch (choice)
-            {
-                case 1:
-                    graphOperation.getParent();
-                    break;
-                case 2:
-                    graphOperation.getChildren();
-                    break;
-                case 3:
-                    graphOperation.printAncestors(0);
-                    break;
-                case 4:
-                    graphOperation.printDescendants(0);
-                    break;
-                case 5:
-                    graphOperation.deleteDependency();
-                    break;
-                case 6:
-                    graphOperation.deleteNode();
-                    break;
-                case 7:
-                    graphOperation.addDependency(1,1,1);
-                    break;
-                case 8:
-                    graphOperation.addNode();
-                    break;
-                case 9:
-                    return;
-            }
-        }
     }
 }
