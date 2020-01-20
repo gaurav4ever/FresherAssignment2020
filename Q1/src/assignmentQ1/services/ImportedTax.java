@@ -1,6 +1,6 @@
 package assignmentQ1.services;
 
-public class ImportedTax implements CalculateTaxService{
+public class ImportedTax implements CalculateTaxService {
     @Override
     public double calculateTax(double price) {
         double tax = (price * 12.5) / 100;
