@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+
 import com.bluelinelabs.conductor.Controller;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
@@ -25,11 +27,11 @@ import com.techy.nateshmbhat.contacto.view.controllers.UpdateContactController.U
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListContactsController extends Controller  implements ListContactsContract.View{
+public class ListContactsController extends Controller implements ListContactsContract.View {
     private static final String TAG = "ListContactsController";
     private ListContactsLayoutBinding viewBinding;
     private ContactsListViewAdapter contactsArrayAdapter;
-    private ListContactsPresenter presenter ;
+    private ListContactsPresenter presenter;
 
     @NonNull
     @Override
@@ -43,7 +45,7 @@ public class ListContactsController extends Controller  implements ListContactsC
                 )
         );
 
-        contactsArrayAdapter = new ContactsListViewAdapter(viewBinding.getRoot().getContext() , R.layout.contact_item , new ArrayList<Contact>());
+        contactsArrayAdapter = new ContactsListViewAdapter(viewBinding.getRoot().getContext(), R.layout.contact_item, new ArrayList<Contact>());
         viewBinding.listviewContacts.setAdapter(contactsArrayAdapter);
         viewBinding.listviewContacts.setOnItemClickListener((parent, view, position, id) -> {
             UpdateContactDataHolder.getInstance().setContact(contactsArrayAdapter.getItem(position));
@@ -55,7 +57,7 @@ public class ListContactsController extends Controller  implements ListContactsC
 
         viewBinding.listviewContacts.setOnItemLongClickListener((parent, view, position, id) -> {
             showDeleteConfirmationDialog(contactsArrayAdapter.getItem(position));
-            return false ;
+            return false;
         });
 
         return viewBinding.getRoot();
@@ -64,7 +66,7 @@ public class ListContactsController extends Controller  implements ListContactsC
     @Override
     protected void onAttach(@NonNull View view) {
         presenter.fetchContactsAndPopulateListView(getActivity());
-        Log.d(TAG, "onAttach: " );
+        Log.d(TAG, "onAttach: ");
     }
 
     @Override
@@ -72,8 +74,7 @@ public class ListContactsController extends Controller  implements ListContactsC
         if (requestCode == AppConstant.CONTACT_REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 presenter.fetchContactsAndPopulateListView(getActivity());
-            }
-            else {
+            } else {
                 showToast("Please give permission to read and write contacts");
             }
         }
@@ -88,25 +89,27 @@ public class ListContactsController extends Controller  implements ListContactsC
 
     @Override
     public void showToast(String msg) {
-        Toast.makeText(getApplicationContext() , msg , Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showDeleteConfirmationDialog(Contact contact) {
-        AlertDialog.Builder builder =new AlertDialog.Builder(getView().getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getView().getContext());
 
         //Setting message manually and performing action on button click
         builder.setTitle("Delete this contact ?")
-                .setMessage("Are you sure that you wish to delete the contact with name : " + contact.getDisplayName()+ " number : " + contact.getMobileNumber() + "  ?")
+                .setMessage("Are you sure that you wish to delete the contact with name : " + contact.getDisplayName() + " number : " + contact.getMobileNumber() + "  ?")
                 .setCancelable(true)
                 .setPositiveButton("Yes", (dialog, id) -> {
-                    presenter.deleteContact(contact) ;
-                    presenter.fetchContactsAndPopulateListView(getActivity());
-                    ViewUtil.showShortToast(getApplicationContext(),contact.getDisplayName() + " deleted.");
+                    presenter.deleteContact(contact);
+                    ViewUtil.showShortToast(getApplicationContext(), contact.getDisplayName() + " deleted.");
                 })
                 .setNegativeButton("No", (dialog, id) -> {
                     //  Action for 'NO' Button
                     dialog.cancel();
+                })
+                .setOnDismissListener((obj) -> {
+                    presenter.fetchContactsAndPopulateListView(getActivity());
                 });
 
         //Creating dialog box
