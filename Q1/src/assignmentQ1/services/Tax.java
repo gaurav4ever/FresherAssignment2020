@@ -1,8 +1,8 @@
 package assignmentQ1.services;
 
 public class Tax {
-    public CalculateTaxService  getTax(int type) {
-    switch(type) {
+    public CalculateTaxService getTax(int type) {
+        switch (type) {
         case 1:
             return new RawTax();
         case 2:
@@ -12,7 +12,7 @@ public class Tax {
         default:
             System.out.println("You have entered a wrong choice!");
             System.exit(0);
-    }
-    return null;
+        }
+        return null;
     }
 }
