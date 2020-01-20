@@ -4,8 +4,7 @@ import java.util.Scanner;
 import Assignment_2.models.UserInfo;
 import Assignment_2.services.UserServices;
 
-
-class Menu{
+class Menu {
     static Scanner sc = new Scanner(System.in);
     UserServices users = new UserServices();
 
@@ -60,16 +59,17 @@ class Menu{
 
     // DisplayUser
     void displayUser() {
-        while(true){
+        while (true) {
             System.out.println("Sort data based on 'Name'/ 'Roll Number' / 'Age' / 'Address'? ");
             String param = sc.nextLine();
             System.out.println("Type 'a' for ascending order and 'b' for descending order. ");
             String order = sc.nextLine();
-            if((!param.equals("Name") && !param.equals("Roll Number") && !param.equals("Age") && !param.equals("Address")) || (!order.equals("a") && !order.equals("b"))){
+            if ((!param.equals("Name") && !param.equals("Roll Number") && !param.equals("Age")
+                    && !param.equals("Address")) || (!order.equals("a") && !order.equals("b"))) {
                 System.out.println("Invalid input.");
                 System.out.println("Back to Menu? (y/n )");
                 String back = sc.nextLine();
-                if(back.equals("y") || back.equals("Y")){
+                if (back.equals("y") || back.equals("Y")) {
                     break;
                 }
                 continue;
@@ -80,14 +80,13 @@ class Menu{
     }
 
     // DeleteUser
-    void deleteUser() throws Exception{
+    void deleteUser() throws Exception {
         System.out.print("Enter the Roll Number : ");
         int rollNumber = sc.nextInt();
         sc.nextLine();
-        try{
+        try {
             System.out.println(users.deleteUser(rollNumber));
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -101,12 +100,12 @@ class Menu{
     void exitmenu() {
         System.out.println("Save User Details : (y/n) ");
         String saver = sc.nextLine();
-        if(saver.equals("y") || saver.equals("Y")){
+        if (saver.equals("y") || saver.equals("Y")) {
             users.serialization();
         }
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         Menu menuObj = new Menu();
         int option = 0;
 
@@ -120,25 +119,25 @@ class Menu{
 
             option = sc.nextInt();
             sc.nextLine();
-            switch(option){
-                case(1):
-                    menuObj.addUser();
-                    continue;
-                case(2):
-                    menuObj.displayUser();
-                    continue;
-                case(3):
-                    menuObj.deleteUser();
-                    continue;
-                case(4):
-                    menuObj.saveUsers();
-                    continue;
-                case(5):
-                    menuObj.exitmenu();
-                    return;
-                default:
-                    System.out.println("Invalid Input.");
-                    continue;
+            switch (option) {
+            case (1):
+                menuObj.addUser();
+                continue;
+            case (2):
+                menuObj.displayUser();
+                continue;
+            case (3):
+                menuObj.deleteUser();
+                continue;
+            case (4):
+                menuObj.saveUsers();
+                continue;
+            case (5):
+                menuObj.exitmenu();
+                return;
+            default:
+                System.out.println("Invalid Input.");
+                continue;
             }
         }
 

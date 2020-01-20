@@ -12,52 +12,51 @@ import java.util.Collections;
 import Assignment_2.Sorting.*;
 import Assignment_2.models.UserInfo;
 
-public class UserServices implements Serializable{
+public class UserServices implements Serializable {
     private static final long serialVersionUID = 1L;
     public ArrayList<UserInfo> usersInfo = null;
-    public UserServices(){
+
+    public UserServices() {
         usersInfo = deserialization();
     }
 
-    //addUser
+    // addUser
     public void addUser(UserInfo newUser) {
         usersInfo.add(newUser);
     }
 
-    //deleteUser
-    public String deleteUser(int newRollNumber){
-        for(UserInfo user: usersInfo){
-            if(user.rollNumber == newRollNumber){
+    // deleteUser
+    public String deleteUser(int newRollNumber) {
+        for (UserInfo user : usersInfo) {
+            if (user.rollNumber == newRollNumber) {
                 usersInfo.remove(user);
-                return user.name+" deleted";
+                return user.name + " deleted";
             }
         }
         return "User not Found!";
     }
 
-    //displayUser
-    public void displayUser(String param, String order){
-        if(param.equals("Name")){
+    // displayUser
+    public void displayUser(String param, String order) {
+        if (param.equals("Name")) {
             Collections.sort(usersInfo);
-        }
-        else if(param.equals("Age")){
+        } else if (param.equals("Age")) {
             Collections.sort(usersInfo, new AgeComparator());
-        }
-        else if(param.equals("Roll Number")){
+        } else if (param.equals("Roll Number")) {
             Collections.sort(usersInfo, new RollComparator());
-        }
-        else if(param.equals("Address")){
+        } else if (param.equals("Address")) {
             Collections.sort(usersInfo, new AddressComparator());
         }
-        if(order.equals("b")){
+        if (order.equals("b")) {
             Collections.reverse(usersInfo);
         }
 
         System.out.println("--------------------------------------------------------------------------------");
-        System.out.format("%-15s%-15s%-15s%-15s%-15s\n", "Name","Roll Number" ,"Age" , "Address", "Courses");
+        System.out.format("%-15s%-15s%-15s%-15s%-15s\n", "Name", "Roll Number", "Age", "Address", "Courses");
         System.out.println("--------------------------------------------------------------------------------");
-        for(UserInfo user : usersInfo){
-            System.out.format("%-15s%-15s%-15s%-15s%-15s\n", user.name,user.rollNumber ,user.age , user.address, String.join(", ", user.courses));
+        for (UserInfo user : usersInfo) {
+            System.out.format("%-15s%-15s%-15s%-15s%-15s\n", user.name, user.rollNumber, user.age, user.address,
+                    String.join(", ", user.courses));
         }
     }
 
@@ -65,9 +64,10 @@ public class UserServices implements Serializable{
     public void serialization() {
         ArrayList<UserInfo> UserServicesInfo = usersInfo;
         try {
-            String path = UserServices.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "/data/users.ser";
+            String path = UserServices.class.getProtectionDomain().getCodeSource().getLocation().getPath()
+                    + "/data/users.ser";
             File file = new File(path);
-            if(!file.exists()){
+            if (!file.exists()) {
                 file.getParentFile().mkdirs();
                 file.createNewFile();
             }
@@ -77,7 +77,7 @@ public class UserServices implements Serializable{
             out.writeObject(UserServicesInfo);
             out.close();
             fileOut.close();
-        } catch ( IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -86,28 +86,27 @@ public class UserServices implements Serializable{
     public ArrayList<UserInfo> deserialization() {
         ArrayList<UserInfo> UserServicesInfo = null;
         try {
-            String path = UserServices.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "/data/users.ser";
+            String path = UserServices.class.getProtectionDomain().getCodeSource().getLocation().getPath()
+                    + "/data/users.ser";
             File file = new File(path);
-            if(!file.exists()){
+            if (!file.exists()) {
                 file.getParentFile().mkdirs();
                 file.createNewFile();
             }
-            if(file.length()>0){
+            if (file.length() > 0) {
                 FileInputStream fileIn = new FileInputStream(file);
                 ObjectInputStream in = new ObjectInputStream(fileIn);
                 UserServicesInfo = (ArrayList<UserInfo>) in.readObject();
                 in.close();
                 fileIn.close();
             }
-        }
-        catch ( IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-        catch ( ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-        if(UserServicesInfo == null){
+        if (UserServicesInfo == null) {
             UserServicesInfo = new ArrayList<UserInfo>();
         }
 

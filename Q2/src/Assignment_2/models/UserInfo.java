@@ -3,20 +3,20 @@ package Assignment_2.models;
 import java.io.Serializable;
 import java.util.Comparator;
 
-public class UserInfo implements Serializable, Comparable<UserInfo>{
+public class UserInfo implements Serializable, Comparable<UserInfo> {
     public static final long serialVersionUID = 1L;
     public String name;
     public int age;
     public String address;
     public int rollNumber;
-    public String [] courses = new String[4];
+    public String[] courses = new String[4];
 
-    //getName
-    public String getName(){
+    // getName
+    public String getName() {
         return name;
     }
 
-    //setName
+    // setName
     public void setName(final String newName) throws Exception {
         if (newName.length() <= 0) {
             throw new Exception("Invalid Name.");
@@ -73,23 +73,19 @@ public class UserInfo implements Serializable, Comparable<UserInfo>{
         courses = newCourses;
     }
 
-    //comparable
-    public int compareTo(UserInfo user){
-        if(name.compareTo(user.name)==0){
-            if(rollNumber==user.rollNumber){
+    // comparable
+    public int compareTo(UserInfo user) {
+        if (name.compareTo(user.name) == 0) {
+            if (rollNumber == user.rollNumber) {
                 return 0;
-            }
-            else if(rollNumber>user.rollNumber){
+            } else if (rollNumber > user.rollNumber) {
                 return 1;
-            }
-            else{
+            } else {
                 return 0;
             }
-        }
-        else if(name.compareTo(user.name)>0){
+        } else if (name.compareTo(user.name) > 0) {
             return 1;
-        }
-        else{
+        } else {
             return -1;
         }
 
