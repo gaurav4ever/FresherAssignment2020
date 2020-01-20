@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -80,9 +81,8 @@ public class ListContactsController extends Controller implements ListContactsCo
 
     @Override
     public void setAndUpdateContactListView(List<Contact> list) {
-        contactsArrayAdapter.clear();
-        contactsArrayAdapter.addAll(list);
-        contactsArrayAdapter.notifyDataSetChanged();
+        contactsArrayAdapter = new ContactsListViewAdapter(getView().getContext() , R.layout.contact_item , list ) ;
+        viewBinding.listviewContacts.setAdapter(contactsArrayAdapter);
     }
 
     @Override
@@ -100,19 +100,20 @@ public class ListContactsController extends Controller implements ListContactsCo
                 .setCancelable(true)
                 .setPositiveButton("Yes", (dialog, id) -> {
                     presenter.deleteContact(contact);
-                    contactsArrayAdapter.remove(contact);
-                    contactsArrayAdapter.notifyDataSetChanged();
                     ViewUtil.showShortToast(getApplicationContext(), contact.getDisplayName() + " deleted.");
                 })
                 .setNegativeButton("No", (dialog, id) -> {
                     //  Action for 'NO' Button
                     dialog.dismiss();
+                })
+                .setOnDismissListener((obj)->{
+                    presenter.fetchContactsAndPopulateListView(getActivity());
                 });
+
 
         //Creating dialog box
         AlertDialog alert = builder.create();
         //Setting the title manually
         alert.show();
     }
-
 }

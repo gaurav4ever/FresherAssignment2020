@@ -11,7 +11,6 @@ import com.techy.nateshmbhat.contacto.model.Contact;
 import com.techy.nateshmbhat.contacto.permission.ContactPermissionManager;
 import com.techy.nateshmbhat.contacto.util.ContactUtil;
 import com.techy.nateshmbhat.contacto.view.controllers.ListContactsPageController.ListContactsContract;
-
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
