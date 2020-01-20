@@ -1,14 +1,18 @@
 package com.example.myapplication;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,6 +52,23 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         final ContactDetails contact = mContacts.get(position);
         holder.name.setText(contact.getmFullName());
         holder.number.setText(contact.getmContactNumber());
+
+        holder.profileImage.setImageURI(null);
+        holder.profileImage.setImageURI(contact.getmImageURI());
+
+        //deleting the contact
+        holder.deleteContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Uri uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, contact.getmLookupKey());
+                mContext.getContentResolver().delete(uri, null, null);
+                mContacts.remove(contact);
+            }
+
+        });
+
+        //handling edit contact operation
         holder.editContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +85,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         });
     }
 
+    private void requestWritePermission(String writeContacts) {
+
+    }
+
     @Override
     public int getItemCount() {
         return mContacts.size();
@@ -73,12 +98,16 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         public TextView name;
         public TextView number;
         public LinearLayout editContact;
+        public ImageView profileImage;
+        public ImageView deleteContact;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
             number = (TextView) itemView.findViewById(R.id.number);
             editContact = itemView.findViewById(R.id.editContact);
+            profileImage = itemView.findViewById(R.id.contactImage);
+            deleteContact = itemView.findViewById(R.id.deleteContact);
         }
     }
 }

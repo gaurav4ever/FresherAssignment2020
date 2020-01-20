@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,16 +34,28 @@ public class MainActivity extends AppCompatActivity {
     private List<ContactDetails> mContacts;
     private FloatingActionButton mAddNewContact;
     private ContactAdapter mContactAdapter;
+    private SwipeRefreshLayout refreshContacts;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
         mContacts = new ArrayList<>();
         mRecylerView = findViewById(R.id.recylerView);
         mAddNewContact = findViewById(R.id.floating_action_button);
+        refreshContacts = findViewById(R.id.refresh);
+
+
+        refreshContacts.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mContacts.clear();
+                readContact();
+                refreshContacts.setRefreshing(false);
+            }
+        });
 
         mAddNewContact.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
                 intent.putExtra("finishActivityOnSaveCompleted", true);
                 startActivityForResult(intent, Constants.RESULT_NEW_CONTACT_SAVED);
-
 
             }
         });
@@ -68,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
         String name = cursor.getString(cursor.getColumnIndex(Phone.DISPLAY_NAME));
         name = name.substring(0, 1).toUpperCase() + name.substring(1);
         String phoneNumber = cursor.getString(cursor.getColumnIndex(Phone.NUMBER));
+        String image = (cursor.getString(cursor.getColumnIndex(Phone.PHOTO_URI)));
+        Uri imageUri = null;
+
+        if (image == null)
+            imageUri = Uri.parse("android.resource://com.example.myapplication/" + R.drawable.user);
+        else
+            imageUri = Uri.parse(image);
 
         //get the contact id and lookupKey for editing
         int lookupKeyIndex = cursor.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY);
@@ -81,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         contact.setmContactNumber(phoneNumber);
         contact.setmContactID(contactId);
         contact.setmLookupKey(currentLookupKey);
+        contact.setmImageURI(imageUri);
 
 
         mContacts.add(contact);
@@ -95,8 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
         Cursor contactsCursor = getContentResolver().query(uri, null, null,
                 null, null);
-        String name, phoneNumber, email, companyInformation;
-        ContactDetails contact;
+
         try {
             while (contactsCursor.moveToNext()) {
                 addContactToList(contactsCursor);
@@ -156,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         //check if permission is granted or not
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             //request for the grant
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, Constants.MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS,Manifest.permission.WRITE_CONTACTS}, Constants.MY_PERMISSIONS_REQUEST_READ_CONTACTS);
         } else {
             Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
             readContact();

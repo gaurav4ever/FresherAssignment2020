@@ -6,7 +6,7 @@
 
 
     <color name="card_bg_color">#31E7E7E7</color>
-    <color name="theme">#0000FF</color>
+    <color name="theme">#000</color>
     <color name="number">#7A7A7A</color>
 
     <color name="imagebackground">#7171FF</color>
