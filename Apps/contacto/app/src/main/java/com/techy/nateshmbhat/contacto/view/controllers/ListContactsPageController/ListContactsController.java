@@ -7,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-
 import com.bluelinelabs.conductor.Controller;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
@@ -27,7 +25,7 @@ import com.techy.nateshmbhat.contacto.view.controllers.UpdateContactController.U
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListContactsController extends Controller implements ListContactsContract.View {
+public class ListContactsController extends Controller implements ListContactsContract.View  {
     private static final String TAG = "ListContactsController";
     private ListContactsLayoutBinding viewBinding;
     private ContactsListViewAdapter contactsArrayAdapter;
@@ -102,14 +100,13 @@ public class ListContactsController extends Controller implements ListContactsCo
                 .setCancelable(true)
                 .setPositiveButton("Yes", (dialog, id) -> {
                     presenter.deleteContact(contact);
+                    contactsArrayAdapter.remove(contact);
+                    contactsArrayAdapter.notifyDataSetChanged();
                     ViewUtil.showShortToast(getApplicationContext(), contact.getDisplayName() + " deleted.");
                 })
                 .setNegativeButton("No", (dialog, id) -> {
                     //  Action for 'NO' Button
-                    dialog.cancel();
-                })
-                .setOnDismissListener((obj) -> {
-                    presenter.fetchContactsAndPopulateListView(getActivity());
+                    dialog.dismiss();
                 });
 
         //Creating dialog box
