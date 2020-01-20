@@ -14,10 +14,12 @@ public class Main extends Thread{
 //step3 create the statement object
             Statement stmt=con.createStatement();
 
+
 //step4 execute query
                 ResultSet rs=stmt.executeQuery("select * from Inventory");
             while(rs.next())
-                System.out.println(rs.getString(1)+"  "+rs.getFloat(2)+"  "+rs.getInt(3) + " " +rs.getString(4));
+                System.out.println(rs.getString(1)+"  "+rs.getFloat(2)
+                        +"  "+rs.getInt(3) + " " +rs.getString(4));
 
 //step5 close the connection object
             con.close();
