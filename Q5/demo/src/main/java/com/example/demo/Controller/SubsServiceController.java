@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.demo.Model.NewsLetter;
+import com.example.demo.Service.SubscriptionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,9 @@ import com.example.demo.Model.NewsLetter;
 
 @RestController
 public class SubsServiceController {
+    @Autowired
+    SubscriptionService subscriptionService;
+
     private static Map<String, NewsLetter> subscriptionRepo = new HashMap<>();
     static {
         NewsLetter toi = new NewsLetter();
@@ -31,19 +36,24 @@ public class SubsServiceController {
         subscriptionRepo.put(dh.getId(),dh);
     }
 
+    @RequestMapping(value = "/subscriptions")
+    public ResponseEntity<Object> getSubscription() {
+        return new ResponseEntity<>(subscriptionService.getSubscriptions(), HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/subscriptions/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteSubscription (@PathVariable("id") String id){
         subscriptionRepo.remove(id);
         return new ResponseEntity<>("NewsLetter is deleted Successfully", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/subscriptions")
-    public ResponseEntity<Object> getSubscription() {
-        return new ResponseEntity<>(subscriptionRepo.values(), HttpStatus.OK);
-    }
+//    @RequestMapping(value = "/subscriptions")
+//    public ResponseEntity<Object> getSubscription() {
+//        return new ResponseEntity<>(subscriptionRepo.values(), HttpStatus.OK);
+//    }
 
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody NewsLetter newsLetter) {
+    public ResponseEntity<Object> updateSubscription(@PathVariable("id") String id, @RequestBody NewsLetter newsLetter) {
         if(!subscriptionRepo.containsKey(id)) throw new SubscriptionNotFoundException();
         subscriptionRepo.remove(id);
         newsLetter.setId(id);
