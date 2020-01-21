@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.Exception.SubscriptionNotFoundException;
+import com.example.demo.Model.NewsLetter;
 
 @RestController
 public class SubsServiceController {
@@ -42,6 +44,7 @@ public class SubsServiceController {
 
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody NewsLetter newsLetter) {
+        if(!subscriptionRepo.containsKey(id)) throw new SubscriptionNotFoundException();
         subscriptionRepo.remove(id);
         newsLetter.setId(id);
         subscriptionRepo.put(id, newsLetter);

@@ -12,6 +12,6 @@ public class SubscriptionExceptionController {
     private static final long serialVersionUID = 1L;
     @ExceptionHandler(value = SubscriptionNotFoundException.class)
     public ResponseEntity<Object> exception(SubscriptionNotFoundException exception) {
-        return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("404 Subscription Not Found", HttpStatus.NOT_FOUND);
     }
 }
