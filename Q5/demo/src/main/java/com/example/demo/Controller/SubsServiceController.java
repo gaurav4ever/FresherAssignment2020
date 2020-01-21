@@ -26,18 +26,26 @@ public class SubsServiceController {
         NewsLetter dh = new NewsLetter();
         dh.setId("3");
         dh.setName("Deccan Herald");
-        subscriptionRepo.put(ht.getId(),dh);
+        subscriptionRepo.put(dh.getId(),dh);
     }
 
     @RequestMapping(value = "/subscriptions/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteSubscription (@PathVariable("id") String id){
         subscriptionRepo.remove(id);
-        return new ResponseEntity<>("Product is deleted Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("NewsLetter is deleted Successfully", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/subscriptions")
     public ResponseEntity<Object> getSubscription() {
         return new ResponseEntity<>(subscriptionRepo.values(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody NewsLetter newsLetter) {
+        subscriptionRepo.remove(id);
+        newsLetter.setId(id);
+        subscriptionRepo.put(id, newsLetter);
+        return new ResponseEntity<>("Newsletterr is updated successsfully", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/subscriptions", method = RequestMethod.POST)
