@@ -35,4 +35,3 @@ public class Inventory {
         return calculateTaxService.calculateTax(price);
     }
 }
-
