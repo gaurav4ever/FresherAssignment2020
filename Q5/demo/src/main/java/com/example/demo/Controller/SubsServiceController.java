@@ -6,10 +6,7 @@ import java.util.Map;
 import com.example.demo.Model.NewsLetter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -33,7 +30,7 @@ public class SubsServiceController {
     }
 
     @RequestMapping(value = "/subscriptions/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Object> delete (@PathVariable("id") String id){
+    public ResponseEntity<Object> deleteSubscription (@PathVariable("id") String id){
         subscriptionRepo.remove(id);
         return new ResponseEntity<>("Product is deleted Successfully", HttpStatus.OK);
     }
@@ -42,4 +39,11 @@ public class SubsServiceController {
     public ResponseEntity<Object> getSubscription() {
         return new ResponseEntity<>(subscriptionRepo.values(), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/subscriptions", method = RequestMethod.POST)
+    public ResponseEntity<Object> createSubscription(@RequestBody NewsLetter newsLetter) {
+        subscriptionRepo.put(newsLetter.getId(),newsLetter);
+        return new ResponseEntity<>("Newsletter created Successfully",HttpStatus.OK);
+    }
+
 }
