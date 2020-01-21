@@ -9,13 +9,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".View.MainActivity">
 
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:id="@+id/refresh"
-        android:layout_height="match_parent">
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerView"
@@ -23,9 +20,6 @@
         android:layout_height="match_parent"
         android:padding="10dp"
          />
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"

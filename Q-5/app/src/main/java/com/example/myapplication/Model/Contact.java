@@ -1,9 +1,9 @@
-package com.example.myapplication;
+package com.example.myapplication.Model;
 
 
 import android.net.Uri;
 
-class ContactDetails {
+public class Contact {
     private String mFullName;
     private String mContactNumber;
     private String mEmail;
