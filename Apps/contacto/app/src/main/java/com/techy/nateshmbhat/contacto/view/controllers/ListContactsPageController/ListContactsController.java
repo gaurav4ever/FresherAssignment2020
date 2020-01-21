@@ -92,6 +92,7 @@ public class ListContactsController extends Controller implements ListContactsCo
 
     @Override
     public void showDeleteConfirmationDialog(Contact contact) {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getView().getContext());
 
         //Setting message manually and performing action on button click
@@ -109,7 +110,6 @@ public class ListContactsController extends Controller implements ListContactsCo
                 .setOnDismissListener((obj)->{
                     presenter.fetchContactsAndPopulateListView(getActivity());
                 });
-
 
         //Creating dialog box
         AlertDialog alert = builder.create();
