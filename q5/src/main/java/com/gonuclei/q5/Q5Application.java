@@ -15,10 +15,6 @@ public class Q5Application {
 	String home(){
 		return "Hello";
 	}
-	@RequestMapping("hello")
-	String hello(){
-		return "Let's see";
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(Q5Application.class, args);
