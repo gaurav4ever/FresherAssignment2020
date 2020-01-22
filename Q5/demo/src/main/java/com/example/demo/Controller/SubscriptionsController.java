@@ -36,7 +36,4 @@ public class SubscriptionsController {
         subscriptionRepository.deleteById(newsLetterId);
         return "Subscription Deleted";
     }
-
-
-
 }
