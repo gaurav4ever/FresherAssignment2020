@@ -3,13 +3,33 @@
   <component name="ChangeListManager">
     <list default="true" id="2e497c14-bac4-49f4-8d4c-f891314affb4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assignment1/out/production/assignment11/META-INF/assignment11.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assignment1/out/production/assignment11/com/company/Information.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assignment1/out/production/assignment11/com/company/InputCheck.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assignment1/out/production/assignment11/com/company/Item.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assignment1/out/production/assignment11/com/company/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assignment1/out/production/assignment11/com/company/TaxEvaluation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FresherAssignment2020.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment 3/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment 3/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment 3/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment 3/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment 3/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment 3/.idea/project-template.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment 3/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/META-INF/assignment2.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/Comparator/comparatorByAddressAssend.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/Comparator/comparatorByAddressDecend.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/Comparator/comparatorByAgeAssend.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/Comparator/comparatorByAgeDecend.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/Comparator/comparatorByName.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/Comparator/comparatorByNameAssend.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/Comparator/comparatorByNameDecend.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/Comparator/comparatorByRollAssend.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/Comparator/comparatorByRollDecend.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/InputChecker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/Student.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2/out/production/assignment2/com/company/StudentInformation.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
