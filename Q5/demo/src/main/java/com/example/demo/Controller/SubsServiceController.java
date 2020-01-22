@@ -31,5 +31,22 @@ public class SubsServiceController {
         return newsLetterRepository.save(newsLetter);
     }
 
+    @PutMapping("/subscriptions/{id}")
+    public NewsLetter update(@PathVariable String id, @RequestBody Map<String, String> body) throws Exception{
+        int newsLetterId = Integer.parseInt(id);
+        // getting newsletter
+        NewsLetter newsLetter = newsLetterRepository.findById(newsLetterId).orElseThrow(Exception::new);
+        newsLetter.setName(body.get("name"));
+        return newsLetterRepository.save(newsLetter);
+    }
+
+    @DeleteMapping("subscriptions/{id}")
+    public String delete(@PathVariable String id){
+        int newsLetterId = Integer.parseInt(id);
+        newsLetterRepository.deleteById(newsLetterId);
+        return "Subscription Deleted";
+    }
+
+
 
 }
