@@ -1,74 +1,52 @@
 package com.example.demo.Controller;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.example.demo.Model.NewsLetter;
-import com.example.demo.Service.SubscriptionService;
+import com.example.demo.Repositories.NewsLetterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.example.demo.Exception.SubscriptionNotFoundException;
-import com.example.demo.Model.NewsLetter;
 
 @RestController
 public class SubsServiceController {
+
     @Autowired
-    SubscriptionService subscriptionService;
+     NewsLetterRepository newsLetterRepository;
 
-    public SubscriptionService getSubscriptionService() {
-        return subscriptionService;
+    @GetMapping("/subscriptions")
+    public List<NewsLetter> index() {
+        return newsLetterRepository.findAll();
     }
 
-    private static Map<String, NewsLetter> subscriptionRepo = new HashMap<>();
-    static {
-        NewsLetter toi = new NewsLetter();
-        toi.setId("1");
-        toi.setName("Times of India");
-        subscriptionRepo.put(toi.getId(),toi);
-
-        NewsLetter ht = new NewsLetter();
-        ht.setId("2");
-        ht.setName("Hindustan Times");
-        subscriptionRepo.put(ht.getId(),ht);
-
-        NewsLetter dh = new NewsLetter();
-        dh.setId("3");
-        dh.setName("Deccan Herald");
-        subscriptionRepo.put(dh.getId(),dh);
+    @GetMapping("/subscriptions/{id}")
+    public NewsLetter show(@PathVariable String id) throws Exception{
+        int newsLetterId = Integer.parseInt(id);
+        return newsLetterRepository.findById(newsLetterId).orElseThrow(Exception::new);
     }
 
-    @RequestMapping(value = "/subscriptions")
-    public ResponseEntity<Object> getSubscription() {
-        return new ResponseEntity<>(subscriptionService.getSubscriptions(), HttpStatus.OK);
+    @PostMapping("/subscriptions")
+    public NewsLetter create(@RequestBody NewsLetter newsLetter){
+//        String name = newsLetter.get("name");
+        return newsLetterRepository.save(newsLetter);
     }
 
-    @RequestMapping(value = "/subscriptions/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Object> deleteSubscription (@PathVariable("id") String id){
-        subscriptionRepo.remove(id);
-        return new ResponseEntity<>("NewsLetter is deleted Successfully", HttpStatus.OK);
+    @PutMapping("/subscriptions/{id}")
+    public NewsLetter update(@PathVariable String id, @RequestBody Map<String, String> body) throws Exception{
+        int newsLetterId = Integer.parseInt(id);
+        // getting newsletter
+        NewsLetter newsLetter = newsLetterRepository.findById(newsLetterId).orElseThrow(Exception::new);
+        newsLetter.setName(body.get("name"));
+        return newsLetterRepository.save(newsLetter);
     }
 
-//    @RequestMapping(value = "/subscriptions")
-//    public ResponseEntity<Object> getSubscription() {
-//        return new ResponseEntity<>(subscriptionRepo.values(), HttpStatus.OK);
-//    }
-
-    @RequestMapping(value = "/subscriptions/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateSubscription(@PathVariable("id") String id, @RequestBody NewsLetter newsLetter) {
-        if(!subscriptionRepo.containsKey(id)) throw new SubscriptionNotFoundException();
-        subscriptionRepo.remove(id);
-        newsLetter.setId(id);
-        subscriptionRepo.put(id, newsLetter);
-        return new ResponseEntity<>("Newsletterr is updated successsfully", HttpStatus.OK);
+    @DeleteMapping("subscriptions/{id}")
+    public String delete(@PathVariable String id){
+        int newsLetterId = Integer.parseInt(id);
+        newsLetterRepository.deleteById(newsLetterId);
+        return "Subscription Deleted";
     }
 
-    @RequestMapping(value = "/subscriptions", method = RequestMethod.POST)
-    public ResponseEntity<Object> createSubscription(@RequestBody NewsLetter newsLetter) {
-        subscriptionRepo.put(newsLetter.getId(),newsLetter);
-        return new ResponseEntity<>("Newsletter created Successfully",HttpStatus.OK);
-    }
+
 
 }
