@@ -3,9 +3,6 @@ package assignment1.src.com.company;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import com.company.InputCheck;
-import com.company.TaxEvaluation;
-
 
 public class Information {
     private List<Item> arrayList= new ArrayList<>();
