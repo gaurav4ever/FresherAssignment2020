@@ -1,4 +1,4 @@
-package com.company;
+package assignment1.src.com.company;
 
 public class TaxEvaluation {
     public double calculateRawTax(double price) {

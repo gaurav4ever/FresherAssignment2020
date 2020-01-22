@@ -1,4 +1,6 @@
-package com.company;
+package assignment1.src.com.company;
+
+import assignment1.src.com.company.Information;
 
 import java.io.BufferedReader;
 import java.io.IOException;

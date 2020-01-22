@@ -1,4 +1,4 @@
-package com.company;
+package assignment1.src.com.company;
 
 public class InputCheck {
     public boolean checkName(String name) {
