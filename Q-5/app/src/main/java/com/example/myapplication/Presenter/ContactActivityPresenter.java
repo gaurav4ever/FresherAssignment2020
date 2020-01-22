@@ -1,20 +1,21 @@
 package com.example.myapplication.Presenter;
 
-
 import android.content.Intent;
 
+import com.example.myapplication.View.Controller.ContactListController;
 import com.example.myapplication.Model.Contact;
+import com.example.myapplication.Permission.PermissionHandler;
 import com.example.myapplication.Repository.ContactRepository;
-import com.example.myapplication.View.ContactActivityView;
+
 
 import java.util.List;
 
 public class ContactActivityPresenter {
     private List<Contact> contactList;
-    private ContactActivityView view;
+    private ContactListController view;
     private ContactRepository repository;
 
-    public ContactActivityPresenter(ContactActivityView view, ContactRepository repository) {
+    public ContactActivityPresenter(ContactListController view, ContactRepository repository) {
         this.view = view;
         this.repository = repository;
     }
@@ -30,14 +31,13 @@ public class ContactActivityPresenter {
     }
 
 
-    public void addContactToList(Intent data) {
-
-        Contact contact = repository.getContactFromPhone(data);
+    public void addContactToList(Contact contact) {
         contactList.add(contact);
-
     }
 
-
+    public Contact getContact(Intent data) {
+        return repository.getContactFromPhone(data);
+    }
 
 
     public List<Contact> getContactlist() {
@@ -53,4 +53,11 @@ public class ContactActivityPresenter {
     public void deleteContactFromList(Contact contact) {
         contactList.remove(contact);
     }
+
+    public void requestPermission() {
+        //Permission
+        PermissionHandler permissionHandler = new PermissionHandler(view.getActivity());
+        permissionHandler.requestPermission();
+    }
+
 }

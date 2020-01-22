@@ -23,6 +23,7 @@ public class ContactRepositoryImp implements ContactRepository {
         this.context = context;
     }
 
+
     @Override
     public Contact getContactFromPhone(Intent data) {
 

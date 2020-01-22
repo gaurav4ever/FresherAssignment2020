@@ -18,13 +18,13 @@ class ContactViewHolder extends RecyclerView.ViewHolder {
     private LinearLayout editContact;
     private ImageView profileImage;
     private ImageView deleteContact;
-    private ContactsHandler contactsHandler;
+    private EventHandler contactsHandler;
 
-    public ContactViewHolder(@NonNull View itemView, ContactsHandler contactsHandler) {
+    public ContactViewHolder(@NonNull View itemView, EventHandler eventHandler) {
         super(itemView);
-        this.contactsHandler = contactsHandler;
-        name =  itemView.findViewById(R.id.name);
-        number =  itemView.findViewById(R.id.number);
+        this.contactsHandler = eventHandler;
+        name = itemView.findViewById(R.id.name);
+        number = itemView.findViewById(R.id.number);
         editContact = itemView.findViewById(R.id.editContact);
         profileImage = itemView.findViewById(R.id.contactImage);
         deleteContact = itemView.findViewById(R.id.deleteContact);
@@ -42,6 +42,6 @@ class ContactViewHolder extends RecyclerView.ViewHolder {
 
         deleteContact.setOnClickListener(v -> contactsHandler.onDeleteContactClicked(contact));
 
-        editContact.setOnClickListener(v -> contactsHandler.onEditContactClicked(contact));
+        editContact.setOnClickListener(v -> contactsHandler.onShowDetailClicked(contact));
     }
 }

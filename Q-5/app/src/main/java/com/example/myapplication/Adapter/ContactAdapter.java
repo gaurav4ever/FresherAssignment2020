@@ -18,15 +18,13 @@ import java.util.List;
 public class ContactAdapter extends RecyclerView.Adapter<ContactViewHolder> {
 
     private List<Contact> mContacts;
-    private Context mContext;
-    private ContactsHandler contactsHandler;
+    private EventHandler eventHandler;
 
     /**
      * constructor
      */
     public ContactAdapter(Context context) {
         this.mContacts = new ArrayList<>();
-        this.mContext = context;
     }
 
     @NonNull
@@ -35,7 +33,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactViewHolder> {
         //get list of all the views in the item_view layout
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem = layoutInflater.inflate(R.layout.item_view, parent, false);
-        ContactViewHolder viewHolder = new ContactViewHolder(listItem, contactsHandler);
+        ContactViewHolder viewHolder = new ContactViewHolder(listItem, eventHandler);
         return viewHolder;
     }
 
@@ -57,8 +55,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactViewHolder> {
         return mContacts.size();
     }
 
-    public void setContactsHandler(ContactsHandler contactsHandler) {
-        this.contactsHandler = contactsHandler;
+    public void setEventHandler(EventHandler eventHandler) {
+        this.eventHandler = eventHandler;
     }
 
 
