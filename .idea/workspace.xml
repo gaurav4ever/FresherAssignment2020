@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2e497c14-bac4-49f4-8d4c-f891314affb4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assignment4/assignment4.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assignment4/src/com/company/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1WjjtaejNhn4OeO3qcjGwSuJgb8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2e497c14-bac4-49f4-8d4c-f891314affb4" name="Default Changelist" comment="" />
+      <created>1579670113470</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579670113470</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="489" y="273" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1579670500386">
+      <screen x="0" y="23" width="1280" height="709" />
+    </state>
+    <state x="489" y="273" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.1280.709@0.23.1280.709" timestamp="1579670500386" />
+    <state x="0" y="23" width="640" height="709" key="new project wizard" timestamp="1579670308987">
+      <screen x="0" y="23" width="1280" height="709" />
+    </state>
+    <state x="0" y="23" width="640" height="709" key="new project wizard/0.23.1280.709@0.23.1280.709" timestamp="1579670308987" />
+  </component>
+</project>
