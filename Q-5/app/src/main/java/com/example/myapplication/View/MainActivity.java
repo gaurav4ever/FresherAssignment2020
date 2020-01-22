@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements ContactActivityVi
         mRecylerView = findViewById(R.id.recylerView);
         mAddNewContact = findViewById(R.id.floating_action_button);
 
+
         //Repository
         ContactRepository repository = new ContactRepositoryImp(this);
 
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements ContactActivityVi
 
         //if the operation is successful
         if (resultCode == RESULT_OK) {
-            
+
             presenter.addContactToList(data);
             List<Contact> contactList = presenter.getContactlist();
             mContactAdapter.updateAdapter(contactList);
