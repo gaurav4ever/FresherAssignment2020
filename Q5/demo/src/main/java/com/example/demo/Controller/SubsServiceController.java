@@ -18,6 +18,10 @@ public class SubsServiceController {
     @Autowired
     SubscriptionService subscriptionService;
 
+    public SubscriptionService getSubscriptionService() {
+        return subscriptionService;
+    }
+
     private static Map<String, NewsLetter> subscriptionRepo = new HashMap<>();
     static {
         NewsLetter toi = new NewsLetter();
