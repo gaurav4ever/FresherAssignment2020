@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Operations {
 
-    void display(ArrayList<Item> arrayList){
+    ArrayList<Item> taxCalculate(ArrayList<Item> arrayList){
         double tax =0;
         TaxEvaluation te = new TaxEvaluation();
         for(Item item:arrayList){
@@ -21,7 +21,11 @@ public class Operations {
                 tax = te.calculateImportedTax(item.getPrice());
             item.setTax(tax);
             //System.out.println("________________________________________________________________________________________________________________________________________________________________________________________________________");
-            System.out.println("Name :\t" +item.getName() + "\tQuantity :\t" + item.getQuantity() + "\tPrice :\t" +item.getPrice() + "\tType :\t" + item.getType() + "\tTax :" + item.getTax());
         }
+        return arrayList;
+    }
+    void display(ArrayList<Item> arrayList){
+        for(Item item: arrayList)
+            System.out.println("Name :\t" +item.getName() + "\tQuantity :\t" + item.getQuantity() + "\tPrice :\t" +item.getPrice() + "\tType :\t" + item.getType() + "\tTax :" + item.getTax());
     }
 }

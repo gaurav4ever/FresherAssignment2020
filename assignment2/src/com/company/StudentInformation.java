@@ -1,6 +1,6 @@
-package com.company;
+package assignment2.src.com.company;
 
-import com.company.Comparator.*;
+import assignment2.src.com.company.Comparator.*;
 
 import java.io.*;
 import java.util.*;

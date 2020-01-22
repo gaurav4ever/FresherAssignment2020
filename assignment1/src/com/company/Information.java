@@ -10,7 +10,7 @@ public class Information {
     protected double tax;
 
     void input(){
-        InputCheck ipc = new InputCheck();
+        InputCheck inputCheck = new InputCheck();
         System.out.println("Enter Item details: ");
         char  valid;
         Boolean check = Boolean.TRUE;
@@ -19,26 +19,26 @@ public class Information {
             do {
                 System.out.print("Name: ");
                 item.setName(input.next());
-            } while (ipc.checkName(item.getName()));
+            } while (inputCheck.checkName(item.getName()));
 
             String x;
             do {
                 System.out.print("Quantity: ");
                 x = input.next();
-            } while (ipc.checkQuantity(String.valueOf(x)));
+            } while (inputCheck.checkQuantity(String.valueOf(x)));
             item.setQuantity(Integer.parseInt(x));
 
             String y;
             do {
                 System.out.print("Price: ");
                 y = input.next();
-            } while(ipc.checkPrice(String.valueOf(y)));
+            } while(inputCheck.checkPrice(String.valueOf(y)));
             item.setPrice(Double.parseDouble(y));
 
             do {
                 System.out.print("Type: ");
                 item.setType(input.next());
-            } while (ipc.checkType(item.getType()));
+            } while (inputCheck.checkType(item.getType()));
             arrayList.add(item);
 
             System.out.println("Do you want to enter details of any other item (y/n):");

@@ -1,4 +1,4 @@
-package com.company;
+package assignment3.src.com.company;
 
 import java.util.HashMap;
 

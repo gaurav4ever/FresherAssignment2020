@@ -1,19 +1,18 @@
-package com.company;
+package assignment3.src.com.company;
 
 import java.util.*;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
-public class operations {
-    int  nodeId;
+public class Operations {
     String name;
     Boolean flag, verify;
     Scanner sc = new Scanner(System.in);
     Map<Integer, Node> graph = new HashMap<Integer, Node>();
 
     boolean menu() {
-        int choice, parentId = 0, childID = 0;;
+        int choice, parentId = 0, childID = 0, nodeId;
         System.out.println("Enter Choice (1 for Get Parent, 2 for Get child, 3 for Getting Ancestors, 4 for Getting Descendors, 5 for Deleting Dependancy, 6 for Deleting node, 7 for adding a new Dependency and 8 for Adding a New Node, 9 to Terminate ) ");
         choice = sc.nextInt();
         switch (choice) {
@@ -103,7 +102,7 @@ public class operations {
     public void printDescendants(int id) {
         // id as a flag
         System.out.println("Dedcendants are:");
-        List<Integer> descendants = getDescendants(nodeId);
+        List<Integer> descendants = getDescendants(id);
         System.out.println(descendants);
     }
 

@@ -1,20 +1,10 @@
 package assignment1.src.com.company;
 
-import assignment1.src.com.company.Information;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class Main {
 
-    public static void main(String[] args)throws IOException {
-	// write your code here
-        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        String s;
-        Information info = new Information();
-            info.input();
-            info.display();
-
+    public static void main(String[] args){
+        Information information = new Information();
+            information.input();
+            information.display();
     }
 }

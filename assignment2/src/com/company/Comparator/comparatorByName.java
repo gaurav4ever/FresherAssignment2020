@@ -1,6 +1,6 @@
-package com.company.Comparator;
+package assignment2.src.com.company.Comparator;
 
-import com.company.Student;
+import assignment2.src.com.company.Student;
 
 import javax.swing.*;
 import java.util.Comparator;
