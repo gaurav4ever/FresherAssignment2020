@@ -30,12 +30,14 @@ public class ContactActivityPresenter {
     }
 
 
-    public void handleAddContact(Intent data) {
+    public void addContactToList(Intent data) {
 
         Contact contact = repository.getContactFromPhone(data);
         contactList.add(contact);
 
     }
+
+
 
 
     public List<Contact> getContactlist() {
@@ -48,8 +50,7 @@ public class ContactActivityPresenter {
     }
 
 
-    public void handleEditContact(Intent data) {
-        Contact editedContact = repository.getContactFromPhone(data);
-        contactList.add(editedContact);
+    public void deleteContactFromList(Contact contact) {
+        contactList.remove(contact);
     }
 }

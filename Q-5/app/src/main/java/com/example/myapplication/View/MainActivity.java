@@ -101,24 +101,11 @@ public class MainActivity extends AppCompatActivity implements ContactActivityVi
 
         //if the operation is successful
         if (resultCode == RESULT_OK) {
+            
+            presenter.addContactToList(data);
+            List<Contact> contactList = presenter.getContactlist();
+            mContactAdapter.updateAdapter(contactList);
 
-            // if the operation performed is ADD NEW CONTACT
-            if (requestCode == Constants.RESULT_NEW_CONTACT_SAVED) {
-                //once the new contact is added we need to update the recylerView with new Contact
-                presenter.handleAddContact(data);
-                List<Contact> contactList = presenter.getContactlist();
-                mContactAdapter.updateAdapter(contactList);
-            }
-
-            //if the operation performed is EDIT CONTACT
-            if (requestCode == Constants.RESULT_CONTACT_EDITED) {
-                //get the new contact and the adapter with the edited date
-                presenter.handleEditContact(data);
-                List<Contact> contactList = presenter.getContactlist();
-                mContactAdapter.updateAdapter(contactList);
-                Log.e(TAG, "before editing" + data.toString());
-
-            }
         }
 
 
@@ -159,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements ContactActivityVi
     @Override
     public void onEditContactClicked(Contact contact) {
 
+        presenter.deleteContactFromList(contact);
         Intent editIntent = new Intent(Intent.ACTION_EDIT);
         Uri selectedContactUri = ContactsContract.Contacts.getLookupUri(contact.getmContactID(), contact.getmLookupKey());
         Log.e(TAG, "before editing" + selectedContactUri);

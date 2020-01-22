@@ -12,6 +12,7 @@ import com.example.myapplication.Model.Contact;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -48,6 +49,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactViewHolder> {
     public void updateAdapter(List<Contact> contactDetails) {
         this.mContacts.clear();
         this.mContacts.addAll(contactDetails);
+        this.mContacts.sort((o1, o2) -> o1.getmFullName().compareTo(o2.getmFullName()));
         notifyDataSetChanged();
     }
 
