@@ -55,7 +55,7 @@ public class Information {
     void display(){
         TaxEvaluation te = new TaxEvaluation();
         for(Item item:arrayList){
-           //tax calculation
+           //tax calculation method call
             if( item.getType() == "raw" )
                 tax = te.calculateRawTax(item.getPrice());
             else if( item.getType() == "manufactured")
@@ -63,7 +63,6 @@ public class Information {
             else if( item.getType() == "imported")
                 tax = te.calculateImportedTax(item.getPrice());
 
-            //System.out.println("________________________________________________________________________________________________________________________________________________________________________________________________________");
             System.out.println("Name :\t" +item.getName() + "\tQuantity :\t" + item.getQuantity() + "\tPrice :\t" +item.getPrice() + "\tType :\t" + item.getType() + "\tTax :" + tax);
         }
     }

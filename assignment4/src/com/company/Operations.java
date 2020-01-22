@@ -12,7 +12,7 @@ public class Operations {
         double tax =0;
         TaxEvaluation te = new TaxEvaluation();
         for(Item item:arrayList){
-            //tax calculation
+            //tax calculation method call
             if( item.getType() == "raw" )
                 tax = te.calculateRawTax(item.getPrice());
             else if( item.getType() == "manufactured")
@@ -20,11 +20,11 @@ public class Operations {
             else if( item.getType() == "imported")
                 tax = te.calculateImportedTax(item.getPrice());
             item.setTax(tax);
-            //System.out.println("________________________________________________________________________________________________________________________________________________________________________________________________________");
         }
         return arrayList;
     }
-    void display(ArrayList<Item> arrayList){
+
+    void displayItems(ArrayList<Item> arrayList){
         for(Item item: arrayList)
             System.out.println("Name :\t" +item.getName() + "\tQuantity :\t" + item.getQuantity() + "\tPrice :\t" +item.getPrice() + "\tType :\t" + item.getType() + "\tTax :" + item.getTax());
     }

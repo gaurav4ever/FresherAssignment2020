@@ -1,7 +1,5 @@
 package assignment2.src.com.company;
 
-import java.io.IOException;
-
 public class InputChecker {
 
         public boolean checkName(String name) {

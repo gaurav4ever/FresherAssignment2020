@@ -13,7 +13,7 @@ public class StudentInformation implements Serializable {
     Scanner br = new Scanner(System.in);
     private String order, parameter;
 
-    public void readDetails() throws IOException {
+    public void readDetails(){
         Student stud = new Student();
         do {
             System.out.println("Name: ");
@@ -44,7 +44,6 @@ public class StudentInformation implements Serializable {
                 System.out.println("Enter Course" + index +": ");
                 x = br.nextLine();
             }while(ic.checkCourses(x));
-            //System.out.println(x);
             stud.setCourese(index++,x.charAt(0));
         }
 
@@ -52,10 +51,11 @@ public class StudentInformation implements Serializable {
         Collections.sort(studentList, new comparatorByName());
     }
 
-    public void showDetails() throws IOException {
+    public void showDetails(){
         System.out.println("The Data to be sorted in assending or decending order");
         order = br.next().toLowerCase();
-    //Sorting for Assending order
+
+        //Sorting by assending order method call
         if(order.compareTo("assending") == 0) {
             System.out.println("Parameter(Name, Roll, age, address");
             parameter = br.next().toLowerCase();
@@ -74,7 +74,8 @@ public class StudentInformation implements Serializable {
                     break;
             }
         }
-    //Sorting for Decending Order
+
+    //Sorting with decending order method call here
         else if(order.compareTo("decending") == 0){
             System.out.println("Parameter(Name, Roll, age, address");
             parameter = br.next().toLowerCase();
