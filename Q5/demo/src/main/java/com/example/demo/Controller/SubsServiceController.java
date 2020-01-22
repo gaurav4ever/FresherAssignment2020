@@ -52,7 +52,7 @@ public class SubsServiceController {
 //        return new ResponseEntity<>(subscriptionRepo.values(), HttpStatus.OK);
 //    }
 
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/subscriptions/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateSubscription(@PathVariable("id") String id, @RequestBody NewsLetter newsLetter) {
         if(!subscriptionRepo.containsKey(id)) throw new SubscriptionNotFoundException();
         subscriptionRepo.remove(id);
