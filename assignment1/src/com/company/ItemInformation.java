@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Information {
+public class ItemInformation {
     private List<Item> arrayList= new ArrayList<>();
     private Scanner input = new Scanner(System.in);
     protected double tax;
@@ -55,6 +55,7 @@ public class Information {
     void display(){
         TaxEvaluation te = new TaxEvaluation();
         for(Item item:arrayList){
+
            //tax calculation method call
             if( item.getType() == "raw" )
                 tax = te.calculateRawTax(item.getPrice());
