@@ -40,4 +40,7 @@ public class User {
     public void setEmailId(String emailId) {
         this.emailId = emailId;
     }
+
+    public User() {
+    }
 }
