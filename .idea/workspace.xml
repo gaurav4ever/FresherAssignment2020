@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e497c14-bac4-49f4-8d4c-f891314affb4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assignment4/assignment4.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assignment4/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment1/out/production/assignment11/META-INF/assignment11.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment1/out/production/assignment11/com/company/Information.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment1/out/production/assignment11/com/company/InputCheck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment1/out/production/assignment11/com/company/Item.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment1/out/production/assignment11/com/company/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment1/out/production/assignment11/com/company/TaxEvaluation.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
