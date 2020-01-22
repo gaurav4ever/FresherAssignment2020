@@ -9,29 +9,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class SubsServiceController {
+public class NewsLetterController {
 
     @Autowired
      NewsLetterRepository newsLetterRepository;
 
-    @GetMapping("/subscriptions")
+    @GetMapping("/newsletters")
     public List<NewsLetter> index() {
         return newsLetterRepository.findAll();
     }
 
-    @GetMapping("/subscriptions/{id}")
+    @GetMapping("/newsletters/{id}")
     public NewsLetter show(@PathVariable String id) throws Exception{
         int newsLetterId = Integer.parseInt(id);
         return newsLetterRepository.findById(newsLetterId).orElseThrow(Exception::new);
     }
 
-    @PostMapping("/subscriptions")
+    @PostMapping("/newsletters")
     public NewsLetter create(@RequestBody NewsLetter newsLetter){
 //        String name = newsLetter.get("name");
         return newsLetterRepository.save(newsLetter);
     }
 
-    @PutMapping("/subscriptions/{id}")
+    @PutMapping("/newsletters/{id}")
     public NewsLetter update(@PathVariable String id, @RequestBody Map<String, String> body) throws Exception{
         int newsLetterId = Integer.parseInt(id);
         // getting newsletter
@@ -40,7 +40,7 @@ public class SubsServiceController {
         return newsLetterRepository.save(newsLetter);
     }
 
-    @DeleteMapping("subscriptions/{id}")
+    @DeleteMapping("/newsletters/{id}")
     public String delete(@PathVariable String id){
         int newsLetterId = Integer.parseInt(id);
         newsLetterRepository.deleteById(newsLetterId);

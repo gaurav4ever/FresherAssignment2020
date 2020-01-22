@@ -1,10 +1,8 @@
 package com.example.demo.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import org.springframework.web.bind.annotation.*;
+import javax.persistence.*;
+
+import java.util.Set;
 
 
 @Entity
@@ -12,16 +10,24 @@ public class NewsLetter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private int id;
+    private int newsLetterId;
     private String name;
 
-    public NewsLetter(int id, String name) {
-        this.id = id;
+//    @ManyToMany
+//    Set<User> subscribers;
+//
+////    @ManyToMany (mappedBy = "subscribers")
+////    Set<User> subscriptions;
+////    @OneToMany(mappedBy = "userId")
+//    Set<Subscription> subscriptions;
+
+    public NewsLetter(int newsLetterId, String name) {
+        this.newsLetterId = newsLetterId;
         this.name = name;
     }
 
-    public NewsLetter(int id) {
-        this.id = id;
+    public NewsLetter(int newsLetterId) {
+        this.newsLetterId = newsLetterId;
     }
 
     public NewsLetter(String name) {
@@ -31,12 +37,12 @@ public class NewsLetter {
     public NewsLetter() {
     }
 
-    public int getId() {
-        return id;
+    public int getNewsLetterId() {
+        return newsLetterId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNewsLetterId(int newsLetterId) {
+        this.newsLetterId = newsLetterId;
     }
 
     public String getName() {
