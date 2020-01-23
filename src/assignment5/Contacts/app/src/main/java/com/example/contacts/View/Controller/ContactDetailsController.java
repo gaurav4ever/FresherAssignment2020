@@ -23,6 +23,7 @@ import com.example.contacts.Model.Constants.Constants;
 import com.example.contacts.Model.Contact;
 import com.example.contacts.Presenter.ContactPresenter;
 import com.example.contacts.R;
+import com.example.contacts.databinding.ContactDetailsBinding;
 
 public class ContactDetailsController extends Controller {
     private Contact mContact;
@@ -32,6 +33,7 @@ public class ContactDetailsController extends Controller {
     public static final String CONTACT_POSITION_KEY = "contact_position";
     private Activity mParentActivity;
     private ContactListController mContactListController;
+    private ContactDetailsBinding mBinding;
 
     private ContactDetailsController(int position,Contact contact) {
         this(new BundleBuilder(new Bundle())
@@ -61,15 +63,16 @@ public class ContactDetailsController extends Controller {
 
         Log.e("display contact", "onCreateView: "+ mContact.getmLookupKey() );
         View view = inflater.inflate(R.layout.contact_details,container,false);
+        mBinding = ContactDetailsBinding.bind(view);
         mContactPresenter = new ContactPresenter(view.getContext());
         createView(view);
         return view;
     }
     public void update() {
         View view = getView();
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.contact_numbers);
+        LinearLayout linearLayout = mBinding.contactNumbers;
         linearLayout.removeAllViewsInLayout();
-        linearLayout = (LinearLayout) view.findViewById(R.id.contact_emails);
+        linearLayout = mBinding.contactEmails;
         linearLayout.removeAllViewsInLayout();
         createView(view);
     }
@@ -85,12 +88,12 @@ public class ContactDetailsController extends Controller {
     }
 
     private void createView(View view) {
-        ((TextView) view.findViewById(R.id.contact_name)).setText(mContact.getmName());
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.contact_numbers);
+        mBinding.contactName.setText(mContact.getmName());
+        LinearLayout linearLayout = mBinding.contactNumbers;
         if(mContact.getmImage()!=null)
-            ((ImageView)view.findViewById(R.id.imageView)).setImageURI(Uri.parse(mContact.getmImage()));
+            mBinding.imageView.setImageURI(Uri.parse(mContact.getmImage()));
         if(!(mContact.getmPhoneNumbers().size()>0)) {
-            ((TextView) view.findViewById(R.id.phone_title)).setVisibility(View.GONE);
+            mBinding.phoneTitle.setVisibility(View.GONE);
             linearLayout.setVisibility(View.GONE);
         }
         else {
@@ -102,9 +105,9 @@ public class ContactDetailsController extends Controller {
                 linearLayout.addView(tv);
             }
         }
-        linearLayout = (LinearLayout) view.findViewById(R.id.contact_emails);
+        linearLayout = mBinding.contactEmails;
         if(!(mContact.getmEmail().size()>0)) {
-            ((TextView) view.findViewById(R.id.email_title)).setVisibility(View.GONE);
+            mBinding.emailTitle.setVisibility(View.GONE);
             linearLayout.setVisibility(View.GONE);
         }
         else {
@@ -117,12 +120,12 @@ public class ContactDetailsController extends Controller {
             }
         }
         if("".equals(mContact.getmCompanyInfo())) {
-            ((TextView) view.findViewById(R.id.organization_title)).setVisibility(View.GONE);
-            ((TextView) view.findViewById(R.id.contact_organization)).setVisibility(View.GONE);
+            mBinding.organizationTitle.setVisibility(View.GONE);
+            mBinding.contactOrganization.setVisibility(View.GONE);
         }
         else
-            ((TextView) view.findViewById(R.id.contact_organization)).setText(mContact.getmCompanyInfo());
-        ((Button) view.findViewById(R.id.button_edit)).setOnClickListener(new View.OnClickListener() {
+            mBinding.contactOrganization.setText(mContact.getmCompanyInfo());
+        mBinding.buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent editIntent = new Intent(Intent.ACTION_EDIT);
@@ -132,7 +135,7 @@ public class ContactDetailsController extends Controller {
                 startActivityForResult(editIntent, Constants.RESULT_CONTACT_EDITED);
             }
         });
-        ((Button) view.findViewById(R.id.button_delete)).setOnClickListener(new View.OnClickListener() {
+        mBinding.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mContactPresenter.deleteContact(mContactPosition,mContact.getmLookupKey());

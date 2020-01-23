@@ -14,19 +14,23 @@ import com.example.contacts.Model.Contact;
 import com.example.contacts.R;
 import com.example.contacts.databinding.ContactDetailsBinding;
 import com.example.contacts.databinding.ContactDetailsBindingImpl;
+import com.example.contacts.databinding.ContactListBinding;
+import com.example.contacts.databinding.ContactViewBinding;
 
 public class ContactsAdapterViewHolder extends RecyclerView.ViewHolder {
     private TextView mContactName, mContactNumber;
     private ImageView mContactImage;
     private LinearLayout mContactView;
     private ListItemEvenHandler mEventHandler;
+    private ContactViewBinding mBinding;
 
     private ContactsAdapterViewHolder(@NonNull View view, ListItemEvenHandler eventHandler) {
         super(view);
-        mContactName = (TextView) view.findViewById(R.id.contactName);
-        mContactNumber = (TextView) view.findViewById(R.id.contactNumber);
-        mContactImage = view.findViewById(R.id.contactImage);
-        mContactView = view.findViewById(R.id.contactView);
+        mBinding = ContactViewBinding.bind(view);
+        mContactName = mBinding.contactName;
+        mContactNumber = mBinding.contactNumber;
+        mContactImage = mBinding.contactImage;
+        mContactView = mBinding.contactView;
         this.mEventHandler = eventHandler;
     }
     public static ContactsAdapterViewHolder getInstance(@NonNull View view, ListItemEvenHandler eventHandler) {

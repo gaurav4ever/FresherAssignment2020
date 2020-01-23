@@ -1,6 +1,7 @@
 package com.example.contacts.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,20 +13,22 @@ import com.bluelinelabs.conductor.RouterTransaction;
 import com.example.contacts.View.Controller.ContactListController;
 import com.example.contacts.Presenter.Permissions.PermissionHandler;
 import com.example.contacts.R;
+import com.example.contacts.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements PermissionHandler.View {
 
     private PermissionHandler mPermissionHandler;
     private Router mRouter;
     private ContactListController mContactListController;
-
+    private ActivityMainBinding mBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mContactListController = new ContactListController();
-        mRouter = Conductor.attachRouter(this, (ViewGroup) findViewById(R.id.controller_container),savedInstanceState);
+        mRouter = Conductor.attachRouter(this, mBinding.controllerContainer,savedInstanceState);
         if(!mRouter.hasRootController()) {
             mRouter.setRoot(RouterTransaction.with(mContactListController));
         }

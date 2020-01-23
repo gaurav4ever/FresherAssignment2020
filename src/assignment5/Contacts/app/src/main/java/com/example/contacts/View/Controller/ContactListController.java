@@ -24,6 +24,7 @@ import com.example.contacts.Presenter.ContactPresenter;
 import com.example.contacts.Presenter.ContactsAdapterPresenter;
 import com.example.contacts.R;
 import com.example.contacts.View.ContactsAdapterViewHolder;
+import com.example.contacts.databinding.ContactListBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.reactivestreams.Subscriber;
@@ -51,7 +52,7 @@ public class ContactListController extends Controller implements ContactsAdapter
     private final String TAG = "ContactListController";
     private ContactPresenter mContactPresenter;
     private ProgressBar mProgressBar;
-
+    private ContactListBinding mBinding;
     @Override
     protected View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
         View view = inflater.inflate(R.layout.contact_list,container,false);
@@ -73,13 +74,15 @@ public class ContactListController extends Controller implements ContactsAdapter
         updateAdapter();
     }
     public void attachAdapter(View view,ContactsAdapterViewHolder.ListItemEvenHandler evenHandler) {
-        mRecyclerView = view.findViewById(R.id.recyclerView);
+        mBinding = ContactListBinding.bind(view);
+
+        mRecyclerView = mBinding.recyclerView;
         mContactsAdapterPresenter = new ContactsAdapterPresenter(ContactPresenter.sContacts,evenHandler);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         mRecyclerView.setAdapter(mContactsAdapterPresenter);
-        mAddContactButton = view.findViewById(R.id.addContactButton);
-        mProgressBar=view.findViewById(R.id.progressBar);
+        mAddContactButton = mBinding.addContactButton;
+        mProgressBar=mBinding.progressBar;
         mProgressBar.setVisibility(View.GONE);
         mAddContactButton.setOnClickListener(new View.OnClickListener() {
             @Override
