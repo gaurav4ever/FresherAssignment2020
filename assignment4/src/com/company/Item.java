@@ -16,19 +16,19 @@ public class Item {
         type = "";
     }
 
-    public void setPrice( final Double price) {
+    public void setPrice(  Double price) {
         this.price = price;
     }
 
-    public void setName( final String name) {
+    public void setName(  String name) {
         this.name = name;
     }
 
-    public void setQuantity( final int quantity){
+    public void setQuantity(  int quantity){
         this.quantity = quantity;
     }
 
-    public void setType( final String type){
+    public void setType(  String type){
         this.type = type;
     }
 

@@ -7,7 +7,7 @@ import java.util.Scanner;
 // class id used to read input and display
 public class ItemInformation {
     private List<Item> arrayList= new ArrayList<>();
-    private Scanner input = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private Item item;
     protected double tax;
 
@@ -24,30 +24,30 @@ public class ItemInformation {
         while(check){
             do {
                 System.out.print("Name: ");
-                item.setName(input.next());
+                item.setName(scanner.next());
             } while (inputCheck.checkName(item.getName()));
 
             String tempRead;
             do {
                 System.out.print("Quantity: ");
-                tempRead = input.next();
+                tempRead = scanner.next();
             } while (inputCheck.checkQuantity(String.valueOf(tempRead)));
             item.setQuantity(Integer.parseInt(tempRead));
 
             do {
                 System.out.print("Price: ");
-                tempRead = input.next();
+                tempRead = scanner.next();
             } while(inputCheck.checkPrice(String.valueOf(tempRead)));
             item.setPrice(Double.parseDouble(tempRead));
 
             do {
                 System.out.print("Type: ");
-                item.setType(input.next());
+                item.setType(scanner.next());
             } while (inputCheck.checkType(item.getType()));
             arrayList.add(item);
 
             System.out.println("Do you want to enter details of any other item (y/n):");
-            valid = input.next().charAt(0);
+            valid = scanner.next().charAt(0);
             if( valid =='n' || valid == 'N' ){
                 System.out.println("End Input");
                 check = Boolean.FALSE;

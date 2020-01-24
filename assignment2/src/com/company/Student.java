@@ -1,4 +1,4 @@
-package com.company;
+package assignment2.src.com.company;
 
 import java.io.Serializable;
 

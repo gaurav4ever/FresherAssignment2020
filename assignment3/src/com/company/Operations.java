@@ -10,7 +10,7 @@ public class Operations {
     private boolean flag;
     private boolean verify;
     private Scanner scanner = new Scanner(System.in);
-    private Map<Integer, Node> graph = new HashMap<>();
+    Map<Integer, Node> graph = new HashMap<>();
 
     public boolean menu() {
         int choice;

@@ -1,6 +1,6 @@
-package com.company.comparator;
+package assignment2.src.com.company.comparator;
 
-import com.company.Student;
+import assignment2.src.com.company.*;
 import java.util.Comparator;
 
 public class ComparatorByName implements Comparator<Student> {

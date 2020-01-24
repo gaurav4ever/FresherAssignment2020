@@ -31,6 +31,8 @@ public class ConncetionDb extends Thread{
                         Thread.sleep(sleep);
                     }
                     connection.close();
+                    smt.close();
+                    resultSet.close();
                 }catch (Exception e){
                     System.out.println("Db Connection error ");
                 }

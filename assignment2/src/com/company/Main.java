@@ -1,4 +1,4 @@
-package com.company;
+package assignment2.src.com.company;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,6 +47,7 @@ public class Main {
                 System.out.println("Value entered is not Integer");
             }
         }
+        bufferedReader.close();
     }
 
 }

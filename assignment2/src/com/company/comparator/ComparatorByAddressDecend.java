@@ -1,7 +1,7 @@
-package com.company.comparator;
+package assignment2.src.com.company.comparator;
 // used to sort theStudent details on address in descending order
 
-import com.company.Student;
+import assignment2.src.com.company.*;
 
 import java.util.Comparator;
 
