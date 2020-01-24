@@ -1,50 +1,60 @@
-package assignment2.src.com.company;
+package com.company;
 
 import java.io.Serializable;
 
 public class Student implements Serializable {
-    private String name, address;
-    private int age, rollNumber;
+    private String name;
+    private String  address;
+    private int age;
+    private int rollNumber;
     private char courese[] = new char[4];
 
-    public void setName(String name){
-        this.name = name;
+    public Student () {
+        name = "";
+        address = "";
+        age = 0;
+        rollNumber = 0;
     }
 
-    public void setAddress(String address){
-        this.address = address;
-    }
 
-    public void setAge(int age){
-        this.age = age;
-    }
-
-    public void setRollNumber(int rollNumber){
-        this.rollNumber = rollNumber;
-    }
-
-    public void setCourese(int index, char course){
-        this.courese[index] = course;
-    }
-
-    public String getName(){
+    public String getName () {
         return name;
     }
 
-    public String getAddress(){
+    public void setName ( final String name ) {
+        this.name = name;
+    }
+
+    public String getAddress () {
         return address;
     }
 
-    public int getAge(){
+    public void setAddress ( final String address ) {
+        this.address = address;
+    }
+
+    public int getAge () {
         return age;
     }
 
-    public int getRollNumber(){
+    public void setAge ( final int age ) {
+        this.age = age;
+    }
+
+    public int getRollNumber () {
         return rollNumber;
     }
 
-    public String getCourese(){
-        return courese[0]+","+courese[1]+","+courese[2]+","+courese[3];
+    public void setRollNumber ( final int rollNumber ) {
+        this.rollNumber = rollNumber;
     }
 
+    public char[] getCourese () {
+        final char courese1[] = courese;
+        return courese1;
+    }
+
+    public void setCourese ( final char[] courese ) {
+        this.courese = courese;
+    }
 }

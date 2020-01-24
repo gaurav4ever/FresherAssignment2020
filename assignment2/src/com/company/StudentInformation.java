@@ -1,93 +1,103 @@
-package assignment2.src.com.company;
+package com.company;
 
-import assignment2.src.com.company.Comparator.*;
+import com.company.comparator.*;
 
 import java.io.*;
 import java.util.*;
 
 public class StudentInformation implements Serializable {
-    static String fileName = "myObjects.ser";
+    private static String fileName = "myObjects.ser";
     private static List<Student> studentList = new ArrayList<>();
-    InputChecker ic = new InputChecker();
+    private InputChecker inputChecker = new InputChecker();
    
-    Scanner br = new Scanner(System.in);
-    private String order, parameter;
+    private Scanner scanner = new Scanner(System.in);
+    private String order;
+    private String  parameter;
+    private  final int courseSize = 4;
 
     public void readDetails(){
-        Student stud = new Student();
+        final Student stud = new Student();
+        char tempcCourse[] = new char[courseSize];
         do {
             System.out.println("Name: ");
-            stud.setName(br.nextLine());
-        } while (ic.checkName(stud.getName()));
+            stud.setName(scanner.nextLine());
+        } while (inputChecker.checkName(stud.getName()));
 
-        String x;
+        String tempInput;
         int index = 0;
         do {
             System.out.println("Age: ");
-            x = br.nextLine();
-        } while (ic.checkAge(x));
-        stud.setAge(Integer.parseInt(x));
+            tempInput = scanner.nextLine();
+        } while (inputChecker.checkAge(tempInput));
+        stud.setAge(Integer.parseInt(tempInput));
 
         do {
             System.out.println("Address: ");
-            stud.setAddress(br.nextLine());
-        } while (ic.checkAddress(stud.getAddress()));
+            stud.setAddress(scanner.nextLine());
+        } while (inputChecker.checkAddress(stud.getAddress()));
 
         do {
             System.out.println("Roll Number: ");
-            x = br.nextLine();
-        } while (ic.checkRollNumber(x));
-        stud.setRollNumber(Integer.parseInt(x));
+            tempInput = scanner.nextLine();
+        } while (inputChecker.checkRollNumber(tempInput));
+        stud.setRollNumber(Integer.parseInt(tempInput));
         while(index<4)
         {
             do{
                 System.out.println("Enter Course" + index +": ");
-                x = br.nextLine();
-            }while(ic.checkCourses(x));
-            stud.setCourese(index++,x.charAt(0));
+                tempInput = scanner.nextLine();
+            }while( inputChecker.checkCourses(tempInput) );
+            tempcCourse[index] = tempInput.charAt(0);
+            index++;
         }
+        stud.setCourese(tempcCourse);
 
         studentList.add(stud);
-        Collections.sort(studentList, new comparatorByName());
+        Collections.sort(studentList, new ComparatorByName());
     }
 
     public void showDetails(){
         System.out.println("The Data to be sorted in assending or decending order");
-        order = br.next().toLowerCase();
+        order = scanner.next();
+        order.toLowerCase();
 
         //Sorting by assending order method call
-        if(order.compareTo("assending") == 0) {
+        if( order.compareTo("assending") == 0 ) {
             System.out.println("Parameter(Name, Roll, age, address");
-            parameter = br.next().toLowerCase();
+            parameter = scanner.next();
+            parameter.toLowerCase();
             switch (parameter) {
                 case "name":
-                    Collections.sort(studentList, new comparatorByNameAssend());
+                    Collections.sort(studentList, new ComparatorByNameAssend());
                     break;
                 case "roll":
-                    Collections.sort(studentList, new comparatorByRollAssend());
+                    Collections.sort(studentList, new ComparatorByRollAssend());
                     break;
                 case "age":
-                    Collections.sort(studentList, new comparatorByAgeAssend());
+                    Collections.sort(studentList, new ComparatorByAgeAssend());
                     break;
                 case "address":
-                    Collections.sort(studentList, new comparatorByAddressAssend());
+                    Collections.sort(studentList, new ComparatorByAddressAssend());
                     break;
+                default: System.out.println("Wrong Input");
             }
         }
 
     //Sorting with decending order method call here
         else if(order.compareTo("decending") == 0){
             System.out.println("Parameter(Name, Roll, age, address");
-            parameter = br.next().toLowerCase();
-            switch (parameter){
-                case "name" : Collections.sort(studentList, new comparatorByNameDecend());
+            parameter = scanner.next();
+            parameter.toLowerCase();
+            switch ( parameter ){
+                case "name" : Collections.sort(studentList, new ComparatorByNameDecend());
                     break;
-                case "roll": Collections.sort(studentList, new comparatorByRollDecend());
+                case "roll": Collections.sort(studentList, new ComparatorByRollDecend());
                     break;
-                case "age": Collections.sort(studentList, new comparatorByAgeDecend());
+                case "age": Collections.sort(studentList, new ComparatorByAgeDecend());
                     break;
-                case "address": Collections.sort(studentList, new comparatorByAddressDecend());
+                case "address": Collections.sort(studentList, new ComparatorByAddressDecend());
                     break;
+                default: System.out.println( "Wrong Input" );
             }
 
         }
@@ -95,8 +105,7 @@ public class StudentInformation implements Serializable {
         System.out.println("-----------------------------------------------------------------------------------------");
         System.out.println("\t\t\tNAME \t\t ADDRESS \t\t   AGE \t\t ROLL NUMBER \t\t COURSES");
         System.out.println("-----------------------------------------------------------------------------------------");
-        for(Student std: studentList){
-            //System.out.println(std.getName() + "\t  " + std.getAddress() + "\t      " + std.getAge() + "\t\t" + std.getRollNumber() + "\t\t" +std.getCourese());
+        for( final Student std: studentList ){
             System.out.format("%16s%20s%10d%10d%24s\n",std.getName(), std.getAddress(), std.getAge(), std.getRollNumber(), std.getCourese() );
 
         }
@@ -108,19 +117,19 @@ public class StudentInformation implements Serializable {
         System.out.println("Enter Roll Number");
             try{
                 do{
-                    roll = Integer.parseInt(br.next());
-                    for(Student std: studentList) {
-                        if (std.getRollNumber() == roll) {
+                    roll = Integer.parseInt(scanner.next());
+                    for( final Student std: studentList ) {
+                        if ( std.getRollNumber() == roll ) {
                             flag = Boolean.TRUE;
                             studentList.remove(std);
                             System.out.println("Removed Successfully");
                             break;
                         }
                     }
-                    if(!flag)
+                    if(!flag) {
                         System.out.println("Roll Number Not there, Please Enter a Valid Roll");
+                    }
                 }while (!flag);
-
             } catch (NumberFormatException e) {
                 System.out.println("Invalid Input");
             }
@@ -128,25 +137,25 @@ public class StudentInformation implements Serializable {
 
     public void saveData(){
             try {
-                FileOutputStream f = new FileOutputStream(new File(fileName));
-                ObjectOutputStream o = new ObjectOutputStream(f);
+                final FileOutputStream fileOut = new FileOutputStream(new File(fileName));
+                final ObjectOutputStream outStream = new ObjectOutputStream(fileOut);
 
-                o.writeObject(studentList);
+                outStream.writeObject(studentList);
 
-                o.close();
-                f.close();
+                outStream.close();
+                fileOut.close();
 
                 System.out.println("Details saved to file");
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Saving file IOE error");
             }
     }
 
     public void retriveData(){
         try
         {
-            FileInputStream fis = new FileInputStream("myObjects.ser");
-            ObjectInputStream ois = new ObjectInputStream(fis);
+            final FileInputStream fis = new FileInputStream("myObjects.ser");
+            final ObjectInputStream ois = new ObjectInputStream(fis);
 
             studentList = (ArrayList) ois.readObject();
             ois.close();
@@ -154,13 +163,12 @@ public class StudentInformation implements Serializable {
         }
         catch (IOException ioe)
         {
-            ioe.printStackTrace();
+            System.out.println("Input Output Exception");
             return;
         }
         catch (ClassNotFoundException c)
         {
             System.out.println("Class not found");
-            c.printStackTrace();
             return;
         }
     }

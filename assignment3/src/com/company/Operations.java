@@ -6,15 +6,19 @@ import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 public class Operations {
-    String name;
-    Boolean flag, verify;
-    Scanner sc = new Scanner(System.in);
-    Map<Integer, Node> graph = new HashMap<Integer, Node>();
+    private String name;
+    private boolean flag;
+    private boolean verify;
+    private Scanner scanner = new Scanner(System.in);
+    private Map<Integer, Node> graph = new HashMap<>();
 
     boolean menu() {
-        int choice, parentId = 0, childID = 0, nodeId;
-        System.out.println("Enter Choice (1 for Get Parent, 2 for Get child, 3 for Getting Ancestors, 4 for Getting Descendors, 5 for Deleting Dependancy, 6 for Deleting node, 7 for adding a new Dependency and 8 for Adding a New Node, 9 to Terminate ) ");
-        choice = sc.nextInt();
+        int choice;
+        int parentId = 0;
+        int childID = 0;
+        int nodeId;
+        System.out.println("Enter Choice (1 for Get Parent, 2 for Get child, 3 for Getting Ancestors, 4 for Getting Descannerendors, 5 for Deleting Dependancy, 6 for Deleting node, 7 for adding a new Dependency and 8 for Adding a New Node, 9 to Terminate ) ");
+        choice = scanner.nextInt();
         switch (choice) {
             case 1:
                 System.out.println("Enter Node Id: ");
@@ -48,7 +52,7 @@ public class Operations {
                 System.out.println("Enter The Parent Id and Child Id : ");
                 parentId = readVerifyId();
                 childID = readVerifyId();
-                addDependency(parentId,childID);
+                addDependency( parentId, childID );
                 System.out.println("Dependency added");
                 break;
             case 8:
@@ -60,12 +64,14 @@ public class Operations {
         return TRUE;
     }
 
+    // default access specifier
     int readVerifyId(){
-        int temId = 0, flag1 = 0;
+        int temId = 0;
+        int flag1 = 0;
         try {
             do {
-                temId = sc.nextInt();
-                for(Integer identity: graph.keySet()) {
+                temId = scanner.nextInt();
+                for( final Integer identity: graph.keySet() ) {
                     if (identity == temId) {
                         flag1 = 1;
                         return temId;
@@ -81,53 +87,60 @@ public class Operations {
         return temId;
     }
 
-    void deleteNode(int id){
+    // default access specifier
+    void deleteNode( final int id ){
         graph.remove(id);
     }
 
-    void deleteDependency(int parentId, int childID){
+    // default access specifier
+    void deleteDependency( final int parentId, final int childID ){
         graph.get(parentId).children.remove(childID);
     }
 
-    public List<Integer> getDescendants(int id) {
-        List<Integer> descendants = new ArrayList<>();
+    public List<Integer> getDescendants( final int id ) {
+        final List<Integer> descendants = new ArrayList<>();
         descendants.addAll(graph.get(id).children.keySet());
 
-        for (Integer i : graph.get(id).children.keySet()) {
+        for ( final Integer i : graph.get(id).children.keySet() ) {
             descendants.addAll(getDescendants(i));
         }
         return descendants;
     }
 
-    public void printDescendants(int id) {
+    // default access specifier
+    void printDescendants( final int id ) {
         // id as a flag
         System.out.println("Dedcendants are:");
-        List<Integer> descendants = getDescendants(id);
+        final List<Integer> descendants = getDescendants(id);
         System.out.println(descendants);
     }
 
-    void printChildren(int id){
+    // default access specifier
+    void printChildren( final int id ){
         System.out.println("Children for the id" + id + "are");
         System.out.println(graph.get(id).children.keySet());
     }
 
-    void printParent(int id){
+    // default access specifier
+    void printParent( final int id ){
         System.out.println("Parents for the id " + id + "are: ");
-        for(Node node:graph.values()){
+        for( final Node node:graph.values() ) {
             if(node.children.containsKey(id)){
                 System.out.println(node.id);
             }
         }
     }
 
+    // default access specifier
     int readId() {
         int temId = 0;
         try {
             do {
-                temId = sc.nextInt();
+                temId = scanner.nextInt();
                 verify = checkID(temId);
-                if (!verify)
+                if (!verify) {
                     System.out.println("ID added");
+                }
             } while (verify);
         }catch (NumberFormatException e){
             System.out.println("Not a Valid ID");
@@ -135,8 +148,9 @@ public class Operations {
         return temId;
     }
 
-    boolean checkID(int id){
-        for(Integer identity: graph.keySet()) {
+    // default access specifier
+    boolean checkID( final int id ){
+        for( final Integer identity: graph.keySet() ) {
             if (identity == id) {
                 System.out.println("ID :" + id + " is already present");
                 return TRUE;
@@ -145,41 +159,48 @@ public class Operations {
         return FALSE;
     }
 
+    // default access specifier
     void addNode(){
         int id;
-        flag = FALSE;
         System.out.println(" Enter ID ");
         id = readId();
-        sc.nextLine();
+        scanner.nextLine();
         System.out.println("Enter Name: ");
-        name = sc.nextLine();
-        Node n = new Node(id, name);
+        name = scanner.nextLine();
+        final Node n = new Node(id, name);
         graph.put(id,n);
     }
 
-    void addDependency(int parentId, int childId){
+    // default access specifier
+    void addDependency( final int parentId, final int childId ){
         graph.get(parentId).children.put(childId, graph.get(childId));
     }
 
-    public List<Integer> getAncestors(int id) {
-        List<Integer> parents = new ArrayList<>();
-        for (Node node : graph.values())
-            if (node.children.containsKey(id))
+    // default access specifier
+    public List<Integer> getAncestors( final int id ) {
+        final List<Integer> parents = new ArrayList<>();
+        for ( final Node node : graph.values() ) {
+            if (node.children.containsKey(id)) {
                 parents.add(node.id);
+            }
+        }
 
-        List<Integer> ancestors = new ArrayList<>(parents);
-        for (Integer i : parents)
+        final List<Integer> ancestors = new ArrayList<>(parents);
+        for ( final Integer i : parents ) {
             ancestors.addAll(getAncestors(i));
+        }
         return ancestors;
     }
 
-    public void printAncestors(int id) {
+    // default access specifier
+    public void printAncestors( final int id ) {
         // id as a flag
         System.out.println("Ancestors are:");
         List<Integer> ancestors;
         ancestors = getAncestors(id);
-        for (Integer ancestor : ancestors)
+        for ( final Integer ancestor : ancestors ) {
             System.out.print(ancestor + " , ");
+        }
         System.out.println("");
     }
 

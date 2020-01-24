@@ -2,10 +2,19 @@ package assignment4.src.com.company;
 
 public class Item {
 
-    protected String name;
-    protected int quantity;
-    protected double price, tax;
+    private String name;
+    private int quantity;
+    private double price;
+    private double tax;
     protected String type;
+
+    public Item ( ) {
+        name = "";
+        quantity = 0;
+        price = 0.0;
+        tax = 0.0;
+        type = "";
+    }
 
     public void setPrice(Double price) {
         this.price = price;

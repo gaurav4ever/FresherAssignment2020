@@ -1,9 +1,9 @@
-package assignment2.src.com.company;
+package com.company;
 
 public class InputChecker {
 
-        public boolean checkName(String name) {
-            if (!Character.isAlphabetic(name.charAt(0)))
+    public boolean checkName( final String name) {
+            if ( !Character.isAlphabetic(name.charAt(0)) )
             {
                 System.out.println("Invalid name. Please Re-enter");
                 return true;
@@ -11,8 +11,8 @@ public class InputChecker {
             return false;
         }
 
-        public boolean checkAge(String age) {
-            if (!age.matches("[0-9]*"))
+        public boolean checkAge( final String age ) {
+            if ( !age.matches("[0-9]*") )
             {
                 System.out.println("Invalid Age. Please Re-enter");
                 return true;
@@ -20,7 +20,7 @@ public class InputChecker {
             return false;
         }
 
-        public boolean checkRollNumber(String roll) {
+        public boolean checkRollNumber( final String roll ) {
         if (!roll.matches("[0-9]*"))
         {
             System.out.println("Invalid Roll Number. Please Re-enter");
@@ -29,7 +29,7 @@ public class InputChecker {
         return false;
     }
 
-        public boolean checkAddress(String address) {
+        public boolean checkAddress( final String address ) {
         if (!Character.isAlphabetic(address.charAt(0)))
         {
             System.out.println("Invalid Address. Please Re-enter");
@@ -38,7 +38,7 @@ public class InputChecker {
         return false;
     }
 
-        public boolean checkCourses(String course) {
+        public boolean checkCourses( final String course ) {
             if (!course.matches("A|B|C|D|E"))
             {
                 System.out.println("Invalid Course Name. Please Re-enter");

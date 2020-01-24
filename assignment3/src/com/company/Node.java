@@ -4,12 +4,11 @@ import java.util.HashMap;
 
 public class Node {
     public int id;
-    private String name;
-    HashMap<Integer, Node> children;
+    public String name;
+    public HashMap<Integer, Node> children;
 
-
-    Node(int id, String name){
-        this.id = id;
+    Node( final int identity, final String name ){
+        this.id = identity;
         this.name = name;
         this.children = new HashMap<>();
     }

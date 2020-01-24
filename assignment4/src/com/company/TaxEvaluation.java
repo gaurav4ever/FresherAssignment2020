@@ -1,12 +1,14 @@
 package assignment4.src.com.company;
 
 public class TaxEvaluation {
-    public double calculateRawTax(double price) {
+
+    public double calculateRawTax( final double price) {
         return 0.125 * price;
     }
 
-    public double calculateImportedTax(double price) {
-        double surcharge = 0, tax;
+    public double calculateImportedTax( final double price) {
+        double surcharge = 0;
+        double tax;
         tax = price * 0.1 + 0.125 * price;
         if (price + tax < 100) {
             surcharge = 5;
@@ -19,7 +21,7 @@ public class TaxEvaluation {
         return tax;
     }
 
-    public double calculateManufacturedTax(double price) {
+    public double calculateManufacturedTax( final double price ) {
         return (price + 0.125 * price) * 0.02 + 0.125 * price;
     }
 }
