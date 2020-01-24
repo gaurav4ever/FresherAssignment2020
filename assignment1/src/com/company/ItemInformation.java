@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+// class id used to read input and display
 public class ItemInformation {
     private List<Item> arrayList= new ArrayList<>();
     private Scanner input = new Scanner(System.in);
     private Item item;
     protected double tax;
 
-    ItemInformation(){
+    public ItemInformation(){
         item = new Item();
     }
 
+    // Saving the data
     public void input() {
         final InputCheck inputCheck = new InputCheck();
         System.out.println("Enter Item details: ");
@@ -56,6 +58,7 @@ public class ItemInformation {
         }
     }
 
+    // Display the details
     public void display(){
         final TaxEvaluation taxEvaluation = new TaxEvaluation();
         for( final Item item : arrayList ){

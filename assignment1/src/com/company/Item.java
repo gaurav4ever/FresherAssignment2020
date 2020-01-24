@@ -1,7 +1,9 @@
 package assignment1.src.com.company;
 
+// DataStructure
 public class Item {
 
+    //Basic variables for item
     private String name;
     private int quantity;
     private double price;

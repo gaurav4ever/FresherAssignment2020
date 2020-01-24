@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Operations {
 
-    public ArrayList<Item> taxCalculate( ArrayList<Item> arrayList ) {
+    public ArrayList<Item> taxCalculate( final ArrayList<Item> arrayList ) {
         double tax =0;
         final TaxEvaluation taxEvaluation = new TaxEvaluation();
         for( final Item item : arrayList ){
@@ -24,7 +24,7 @@ public class Operations {
     }
 
     // default access specifier
-    void displayItems(ArrayList<Item> arrayList){
+    void displayItems( final ArrayList<Item> arrayList){
         for ( final Item item: arrayList ) {
             System.out.println("Name :\t" + item.getName() + "\tQuantity :\t" + item.getQuantity() + "\tPrice :\t" + item.getPrice() + "\tType :\t" + item.getType() + "\tTax :" + item.getTax());
         }

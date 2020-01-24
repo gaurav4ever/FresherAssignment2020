@@ -7,7 +7,7 @@ public class Node {
     public String name;
     public HashMap<Integer, Node> children;
 
-    Node( final int identity, final String name ){
+    /* default */Node( final int identity, final String name ){
         this.id = identity;
         this.name = name;
         this.children = new HashMap<>();

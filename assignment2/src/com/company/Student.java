@@ -50,8 +50,7 @@ public class Student implements Serializable {
     }
 
     public char[] getCourese () {
-        final char courese1[] = courese;
-        return courese1;
+        return courese;
     }
 
     public void setCourese ( final char[] courese ) {

@@ -1,11 +1,14 @@
 package assignment1.src.com.company;
 
+// Tax Calculation
 public class TaxEvaluation {
 
+    // tax for raw data
     public double calculateRawTax( final double price ) {
         return 0.125 * price;
     }
 
+    // tax for imported data
     public double calculateImportedTax( final double price ) {
         double surcharge = 0;
         double tax;
@@ -21,6 +24,7 @@ public class TaxEvaluation {
         return tax;
     }
 
+    // tax for manufactured data
     public double calculateManufacturedTax( final double price ) {
         return (price + 0.125 * price) * 0.02 + 0.125 * price;
     }
