@@ -1,4 +1,4 @@
-package com.example.contacts.View.Controller;
+package com.example.contacts.view.controller;
 
 public interface GetDataFromChildController {
     public void updateContact(int id);

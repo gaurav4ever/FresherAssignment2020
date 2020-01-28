@@ -1,4 +1,4 @@
-package com.example.contacts.Model.Constants;
+package com.example.contacts.model.constants;
 
 public class Constants {
     public static final int READ_CONTACT_REQUEST_CODE = 101;

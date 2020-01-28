@@ -1,17 +1,13 @@
-package com.example.contacts.Presenter.Repository;
+package com.example.contacts.presenter.repository;
 
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.util.Log;
-
-import com.example.contacts.Model.Contact;
-
-import java.util.ArrayList;
-
+import com.example.contacts.model.Contact;
 import io.reactivex.subjects.Subject;
+import java.util.ArrayList;
 
 public class ContactsRepository {
     public void getContactList(Context context, Subject<Contact> subject) {

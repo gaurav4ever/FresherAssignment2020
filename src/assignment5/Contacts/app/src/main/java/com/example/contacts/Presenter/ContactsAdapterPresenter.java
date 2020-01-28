@@ -1,4 +1,4 @@
-package com.example.contacts.Presenter;
+package com.example.contacts.presenter;
 
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.contacts.Model.Contact;
+import com.example.contacts.model.Contact;
 import com.example.contacts.R;
-import com.example.contacts.View.ContactsAdapterViewHolder;
+import com.example.contacts.view.ContactsAdapterViewHolder;
 
 import java.util.ArrayList;
 

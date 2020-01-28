@@ -1,17 +1,16 @@
-package com.example.contacts.View;
+package com.example.contacts.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.ViewGroup;
 
 import com.bluelinelabs.conductor.Conductor;
 import com.bluelinelabs.conductor.Router;
 import com.bluelinelabs.conductor.RouterTransaction;
-import com.example.contacts.View.Controller.ContactListController;
-import com.example.contacts.Presenter.Permissions.PermissionHandler;
+import com.example.contacts.view.controller.ContactListController;
+import com.example.contacts.presenter.permissions.PermissionHandler;
 import com.example.contacts.R;
 import com.example.contacts.databinding.ActivityMainBinding;
 

@@ -1,6 +1,5 @@
-package com.example.contacts.View;
+package com.example.contacts.view;
 
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,11 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.contacts.Model.Contact;
-import com.example.contacts.R;
-import com.example.contacts.databinding.ContactDetailsBinding;
-import com.example.contacts.databinding.ContactDetailsBindingImpl;
-import com.example.contacts.databinding.ContactListBinding;
+import com.example.contacts.model.Contact;
 import com.example.contacts.databinding.ContactViewBinding;
 
 public class ContactsAdapterViewHolder extends RecyclerView.ViewHolder {

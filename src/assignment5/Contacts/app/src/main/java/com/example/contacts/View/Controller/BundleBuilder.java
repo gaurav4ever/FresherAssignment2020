@@ -1,4 +1,4 @@
-package com.example.contacts.View.Controller;
+package com.example.contacts.view.controller;
 
 import android.os.Bundle;
 import android.os.Parcelable;

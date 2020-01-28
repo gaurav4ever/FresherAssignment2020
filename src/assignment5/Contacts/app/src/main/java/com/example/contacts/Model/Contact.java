@@ -1,11 +1,8 @@
-package com.example.contacts.Model;
+package com.example.contacts.model;
 
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Contact implements Parcelable,Comparable<Contact> {

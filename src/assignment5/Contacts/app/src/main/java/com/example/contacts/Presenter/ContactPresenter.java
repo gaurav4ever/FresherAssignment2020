@@ -1,23 +1,19 @@
-package com.example.contacts.Presenter;
+package com.example.contacts.presenter;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.example.contacts.Model.Constants.Constants;
-import com.example.contacts.Model.Contact;
-import com.example.contacts.Presenter.Repository.ContactsRepository;
+import com.example.contacts.model.constants.Constants;
+import com.example.contacts.model.Contact;
+import com.example.contacts.presenter.repository.ContactsRepository;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
-import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;

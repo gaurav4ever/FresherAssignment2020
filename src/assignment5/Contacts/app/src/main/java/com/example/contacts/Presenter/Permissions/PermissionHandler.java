@@ -1,4 +1,4 @@
-package com.example.contacts.Presenter.Permissions;
+package com.example.contacts.presenter.permissions;
 
 import android.Manifest;
 import android.app.Activity;
@@ -7,10 +7,10 @@ import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.contacts.Model.Constants.Constants;
+import com.example.contacts.model.constants.Constants;
 
 public class PermissionHandler {
-    private static PermissionHandler mPermissionHandler=null;
+    private static PermissionHandler mPermissionHandler;
     private View mView;
     private PermissionHandler(View view) {
         this.mView = view;
@@ -21,6 +21,7 @@ public class PermissionHandler {
                 mPermissionHandler = new PermissionHandler(view);
 
         }
+        mPermissionHandler.mView = view;
         return mPermissionHandler;
     }
     public void requestPermission() {
