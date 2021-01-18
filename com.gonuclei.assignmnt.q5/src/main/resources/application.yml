@@ -1,0 +1,163 @@
+spring:
+  application:
+    name: DemoTemplate
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: devender.singh2806@gmail.com
+    password:
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
+
+  security:
+    jwt-secret: BCC26BD3D77AB57FD98A985B6C14B-BCC26BD3D77AB57FD98A985B6C14B-BCC26BD3D77AB57FD98A985B6C14B
+
+server:
+  port: 8083
+#  servlet:
+#    contextPath: /demotemplate
+
+
+
+
+
+bizdirect:
+  app-version: 1.0.0-SNAPSHOT
+
+  #Data-source configurations
+  data:
+    schema: news_letter
+    username: ${MYSQL_DB_USERNAME:root}
+    password: ${MYSQL_DB_PASSWORD:nuclei123}
+    datasource-driver-class-name: com.mysql.jdbc.Driver
+    master-datasource:
+      host: ${MASTER_DATASOURCE_HOST:localhost:3306}
+      url: "jdbc:mysql://${bizdirect.data.master-datasource.host}/${bizdirect.data.schema}?useSSL=false&zeroDateTimeBehavior=convertToNull"
+      username: ${bizdirect.data.username}
+      password: ${bizdirect.data.password}
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: ${bizdirect.data.datasource-driver-class-name}
+      hikari:
+        connection-timeout: 30000
+        max-lifetime: ${HIKARI_MAX_LIFETIME:10800000}
+        minimum-pool-size: ${HIKARI_MIN_POOL_SIZE:10}
+        maximum-pool-size: ${HIKARI_MAX_POOL_SIZE:10}
+        pool-name: channelMasterCP
+    slave-datasource:
+      host: ${SLAVE_DATASOURCE_HOST:localhost:3306}
+      url: "jdbc:mysql://${bizdirect.data.slave-datasource.host}/${bizdirect.data.schema}?useSSL=false&zeroDateTimeBehavior=convertToNull"
+      username: ${bizdirect.data.username}
+      password: ${bizdirect.data.password}
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: ${bizdirect.data.datasource-driver-class-name}
+      hikari:
+        connection-timeout: 30000
+        max-lifetime: ${HIKARI_MAX_LIFETIME:10800000}
+        minimum-pool-size: ${HIKARI_MIN_POOL_SIZE:10}
+        maximum-pool-size: ${HIKARI_MAX_POOL_SIZE:10}
+        pool-name: channelSlaveCP
+
+
+
+  #Kafka configurations
+  kafka:
+    configs:
+      - config-id: applicaionKafka
+        isPrimary: true
+        kafkaProperties:
+          bootstrapServers:
+            - ${KAFKA_BOOTSTRAP_SERVER:172.16.0.32:9092}
+          consumer:
+            auto-offset-reset: earliest
+            bootstrap-servers:
+              - ${KAFKA_BOOTSTRAP_SERVER:172.16.0.32:9092}
+            enable-auto-commit: true
+            group-id: wolverine
+            max-poll-records: 30
+            value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+          listener:
+            concurrency: 3
+            poll-timeout: 1000
+          producer:
+            bootstrap-servers:
+              - ${KAFKA_BOOTSTRAP_SERVER:172.16.0.32:9092}
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+
+
+  #Security configurations
+
+  #    route-patterns-to-be-skipped:
+  #      - /appVersion
+  #      - /status
+  #      - /login
+  #      - /app/all
+
+
+
+  #Rest-client configurations
+  rest-client:
+    connection-timeout-ms: 5000
+    read-timeout-ms: 5000
+
+  cache:
+    redis:
+      host: localhost
+      port: 6379
+      database: 1
+      max-wait-millis: 100
+      max-idle: 100
+      min-idle: 10
+      max-total: 100
+      connection-timeout-ms: 2000
+      read-timeout-ms: 2000
+
+
+
+kafka:
+  topics:
+    test: testTopic
+    cart: ${KAFKA_TOPICS_SAMPLE:sample_topic}
+    category: ${KAFKA_TOPICS_CATEGORY:sample_category}
+
+zookeeper:
+  url: ${ZOOKEEPER_URL:172.16.0.32:2181}
+  namespace: "change-me"
+  baseSleepTimeMs: 1000
+  maxRetries: 3
+  lockDuration: 5
+
+
+slack:
+  users:
+    - application-alerts
+  alertTopic: slack
+
+service:
+  masterdata:
+    host: ${MASTERDATA_HOST:bizdirect-masterdata}
+    port: ${MASTERDATA_PORT:6565}
+    maxRetry: 3
+  hello:
+    host: localhost
+    port: 6565
+    maxRetry: 3
+  date:
+    host: localhost
+    port: 6565
+    maxRetry: 3
+
+elasticsearch:
+  host: localhost
+  port: 9300
+
+grpc:
+  port: 6565
+  enable-reflection: true
