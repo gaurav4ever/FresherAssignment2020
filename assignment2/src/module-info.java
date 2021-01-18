@@ -1,0 +1,2 @@
+module assignment2 {
+}
