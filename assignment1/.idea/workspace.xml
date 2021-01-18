@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e1e7a465-538d-444d-98bb-c480cde172ba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Assignment 4/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment 4/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assignment 4/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment 4/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assignment 4/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment 4/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assignment 4/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment 4/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assignment 4/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment 4/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assignment 4/src/main/java/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment 4/src/main/java/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assignment 4/src/main/java/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment 4/src/main/java/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assignment 4/src/main/java/TaxCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment 4/src/main/java/TaxCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/assignment1/com/company/main/Item.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/assignment1/com/company/main/ItemFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/assignment1/com/company/main/ItemModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/assignment1/com/company/main/ItemModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/assignment1/com/company/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/assignment1/com/company/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/assignment1/com/company/main/TaxCalculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/assignment1/com/company/main/TaxCalculator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/assignment1/com/company/main/details$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/assignment1/com/company/main/details$Tax.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/assignment1/com/company/main/details$Type.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/assignment1/com/company/main/details.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/assignment1/com/company/test/ItemTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/Details.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/ImportedItemModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/Item.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/ItemFunction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/ItemImported.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/ItemManufactured.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/ItemModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/ItemOperation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/ItemRaw.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/ManufacturedItemModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/Model.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/RawItemModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/TaxCalculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/item/ItemImported.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/main/item/ItemImported.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/item/ItemManufactured.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/main/item/ItemManufactured.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/item/ItemModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/main/item/ItemModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/item/ItemOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/main/item/ItemOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/main/tax/TaxCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/main/tax/TaxCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/test/ItemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/test/ItemTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/myObjects.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/myObjects.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/out/production/assignment2/com/company/main/Details.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/out/production/assignment2/com/company/main/FileOperations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/out/production/assignment2/com/company/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/out/production/assignment2/com/company/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/out/production/assignment2/com/company/main/Student$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/out/production/assignment2/com/company/main/Student$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/out/production/assignment2/com/company/main/Student$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/out/production/assignment2/com/company/main/Student$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/out/production/assignment2/com/company/main/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/out/production/assignment2/com/company/main/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/Details.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/FileOperation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/FileOperations.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/FileOperations/ReadFromFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/FileOperations/SaveChanges.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/src/com/company/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/Model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/src/com/company/main/Model/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/StudentDetailOperation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/StudentOperation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/StudentOperations/DeleteStudentRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/StudentOperations/DisplayStudentList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/StudentOperations/InputStudentDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/StudentOperations/WriteToFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/UserInputs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/ValidateDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/driver/ChoiceDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/src/com/company/main/driver/ChoiceDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/driver/UserChoiceMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/src/com/company/main/driver/UserChoiceMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/driver/UserInputs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/file_operations/ReadFromFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/src/com/company/main/file_operations/ReadFromFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/file_operations/SaveChanges.java" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/src/com/company/main/file_operations/SaveChanges.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/file_operations/WriteToFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/src/com/company/main/file_operations/WriteToFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/student_operations/DeleteStudentRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/student_operations/DisplayStudentList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/student_operations/InputStudentDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/student_operations/StrudentList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/student_operations/StudentDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/src/com/company/main/student_operations/StudentDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/student_operations/StudentRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/src/com/company/main/student_operations/StudentRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assignment2/src/com/company/main/student_operations/ValidateDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/src/com/company/main/student_operations/ValidateDetails.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="156" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit4 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1W4mgF9T8KvWgwfSn5FIt2E81cT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.company" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.main.Main" />
+      <module name="assignment1" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="assignment1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.company.test" />
+      <option name="MAIN_CLASS_NAME" value="com.company.test.ItemTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.ItemTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ItemTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e1e7a465-538d-444d-98bb-c480cde172ba" name="Default Changelist" comment="" />
+      <created>1578417351018</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1578417351018</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="378" y="173" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1578420043942">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="378" y="173" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1280.800@0.0.1280.800" timestamp="1578420043942" />
+    <state x="414" y="292" width="451" height="225" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1579512859840">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="414" y="292" width="451" height="225" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.800@0.0.1280.800" timestamp="1579512859840" />
+    <state x="262" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1579242212426">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="262" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.800@0.0.1280.800" timestamp="1579242212426" />
+    <state x="388" y="272" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1579242026265">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="388" y="272" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1280.800@0.0.1280.800" timestamp="1579242026265" />
+    <state width="1238" height="203" key="GridCell.Tab.0.bottom" timestamp="1579515620492">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="203" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1579515620492" />
+    <state width="1238" height="203" key="GridCell.Tab.0.center" timestamp="1579515620490">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="203" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1579515620490" />
+    <state width="1238" height="203" key="GridCell.Tab.0.left" timestamp="1579515620489">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="203" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1579515620489" />
+    <state width="1238" height="203" key="GridCell.Tab.0.right" timestamp="1579515620491">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="203" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1579515620491" />
+    <state x="149" y="39" key="SettingsEditor" timestamp="1579237005824">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="149" y="39" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1579237005824" />
+    <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1579510927995">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1579510927995" />
+    <state x="319" y="221" key="com.intellij.ide.util.TipDialog" timestamp="1578417363407">
+      <screen x="0" y="23" width="1280" height="731" />
+    </state>
+    <state x="319" y="221" key="com.intellij.ide.util.TipDialog/0.23.1280.731@0.23.1280.731" timestamp="1578417363407" />
+    <state x="352" y="301" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1578498401935">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="352" y="301" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1280.800@0.0.1280.800" timestamp="1578498401935" />
+    <state x="412" y="134" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1578498104873">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="412" y="134" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1280.800@0.0.1280.800" timestamp="1578498104873" />
+    <state x="34" y="22" key="new project wizard" timestamp="1578553785379">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="34" y="22" key="new project wizard/0.0.1280.800@0.0.1280.800" timestamp="1578553785379" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/assignment1$Main.ic" NAME="Main Coverage Results" MODIFIED="1578475011142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
